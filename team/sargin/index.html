@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISLab - Principal Investigator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f5f5f5; 
+            padding-top: 60px; /* Because we will make the navbar fixed like team.html */
+			overflow-y: scroll;
+        }
+        nav { 
+            background-color: #002244; 
+            padding: 10px 0; 
+            text-align: center; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            z-index: 1000; 
+        }
+        nav a { 
+            color: white; 
+            margin: 0 15px; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        .section { 
+            padding: 30px; 
+            margin: 20px auto; 
+            width: 95%; 
+            max-width: 1100px; 
+            background-color: white; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        }
+        .profile { 
+            display: flex; 
+            align-items: flex-start; 
+            margin-bottom: 20px; 
+        }
+        .profile img { 
+            width: 250px; 
+            height: 333px; /* 4:3 vertical ratio */
+            object-fit: cover; 
+            margin-right: 30px; 
+        }
+        .details { flex: 1; }
+        .icons { margin-top: 15px; }
+        .icons a { 
+            margin-right: 12px; 
+            text-decoration: none; 
+            color: #333; 
+            font-size: 22px; 
+        }
+        .publications { margin-top: 20px; }
+        .footer { 
+            background-color: #003366; 
+            color: white; 
+            text-align: center; 
+            padding: 12px 0; 
+            margin-top: 30px; 
+        }
+    </style>
+</head>
+<body>
+
+	<nav>
+		<a href="/">Home</a>
+		<a href="/team/">Team</a>
+		<a href="/publications/">Publications</a>
+		<a href="/research/">Research</a>
+		<a href="/news/">News</a>
+		<a href="/contact/">Contact</a>
+	</nav>
+
+    <div class="section">
+        <div class="profile">
+            <img src="sargin.jpg" alt="Principal Investigator">
+            <div class="details">
+                <h2>Dr. Name Surname</h2>
+                <p><strong>Education:</strong> Ph.D. in Materials Science, XYZ University, 2015</p>
+                <p><strong>Research Area:</strong> Data-driven Materials Discovery, Computational Materials Science, Materials Informatics</p>
+
+                <!-- Icons for Links -->
+                <div class="icons">
+                    <a href="mailto:example@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fas fa-globe"></i></a>
+                    <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="publications">
+            <h3>Publications</h3>
+            <ul>
+                <li>Doe, J., Surname, N., et al. (2023). Title of the Research Paper. <em>Journal Name</em>.</li>
+                <li>Surname, N., et al. (2021). Another Paper Title. <em>Advanced Materials</em>.</li>
+                <!-- Add more publications here -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Contact Us: Address | Email | Social Links</p>
+    </div>
+
+</body>
+</html>

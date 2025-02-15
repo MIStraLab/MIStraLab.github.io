@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISLab - News</title>
+    <style>
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f5f5f5; 
+            padding-top: 60px;
+            overflow-y: scroll;
+        }
+        nav { 
+            background-color: #002244; 
+            padding: 10px 0; 
+            text-align: center; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            z-index: 1000; 
+        }
+        nav a { 
+            color: white; 
+            margin: 0 15px; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        .section { 
+            padding: 30px; 
+            margin: 20px auto; 
+            width: 95%; 
+            max-width: 1100px; 
+            background-color: white; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        }
+        h2 {
+            font-size: 36px;
+            text-align: center;
+            color: #002244;
+            margin-bottom: 30px;
+        }
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .news-card {
+            display: flex;
+            width: calc(50% - 10px); /* 2 cards per row */
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: black;
+            transition: transform 0.2s ease;
+        }
+        .news-card:hover {
+            transform: scale(1.03);
+        }
+        .news-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+        .news-content {
+            padding: 10px;
+        }
+        .news-content h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #002244;
+        }
+        .news-content .date {
+            margin: 4px 0;
+            font-size: 12px;
+            color: gray;
+        }
+        .news-content p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .footer { 
+            background-color: #003366; 
+            color: white; 
+            text-align: center; 
+            padding: 12px 0; 
+            margin-top: 30px; 
+        }
+    </style>
+</head>
+<body>
+
+	<nav>
+		<a href="/">Home</a>
+		<a href="/team/">Team</a>
+		<a href="/publications/">Publications</a>
+		<a href="/research/">Research</a>
+		<a href="/news/">News</a>
+		<a href="/contact/">Contact</a>
+	</nav>
+
+    <div class="section">
+        <h2>News</h2>
+
+        <div class="news-container">
+
+            <!-- Latest News First -->
+            <a href="news1.html" class="news-card">
+                <img src="news1.jpg" alt="News 1">
+                <div class="news-content">
+                    <h3>Exciting Lab Achievement</h3>
+                    <div class="date">February 15, 2025</div>
+                    <p>Our team has made a breakthrough in computational materials...</p>
+                </div>
+            </a>
+
+            <a href="news2.html" class="news-card">
+                <img src="news2.jpg" alt="News 2">
+                <div class="news-content">
+                    <h3>Conference Presentation</h3>
+                    <div class="date">January 28, 2025</div>
+                    <p>We presented our work at the International Materials Informatics Conference...</p>
+                </div>
+            </a>
+
+            <a href="news3.html" class="news-card">
+                <img src="news3.jpg" alt="News 3">
+                <div class="news-content">
+                    <h3>New Project Funding</h3>
+                    <div class="date">December 5, 2024</div>
+                    <p>Our lab has been awarded a major grant to develop AI-driven materials design...</p>
+                </div>
+            </a>
+
+            <a href="news4.html" class="news-card">
+                <img src="news4.jpg" alt="News 4">
+                <div class="news-content">
+                    <h3>Collaboration Announcement</h3>
+                    <div class="date">November 15, 2024</div>
+                    <p>We are excited to collaborate with leading researchers on data-driven materials...</p>
+                </div>
+            </a>
+			
+			<a href="news5.html" class="news-card">
+                <img src="news5.jpg" alt="News 5">
+                <div class="news-content">
+                    <h3>New Project Funding</h3>
+                    <div class="date">December 5, 2022</div>
+                    <p>Our lab has been awarded a major grant to develop AI-driven materials design...</p>
+                </div>
+            </a>
+			
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Contact Us: Address | Email | Social Links</p>
+    </div>
+
+</body>
+</html>
