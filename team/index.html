@@ -5,82 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIStraLab - Team</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body { 
-            font-family: 'Arial', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background-color: #f5f5f5;
-            padding-top: 60px; /* Avoid content hiding behind fixed navbar */
-			overflow-y: scroll;
-        }
-		
-        nav { 
-            background-color: #002244; 
-            padding: 10px 0; 
-            text-align: center; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            right: 0; 
-            z-index: 1000; /* Make sure it’s above everything */
-        }
-        nav a { 
-            color: white; 
-            margin: 0 15px; 
-            text-decoration: none; 
-            font-weight: bold; 
-        }
-        .section { 
-            padding: 30px; 
-            margin: 20px auto; 
-            width: 95%; 
-            max-width: 1100px; 
-            background-color: white; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-        }
-        .member { 
-            display: flex; 
-            align-items: center; 
-            margin-bottom: 40px; 
-        }
-        .member img { 
-            width: 200px; 
-            height: 266px; /* 4:3 vertical ratio */
-            object-fit: cover; 
-            margin-right: 30px; 
-        }
-        .member-info { flex: 1; }
-        .member-info h3 a { text-decoration: none; color: #003366; }
-        .icons { margin-top: 10px; }
-        .icons a { margin-right: 12px; text-decoration: none; color: #333; font-size: 20px; }
-        .footer { 
-            background-color: #003366; 
-            color: white; 
-            text-align: center; 
-            padding: 12px 0; 
-            margin-top: 30px; 
-        }
-    </style>
+    <link rel="stylesheet" href="/css/style.css"> <!-- External Stylesheet -->
 </head>
 <body>
-	    
-    <nav>
-    <a href="/" style="display: inline-block;">
-        <img src="/images/mistralab2.png" alt="MIStraLab Logo" style="height: 40px; vertical-align: middle;">
-    </a>
-    <a href="/">Home</a>
-    <a href="/team/">Team</a>
-    <a href="/publications/">Publications</a>
-    <a href="/research/">Research</a>
-    <a href="/news/">News</a>
-    <a href="/contact/">Contact</a>
-    </nav>
+
+    <!-- Load Navbar -->
+    <div id="navbar-placeholder"></div>
 
     <div class="section">
-        <h2 style="font-size: 36px; color: #002244; margin-bottom: 20px; text-align: center;">Members</h2>
-
+        <h2 class="page-title">Members</h2>
 
         <h3>Principal Investigator</h3>
         <div class="member">
@@ -91,7 +24,7 @@
                 <p>Research Area: Materials Informatics, Data-driven Discovery...</p>
                 <div class="icons">
                     <a href="mailto:example@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fas fa-globe"></i></a>
+                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
                     <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                     <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -108,7 +41,7 @@
                 <p>Research Area: Computational Materials Science...</p>
                 <div class="icons">
                     <a href="mailto:student1@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fas fa-globe"></i></a>
+                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
                     <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                     <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -124,7 +57,7 @@
                 <p>Research Area: Computational Materials Science...</p>
                 <div class="icons">
                     <a href="mailto:student2@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fas fa-globe"></i></a>
+                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
                     <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                     <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -134,9 +67,21 @@
 
     </div>
 
-    <div class="footer">
-        <p>Contact Us: Address | Email | Social Links</p>
-    </div>
+    <!-- Load Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script to Load Navbar and Footer -->
+    <script>
+        // Load Navbar
+        fetch('/partials/navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+
+        // Load Footer
+        fetch('/partials/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+    </script>
 
 </body>
 </html>
