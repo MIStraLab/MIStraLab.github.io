@@ -5,11 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIStraLab - Team</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="/css/style.css"> <!-- External Stylesheet -->
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Custom styling specific to the team page */
+        .member {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .member img {
+            width: 160px;
+            height: 213px; /* 4:3 aspect ratio */
+            object-fit: cover;
+            margin-right: 20px;
+            border-radius: 4px;
+        }
+        .member-info h3 a {
+            text-decoration: none;
+            color: #002244;
+        }
+        .icons {
+            margin-top: 10px;
+        }
+        .icons a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #002244;
+            font-size: 18px;
+        }
+        .icons a:hover {
+            color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Load Navbar -->
     <div id="navbar-placeholder"></div>
 
     <div class="section">
@@ -20,8 +54,8 @@
             <img src="/images/sargin.jpg" alt="Principal Investigator">
             <div class="member-info">
                 <h3><a href="/team/sargin/">Dr. Irmak Sargın</a></h3>
-                <p>Education Info: Ph.D. in ...</p>
-                <p>Research Area: Materials Informatics, Data-driven Discovery...</p>
+                <p><strong>Education:</strong> Ph.D. in ...</p>
+                <p><strong>Research Area:</strong> Materials Informatics, Data-driven Discovery...</p>
                 <div class="icons">
                     <a href="mailto:example@example.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
@@ -37,14 +71,14 @@
             <img src="/images/student1-photo.jpg" alt="Student 1">
             <div class="member-info">
                 <h3><a href="/team/student1/">Name Surname</a></h3>
-                <p>Education Info: M.Sc. in ...</p>
-                <p>Research Area: Computational Materials Science...</p>
+                <p><strong>Education:</strong> M.Sc. in ...</p>
+                <p><strong>Research Area:</strong> Computational Materials Science...</p>
                 <div class="icons">
-                    <a href="mailto:student1@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
-                    <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:student1@example.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="https://scholar.google.com" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/example" target="_blank"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </div>
@@ -53,31 +87,27 @@
             <img src="/images/student2-photo.jpg" alt="Student 2">
             <div class="member-info">
                 <h3><a href="/team/student2/">Name Surname</a></h3>
-                <p>Education Info: M.Sc. in ...</p>
-                <p>Research Area: Computational Materials Science...</p>
+                <p><strong>Education:</strong> M.Sc. in ...</p>
+                <p><strong>Research Area:</strong> Computational Materials Science...</p>
                 <div class="icons">
-                    <a href="mailto:student2@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
-                    <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:student2@example.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="https://scholar.google.com" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/example" target="_blank"><i class="fab fa-github"></i></a>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Load Footer -->
     <div id="footer-placeholder"></div>
 
-    <!-- Script to Load Navbar and Footer -->
     <script>
-        // Load Navbar
         fetch('/partials/navbar.html')
             .then(response => response.text())
             .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
 
-        // Load Footer
         fetch('/partials/footer.html')
             .then(response => response.text())
             .then(data => document.getElementById('footer-placeholder').innerHTML = data);
