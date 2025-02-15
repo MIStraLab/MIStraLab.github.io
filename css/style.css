@@ -1,0 +1,80 @@
+/* General Body Styles */
+body { 
+    font-family: 'Arial', sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    background-color: #f5f5f5; 
+    padding-top: 60px; /* Adjust for fixed navbar */
+    overflow-y: scroll;
+}
+
+/* Navbar Styles */
+nav { 
+    background-color: #002244; 
+    padding: 10px 0; 
+    text-align: center; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 1000;
+}
+nav a { 
+    color: white; 
+    margin: 0 15px; 
+    text-decoration: none; 
+    font-weight: bold; 
+}
+nav img {
+    height: 40px;
+    vertical-align: middle;
+}
+
+/* Lab Title */
+.lab-title { 
+    text-align: center; 
+    font-size: 24px; 
+    margin: 20px 0; 
+}
+
+/* Content Boxes */
+.main-container { 
+    display: flex; 
+    justify-content: space-around; 
+    margin: 20px auto; 
+    width: 95%; 
+    max-width: 1100px; 
+}
+.about, .picture { 
+    background-color: white; 
+    padding: 15px; 
+    width: 45%; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+.picture { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    height: 200px; 
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #003366;
+    color: white;
+    padding: 10px 0;
+    margin-top: 30px;
+}
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.footer-logo {
+    height: 40px;
+    object-fit: contain;
+}
