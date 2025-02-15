@@ -6,11 +6,10 @@
     <title>MIStraLab - Home</title>
     <link rel="stylesheet" href="/css/style.css">
     <style>
-        /* Carousel Styles */
         .carousel-container {
             position: relative;
             width: 100%;
-            height: 200px;
+            height: 300px; /* This gives 4:3 ratio -> width: 400px, height: 300px */
             overflow: hidden;
             border-radius: 8px;
         }
@@ -18,12 +17,12 @@
         .carousel-slide {
             display: flex;
             transition: transform 0.5s ease-in-out;
-        }
+        }    
 
         .carousel-slide img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 300px; /* Same as container height for 4:3 */
+            object-fit: cover; /* Ensures images fit perfectly without distortion */
             flex-shrink: 0;
         }
 
@@ -43,6 +42,7 @@
         .carousel-btn.left { left: 10px; }
         .carousel-btn.right { right: 10px; }
     </style>
+
 </head>
 <body>
 
@@ -85,12 +85,12 @@
             .then(response => response.text())
             .then(data => document.getElementById('footer-placeholder').innerHTML = data);
 
-        // Carousel Script
+
         const slideContainer = document.querySelector('.carousel-slide');
         const slides = document.querySelectorAll('.carousel-slide img');
         let currentIndex = 0;
         const totalSlides = slides.length;
-
+    
         function showSlide(index) {
             if (index >= totalSlides) currentIndex = 0;
             else if (index < 0) currentIndex = totalSlides - 1;
@@ -108,7 +108,7 @@
             showSlide(currentIndex - 1);
         }
 
-        setInterval(nextSlide, 4000); // Auto-slide every 4s
+        let slideInterval = setInterval(nextSlide, 10000); // Change the time here
     </script>
 
 </body>
