@@ -13,22 +13,6 @@
             padding-top: 60px; /* Adjust for fixed navbar */
             overflow-y: scroll; 
         }
-        nav { 
-            background-color: #002244; 
-            padding: 10px 0; 
-            text-align: center; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            right: 0; 
-            z-index: 1000; 
-        }
-        nav a { 
-            color: white; 
-            margin: 0 15px; 
-            text-decoration: none; 
-            font-weight: bold; 
-        }
         .lab-title { 
             text-align: center; 
             font-size: 24px; 
@@ -54,28 +38,12 @@
             justify-content: center; 
             height: 200px; 
         }
-        .footer { 
-            background-color: #003366; 
-            color: white; 
-            text-align: center; 
-            padding: 10px 0; 
-            margin-top: 30px; 
-        }
     </style>
 </head>
 <body>
-    
-    <nav>
-    <a href="/" style="display: inline-block;">
-        <img src="/images/mistralab2.png" alt="MIStraLab Logo" style="height: 40px; vertical-align: middle;">
-    </a>
-    <a href="/">Home</a>
-    <a href="/team/">Team</a>
-    <a href="/publications/">Publications</a>
-    <a href="/research/">Research</a>
-    <a href="/news/">News</a>
-    <a href="/contact/">Contact</a>
-    </nav>
+
+    <!-- Navbar will be loaded here -->
+    <div id="navbar-placeholder"></div>
 
     <div class="lab-title">
         <h1>Materials Informatics Strategies Laboratory</h1>
@@ -92,9 +60,21 @@
         </div>
     </div>
 
-    <div class="footer">
-        <p>Contact Us: Address | Email | Social Links</p>
-    </div>
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script to load navbar and footer -->
+    <script>
+        // Load Navbar
+        fetch('/partials/navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+
+        // Load Footer
+        fetch('/partials/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+    </script>
 
 </body>
 </html>
