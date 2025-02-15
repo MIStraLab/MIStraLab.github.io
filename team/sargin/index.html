@@ -3,97 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIStraLab - Irmak Sargın</title>
+    <title>MIStraLab - Dr. Irmak Sargın</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
-        body { 
-            font-family: 'Arial', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background-color: #f5f5f5; 
-            padding-top: 60px; /* Because we will make the navbar fixed like team.html */
-			overflow-y: scroll;
+        .section {
+            padding: 30px;
+            margin: 20px auto;
+            width: 95%;
+            max-width: 1100px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        nav { 
-            background-color: #002244; 
-            padding: 10px 0; 
-            text-align: center; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            right: 0; 
-            z-index: 1000; 
+
+        .profile {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
         }
-        nav a { 
-            color: white; 
-            margin: 0 15px; 
-            text-decoration: none; 
-            font-weight: bold; 
+
+        .profile img {
+            width: 250px;
+            height: 333px; /* 4:3 ratio */
+            object-fit: cover;
+            margin-right: 30px;
         }
-        .section { 
-            padding: 30px; 
-            margin: 20px auto; 
-            width: 95%; 
-            max-width: 1100px; 
-            background-color: white; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+
+        .details h2 {
+            color: #002244;
         }
-        .profile { 
-            display: flex; 
-            align-items: flex-start; 
-            margin-bottom: 20px; 
+
+        .icons {
+            margin-top: 15px;
         }
-        .profile img { 
-            width: 250px; 
-            height: 333px; /* 4:3 vertical ratio */
-            object-fit: cover; 
-            margin-right: 30px; 
+
+        .icons a {
+            margin-right: 12px;
+            text-decoration: none;
+            color: #002244;
+            font-size: 24px;
         }
-        .details { flex: 1; }
-        .icons { margin-top: 15px; }
-        .icons a { 
-            margin-right: 12px; 
-            text-decoration: none; 
-            color: #333; 
-            font-size: 22px; 
+
+        .icons a:hover {
+            color: #0056b3;
         }
-        .publications { margin-top: 20px; }
-        .footer { 
-            background-color: #003366; 
-            color: white; 
-            text-align: center; 
-            padding: 12px 0; 
-            margin-top: 30px; 
+
+        .publications h3 {
+            color: #002244;
+            margin-top: 20px;
+        }
+
+        .publications ul {
+            list-style-type: disc;
+            margin-left: 20px;
         }
     </style>
 </head>
 <body>
-    
-    <nav>
-    <a href="/" style="display: inline-block;">
-        <img src="/images/mistralab2.png" alt="MIStraLab Logo" style="height: 40px; vertical-align: middle;">
-    </a>
-    <a href="/">Home</a>
-    <a href="/team/">Team</a>
-    <a href="/publications/">Publications</a>
-    <a href="/research/">Research</a>
-    <a href="/news/">News</a>
-    <a href="/contact/">Contact</a>
-    </nav>
-	
+
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
     <div class="section">
         <div class="profile">
-            <img src="sargin.jpg" alt="Principal Investigator">
+            <img src="/images/sargin.jpg" alt="Dr. Irmak Sargın">
             <div class="details">
-                <h2>Dr. Name Surname</h2>
+                <h2>Dr. Irmak Sargın</h2>
                 <p><strong>Education:</strong> Ph.D. in Materials Science, XYZ University, 2015</p>
                 <p><strong>Research Area:</strong> Data-driven Materials Discovery, Computational Materials Science, Materials Informatics</p>
 
-                <!-- Icons for Links -->
                 <div class="icons">
                     <a href="mailto:example@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fas fa-globe"></i></a>
+                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
                     <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                     <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -104,16 +86,26 @@
         <div class="publications">
             <h3>Publications</h3>
             <ul>
-                <li>Doe, J., Surname, N., et al. (2023). Title of the Research Paper. <em>Journal Name</em>.</li>
-                <li>Surname, N., et al. (2021). Another Paper Title. <em>Advanced Materials</em>.</li>
-                <!-- Add more publications here -->
+                <li>Doe, J., Sargin, I., et al. (2023). Title of the Research Paper. <em>Journal Name</em>.</li>
+                <li>Sargin, I., et al. (2021). Another Paper Title. <em>Advanced Materials</em>.</li>
+                <!-- Add more publications as needed -->
             </ul>
         </div>
     </div>
 
-    <div class="footer">
-        <p>Contact Us: Address | Email | Social Links</p>
-    </div>
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Navbar & Footer Loading -->
+    <script>
+        fetch('/partials/navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+
+        fetch('/partials/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+    </script>
 
 </body>
 </html>
