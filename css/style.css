@@ -1,4 +1,4 @@
-/* General Body Styles */
+/* General Page Styles */
 body { 
     font-family: 'Arial', sans-serif; 
     margin: 0; 
@@ -58,39 +58,47 @@ nav img {
     justify-content: center; 
     height: 200px; 
 }
+
 /* Footer Styles */
 .footer {
     background-color: #003366;
     color: white;
-    padding: 40px 0; /* Make footer twice as big */
+    padding: 40px 0;
     margin-top: 30px;
 }
 
 .footer-content {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Push logo left, text center */
     max-width: 1100px;
     margin: 0 auto;
-    text-align: center;
+    position: relative;
+}
+
+.footer-logo-container {
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
 }
 
 .footer-logo {
-    height: 120px; /* Make METU logo even bigger */
+    height: 120px;
     object-fit: contain;
 }
 
 .footer-text {
-    flex-grow: 1; /* Allow text to center */
+    flex-grow: 1;
     text-align: center;
 }
 
-.footer-text a {
+/* Footer Links */
+.footer a {
     color: white;
-    text-decoration: none;
+    text-decoration: underline;
     font-weight: bold;
 }
 
-.footer-text a:hover {
-    text-decoration: underline;
+.footer a:hover {
+    color: #ddd;
 }
