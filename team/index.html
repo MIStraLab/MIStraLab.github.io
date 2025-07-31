@@ -1,145 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIStraLab - Team</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <style>
-        /* Team Page Specific Styling */
-        .section {
-            padding: 30px;
-            margin: 20px auto;
-            width: 95%;
-            max-width: 1100px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIStraLab - Team</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 
-        .member {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-        }
+  <style>
+    /* Team Page Specific Styling */
+    .section {
+      padding: 30px;
+      margin: 20px auto;
+      width: 95%;
+      max-width: 1100px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .member img {
-            width: 160px;
-            height: 213px; /* 4:3 aspect ratio */
-            object-fit: cover;
-            margin-right: 20px;
-        }
+    .page-title {
+      font-size: 36px;
+      text-align: center;
+      color: #002244;
+      margin-bottom: 20px;
+    }
 
-        .member-info h3 a {
-            text-decoration: none;
-            color: #002244;
-        }
+    .member {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
 
-        .icons {
-            margin-top: 10px;
-        }
+    .member img {
+      width: 160px;
+      height: 213px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
 
-        .icons a {
-            margin-right: 10px;
-            text-decoration: none;
-            color: #002244;
-            font-size: 18px;
-        }
+    .member-info h3 a {
+      text-decoration: none;
+      color: #002244;
+    }
 
-        .icons a:hover {
-            color: #0056b3;
-        }
-    </style>
+    .icons {
+      margin-top: 10px;
+    }
+
+    .icons a {
+      margin-right: 10px;
+      text-decoration: none;
+      color: #002244;
+      font-size: 18px;
+    }
+
+    .icons a:hover {
+      color: #0056b3;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <div id="navbar-placeholder"></div>
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
 
-    <!-- Members Section in a Single White Box -->
-    <div class="section">
-        <h2 class="page-title">Members</h2>
+  <!-- Members Section -->
+  <div class="section">
+    <h2 class="page-title">Members</h2>
 
-        <h3>Principal Investigator</h3>
-        <div class="member">
-            <img src="/images/sargin.jpg" alt="Principal Investigator">
-            <div class="member-info">
-                <h3><a href="/team/sargin/">Dr. Irmak Sargın</a></h3>
-                <p><strong>Education:</strong> Ph.D. in ...</p>
-                <p><strong>Research Area:</strong> Materials Informatics, Data-driven Discovery...</p>
-                <div class="icons">
-                    <a href="mailto:example@example.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
-                    <a href="https://scholar.google.com/citations?user=ag_2tt4AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
+    <h3>Principal Investigator</h3>
+    <div class="member">
+      <img src="/images/sargin.jpg" alt="Principal Investigator">
+      <div class="member-info">
+        <h3><a href="/team/sargin/">Dr. Irmak Sargın</a></h3>
+        <p><strong>Education:</strong> Ph.D. in ...</p>
+        <p><strong>Research Area:</strong> Materials Informatics, Data-driven Discovery...</p>
+        <div class="icons">
+          <a href="mailto:example@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=ag_2tt4AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
-
-        <h3>Master Students</h3>
-
-        <div class="member">
-            <img src="/images/ugurakbulut.jpg" alt="Student 1">
-            <div class="member-info">
-                <h3><a href="/team/ugurakbulut/">Rıza Uğur Akbulut</a></h3>
-                <p><strong>Education:</strong> M.Sc. in ...</p>
-                <p><strong>Research Area:</strong> Computational Materials Science...</p>
-                <div class="icons">
-                    <a href="mailto:student1@example.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank"><i class="fa-brands fa-orcid"></i></a>
-                    <a href="https://scholar.google.com" target="_blank"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/example" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="member">
-            <img src="/images/iremtopsakal.jpg" alt="Student 2">
-            <div class="member-info">
-                <h3><a href="/team/iremtopsakal/">İrem Topsakal</a></h3>
-                <p><strong>Education:</strong> M.Sc. in ...</p>
-                <p><strong>Research Area:</strong> Computational Materials Science...</p>
-                <div class="icons">
-                    <a href="mailto:iremto@metu.edu.tr"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.linkedin.com/in/iremtopsakal" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/iremtopsakal" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="member">
-            <img src="/images/kedos.jpg" alt="Student 3">
-            <div class="member-info">
-                <h3><a href="/team/student3/">Name Surname</a></h3>
-                <p><strong>Education:</strong> M.Sc. in ...</p>
-                <p><strong>Research Area:</strong> Computational Materials Science...</p>
-                <div class="icons">
-                    <a href="mailto:example@example"><i class="fas fa-envelope"></i></a>
-                    <a href="www.linkedin.com/in/example" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/example" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </div>
-
-        
+      </div>
     </div>
 
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
+    <h3>Master Students</h3>
 
-    <!-- Navbar & Footer Loading -->
-    <script>
-        fetch('/partials/navbar.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+    <div class="member">
+      <img src="/images/ugurakbulut.jpg" alt="Student 1">
+      <div class="member-info">
+        <h3><a href="/team/ugurakbulut/">Rıza Uğur Akbulut</a></h3>
+        <p><strong>Education:</strong> M.Sc. in ...</p>
+        <p><strong>Research Area:</strong> Computational Materials Science...</p>
+        <div class="icons">
+          <a href="mailto:student1@example.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://orcid.org/0000-0000-0000-0000" target="_blank"><i class="fa-brands fa-orcid"></i></a>
+          <a href="https://scholar.google.com" target="_blank"><i class="fas fa-graduation-cap"></i></a>
+          <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/example" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
 
-        fetch('/partials/footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer-placeholder').innerHTML = data);
-    </script>
+    <div class="member">
+      <img src="/images/iremtopsakal.jpg" alt="Student 2">
+      <div class="member-info">
+        <h3><a href="/team/iremtopsakal/">İrem Topsakal</a></h3>
+        <p><strong>Education:</strong> M.Sc. in ...</p>
+        <p><strong>Research Area:</strong> Computational Materials Science...</p>
+        <div class="icons">
+          <a href="mailto:iremto@metu.edu.tr"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/iremtopsakal" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/iremtopsakal" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="member">
+      <img src="/images/kedos.jpg" alt="Student 3">
+      <div class="member-info">
+        <h3><a href="/team/student3/">Name Surname</a></h3>
+        <p><strong>Education:</strong> M.Sc. in ...</p>
+        <p><strong>Research Area:</strong> Computational Materials Science...</p>
+        <div class="icons">
+          <a href="mailto:example@example"><i class="fas fa-envelope"></i></a>
+          <a href="www.linkedin.com/in/example" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/example" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Load Navbar and Footer -->
+  <script>
+    fetch("/partials/navbar.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+
+        const toggle = document.getElementById("hamburger-toggle");
+        const links = document.getElementById("nav-links");
+
+        if (toggle && links) {
+          let isOpen = false;
+
+          toggle.addEventListener("click", () => {
+            if (!isOpen) {
+              links.classList.add("active");
+              isOpen = true;
+            } else {
+              links.classList.add("closing");
+              links.classList.remove("active");
+              setTimeout(() => {
+                links.classList.remove("closing");
+                isOpen = false;
+              }, 400);
+            }
+          });
+        }
+      });
+
+    fetch("/partials/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  </script>
 
 </body>
 </html>
