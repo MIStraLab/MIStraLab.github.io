@@ -1,115 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIStraLab - Home</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <style>
-        .carousel-container {
-            position: relative;
-            width: 50%;
-            height: 300px; /* This gives 4:3 ratio -> width: 400px, height: 300px */
-            overflow: hidden;
-            border-radius: 8px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIStraLab - Home</title>
+  <link rel="stylesheet" href="/css/style.css" />
 
-        .carousel-slide {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }    
+  <style>
+    /* Lab Title Styling */
+    .lab-title {
+      margin-top: 40px;
+      text-align: center;
+    }
 
-        .carousel-slide img {
-            width: 100%;
-            height: 300px; /* Same as container height for 4:3 */
-            object-fit: cover; /* Ensures images fit perfectly without distortion */
-            flex-shrink: 0;
-        }
+    .lab-title h1 {
+      font-size: 32px;
+      margin: 0 10px 20px 10px;
+    }
 
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            font-size: 18px;
-            z-index: 2;
-        }
+    @media (max-width: 768px) {
+      .lab-title h1 {
+        font-size: 24px;
+        padding: 0 10px;
+      }
+    }
 
-        .carousel-btn.left { left: 10px; }
-        .carousel-btn.right { right: 10px; }
-    </style>
+    /* Image and About Section Wrapper */
+    .home-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
 
+    .lab-image {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      display: block;
+      border-radius: 0px;
+    }
+
+    .about-box {
+      width: 100%;
+      max-width: 700px;
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px auto;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
+
 <body>
 
-    <!-- Navbar will be loaded here -->
-    <div id="navbar-placeholder"></div>
+  <!-- Navbar -->
+  <div id="navbar-placeholder"></div>
 
-    <div class="lab-title">
-        <h1>Materials Informatics Strategies Laboratory</h1>
+  <!-- Lab Title -->
+  <div class="lab-title">
+    <h1>Materials Informatics Strategies Laboratory</h1>
+  </div>
+
+  <!-- Main Content Section -->
+  <div class="home-section">
+    <img class="lab-image" src="/images/kedos.jpg" alt="Lab Overview Image" />
+
+    <div class="about-box">
+      <h3>About Us</h3>
+      <p>
+        Welcome to MIStraLab, where we focus on cutting-edge research in
+        materials informatics and strategic development...
+      </p>
     </div>
+  </div>
 
-    <div class="main-container">
-        <div class="about">
-            <h3>About Part</h3>
-            <p>Welcome to MIStraLab, where we focus on cutting-edge research in materials informatics and strategic development...</p>
-        </div>
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
 
-        <div class="carousel-container">
-            <div class="carousel-slide">
-                <img src="/images/kedos.jpg" alt="Lab Picture 1">
-                <img src="/images/statb.jpg" alt="Lab Picture 2">
-                <img src="/images/sargin.jpg" alt="Lab Picture 3">
-            </div>
-            <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
-            <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
-        </div>
-    </div>
+  <!-- Load Navbar and Footer -->
+  <script>
+    fetch("/partials/navbar.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
 
-    <!-- Footer will be loaded here -->
-    <div id="footer-placeholder"></div>
+        const toggle = document.getElementById("hamburger-toggle");
+        const links = document.getElementById("nav-links");
 
-    <!-- Script to load navbar and footer -->
-    <script>
-        // Load Navbar
-        fetch('/partials/navbar.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+        if (toggle && links) {
+          let isOpen = false;
 
-        // Load Footer
-        fetch('/partials/footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer-placeholder').innerHTML = data);
-
-
-        const slideContainer = document.querySelector('.carousel-slide');
-        const slides = document.querySelectorAll('.carousel-slide img');
-        let currentIndex = 0;
-        const totalSlides = slides.length;
-    
-        function showSlide(index) {
-            if (index >= totalSlides) currentIndex = 0;
-            else if (index < 0) currentIndex = totalSlides - 1;
-            else currentIndex = index;
-
-            const offset = -currentIndex * 100;
-            slideContainer.style.transform = `translateX(${offset}%)`;
+          toggle.addEventListener("click", () => {
+            if (!isOpen) {
+              links.classList.add("active");
+              isOpen = true;
+            } else {
+              links.classList.add("closing");
+              links.classList.remove("active");
+              setTimeout(() => {
+                links.classList.remove("closing");
+                isOpen = false;
+              }, 400);
+            }
+          });
         }
+      });
 
-        function nextSlide() {
-            showSlide(currentIndex + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentIndex - 1);
-        }
-
-        let slideInterval = setInterval(nextSlide, 10000); // Change the time here
-    </script>
+    fetch("/partials/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  </script>
 
 </body>
 </html>
