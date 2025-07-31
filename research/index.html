@@ -98,16 +98,40 @@
     <!-- Footer -->
     <div id="footer-placeholder"></div>
 
-    <!-- Navbar & Footer Loading -->
-    <script>
-        fetch('/partials/navbar.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('navbar-placeholder').innerHTML = data);
+  <!-- Load Navbar and Footer -->
+  <script>
+    fetch("/partials/navbar.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
 
-        fetch('/partials/footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer-placeholder').innerHTML = data);
-    </script>
+        const toggle = document.getElementById("hamburger-toggle");
+        const links = document.getElementById("nav-links");
 
+        if (toggle && links) {
+          let isOpen = false;
+
+          toggle.addEventListener("click", () => {
+            if (!isOpen) {
+              links.classList.add("active");
+              isOpen = true;
+            } else {
+              links.classList.add("closing");
+              links.classList.remove("active");
+              setTimeout(() => {
+                links.classList.remove("closing");
+                isOpen = false;
+              }, 400);
+            }
+          });
+        }
+      });
+
+    fetch("/partials/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  </script>
 </body>
 </html>
