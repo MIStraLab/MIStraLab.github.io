@@ -4,3 +4,5 @@ Logo:
 Prosto One
 140 px
 Photopea
+
+Note: You can contact Irem Topsakal about any issue :) 
