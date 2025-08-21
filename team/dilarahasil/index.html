@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIStraLab - Dilara Hasıl</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css"> 
+    <style>
+        .section {
+            padding: 30px;
+            margin: 20px auto;
+            width: 95%;
+            max-width: 1100px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
+        .profile {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            width: 250px;
+            height: 333px; /* 4:3 ratio */
+            object-fit: cover;
+            margin-right: 30px;
+        }
+
+        .details h2 {
+            color: #002244;
+        }
+
+        .icons {
+            margin-top: 15px;
+        }
+
+        .icons a {
+            margin-right: 12px;
+            text-decoration: none;
+            color: #002244;
+            font-size: 24px;
+        }
+
+        .icons a:hover {
+            color: #0056b3;
+        }
+
+        .publications h3 {
+            color: #002244;
+            margin-top: 20px;
+        }
+
+        .publications ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="section">
+        <div class="profile">
+            <img src="/images/dilarahasil.jpg" alt="Dilara Hasıl">
+            <div class="details">
+                <h2>Dilara Hasıl</h2>
+                <p><strong>Education:</strong> Ph.D. in Materials Science, XYZ University, 2015</p>
+                <p><strong>Research Area:</strong> Data-driven Materials Discovery, Computational Materials Science, Materials Informatics</p>
+
+                <div class="icons">
+                    <a href="mailto:example@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="https://scholar.google.com" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="publications">
+            <h3>Publications</h3>
+            <ul>
+                <li>Doe, J., Sargin, I., et al. (2023). Title of the Research Paper. <em>Journal Name</em>.</li>
+                <li>Sargin, I., et al. (2021). Another Paper Title. <em>Advanced Materials</em>.</li>
+                <!-- Add more publications as needed -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+
+  <!-- Load Navbar and Footer -->
+  <script>
+    fetch("/partials/navbar.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+
+        const toggle = document.getElementById("hamburger-toggle");
+        const links = document.getElementById("nav-links");
+
+        if (toggle && links) {
+          let isOpen = false;
+
+          toggle.addEventListener("click", () => {
+            if (!isOpen) {
+              links.classList.add("active");
+              isOpen = true;
+            } else {
+              links.classList.add("closing");
+              links.classList.remove("active");
+              setTimeout(() => {
+                links.classList.remove("closing");
+                isOpen = false;
+              }, 400);
+            }
+          });
+        }
+      });
+
+    fetch("/partials/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  </script>
+</body>
+</html>
