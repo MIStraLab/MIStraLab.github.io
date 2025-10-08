@@ -77,16 +77,40 @@
         }
         .icons a:hover{ background:#f2f6fb; border-color:#cdd9ea; transform:translateY(-1px); }
 
+        /* -------- NEW: Info Grid for Research & Education -------- */
+        .info-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr; /* Two equal columns */
+          gap: 24px;
+          margin-top: 24px;
+          text-align: left;
+        }
+
+        .info-block h3 {
+          color: var(--ink);
+          margin-top: 0;
+          margin-bottom: 10px;
+          font-size: 1.1rem;
+        }
+
+        .info-block ul {
+          padding-left: 20px; /* Indent bullet points */
+          margin: 0;
+          color: var(--ink-weak);
+        }
+
+        .info-block ul li {
+          margin-bottom: 6px;
+        }
+
+        /* -------- Other sections -------- */
         .publications h3,
+        .conferences h3,
         .pet-section h3{
           color:var(--ink);
           margin:10px 0 12px;
         }
-
-        /* Emoji bullets for Education */
-        .emoji-bullets{ list-style:none; padding:0; margin:6px 0 14px; }
-        .emoji-bullets li::before{ content:"🔹 "; }
-
+        
         /* -------- Pet photos grid -------- */
         .pet-grid{
           display:grid;
@@ -124,17 +148,23 @@
           .section{ padding:22px; }
           .profile{
             grid-template-columns: 1fr;      /* stack */
-            justify-items:center;            /* center photo */
-            text-align:left;                 /* keep body text left */
+            justify-items:center;           /* center photo */
+            text-align:left;                /* keep body text left */
             gap:16px;
           }
           .profile img{
-            max-width: min(85vw, 360px);     /* comfy size on phones */
+            max-width: min(85vw, 360px);    /* comfy size on phones */
           }
           .details{ width:100%; }
           .details h2{ font-size:1.6rem; }
           .icons{ gap:10px; }
           .icons a{ width:44px; height:44px; font-size:20px; }
+
+          /* NEW: Stack info grid on mobile */
+          .info-grid {
+            grid-template-columns: 1fr; 
+            gap: 20px;
+          }
 
           .pet-grid{
             grid-template-columns:repeat(auto-fill, minmax(140px,1fr));
@@ -151,7 +181,6 @@
 </head>
 <body>
 
-  <!-- Navbar (unchanged) -->
   <div id="navbar-placeholder"></div>
 
   <div class="section">
@@ -167,15 +196,27 @@
           <a href="https://www.linkedin.com/in/iremtopsakal/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
           <a href="https://github.com/iremtopsakal" target="_blank" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
-          
-        <p>Working as a Research and Teaching Assistant in METU</p>        
-        <p><strong>Education:</strong></p>
-        <ul class="emoji-bullets">
-          <li>B.Sc. Metallurgical and Materials Engineering, METU (2018 – 2024)</li>
-        </ul>
+        
+        <p>Working as a Research and Teaching Assistant in METU</p>
 
-        <p><strong>Research Area:</strong></p>
-        <p>Process optimization, reinforcement learning, hydrometallurgy, lithium-ion batteries</p>
+        <div class="info-grid">
+            <div class="info-block">
+                <h3>Research Area</h3>
+                <ul>
+                    <li>Process optimization</li>
+                    <li>Reinforcement learning</li>
+                    <li>Hydrometallurgy</li>
+                    <li>Lithium-ion batteries</li>
+                </ul>
+            </div>
+            <div class="info-block">
+                <h3>Education</h3>
+                <ul>
+                    <li>B.Sc. Metallurgical and Materials Engineering, METU (2018 – 2024)</li>
+                </ul>
+            </div>
+        </div>
+
       </div>
     </div>
 
@@ -186,7 +227,6 @@
       </ul>
     </div>
 
-
     <div class="publications">
       <h3>Publications</h3>
       <ul>
@@ -195,7 +235,6 @@
     </div>
   </div>
 
-  <!-- Pet photos section -->
   <div class="section pet-section">
     <h3>Pet Photos - Kedoş</h3>
     <div class="pet-grid">
@@ -214,10 +253,8 @@
     </div>
   </div>
 
-  <!-- Footer (unchanged) -->
   <div id="footer-placeholder"></div>
 
-  <!-- Load Navbar and Footer (unchanged) -->
   <script>
     fetch("/partials/navbar.html")
       .then(r => r.text())
