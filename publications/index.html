@@ -66,6 +66,12 @@
     .publications-list a:hover {
       text-decoration: underline;
     }
+    
+    #loader {
+      text-align: center;
+      font-size: 18px;
+      color: #555;
+    }
 
     @media (max-width: 600px) {
       h2 {
@@ -85,7 +91,6 @@
 </head>
 <body>
 
-  <!-- Navbar -->
   <div id="navbar-placeholder"></div>
 
   <div class="section">
@@ -95,60 +100,19 @@
       <label for="yearFilter">Filter by year:</label>
       <select id="yearFilter" onchange="filterPublications()">
         <option value="all">All</option>
-        <option value="2023">2023</option>
-        <option value="2021">2021</option>
-        <option value="2020">2020</option>
-        <option value="2019">2019</option>
-      </select>
+        </select>
     </div>
 
-    <!-- Publication Year Groups -->
-    <div class="year-group" data-year="2023">
-      <div class="year-heading">2023</div>
-      <ul class="publications-list">
-        <li>
-          Doe, J., Sargin, I., et al. (2023). Title of the Research Paper. <em>Journal Name</em>. 
-          <a href="https://doi.org/10.1234/example1" target="_blank">[Link]</a>
-        </li>
-      </ul>
+    <div id="publications-container">
+        <div id="loader">Loading publications...</div>
     </div>
 
-    <div class="year-group" data-year="2021">
-      <div class="year-heading">2021</div>
-      <ul class="publications-list">
-        <li>
-          Sargin, I., et al. (2021). Another Paper Title. <em>Advanced Materials</em>. 
-          <a href="https://doi.org/10.1234/example2" target="_blank">[Link]</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="year-group" data-year="2020">
-      <div class="year-heading">2020</div>
-      <ul class="publications-list">
-        <li>
-          Example, A., Example, B. (2020). Some Other Paper. <em>Nature Materials</em>. 
-          <a href="https://doi.org/10.1234/example3" target="_blank">[Link]</a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="year-group" data-year="2019">
-      <div class="year-heading">2019</div>
-      <ul class="publications-list">
-        <li>
-          Researcher, X., Y., Z. (2019). Data-Driven Discovery. <em>Science</em>. 
-          <a href="https://doi.org/10.1234/example4" target="_blank">[Link]</a>
-        </li>
-      </ul>
-    </div>
   </div>
 
-  <!-- Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- Filter Script -->
   <script>
+    // Function to filter publications based on the dropdown selection
     function filterPublications() {
       const selectedYear = document.getElementById("yearFilter").value;
       const groups = document.querySelectorAll(".year-group");
@@ -158,9 +122,105 @@
         group.style.display = (selectedYear === "all" || selectedYear === year) ? "block" : "none";
       });
     }
+
+    // --- NEW: Function to fetch and display publications from ORCID ---
+    async function fetchAndDisplayPublications() {
+      const orcidId = "0000-0001-5156-5448";
+      const apiUrl = `https://pub.orcid.org/v3.0/${orcidId}/works`;
+      const container = document.getElementById('publications-container');
+      const yearFilter = document.getElementById('yearFilter');
+      const loader = document.getElementById('loader');
+
+      try {
+        const response = await fetch(apiUrl, {
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const publications = data.group;
+        
+        // This will hold our publications grouped by year, e.g., { "2023": [...], "2021": [...] }
+        const publicationsByYear = {};
+
+        publications.forEach(work => {
+          const summary = work['work-summary'][0];
+          const year = summary['publication-date']?.year?.value;
+          const title = summary.title?.title?.value;
+          const journal = summary['journal-title']?.value || 'N/A';
+          
+          // Find the DOI link if it exists
+          let doiLink = '';
+          const externalIds = summary['external-ids']['external-id'];
+          if (externalIds) {
+            const doiObject = externalIds.find(id => id['external-id-type'] === 'doi');
+            if (doiObject) {
+              // The DOI value itself might be a URL or just the ID. We construct a full URL.
+              const doiValue = doiObject['external-id-value'];
+              doiLink = `https://doi.org/${doiValue}`;
+            }
+          }
+
+          if (year && title) {
+            if (!publicationsByYear[year]) {
+              publicationsByYear[year] = [];
+            }
+            // Note: The /works endpoint does not provide a full, formatted author list.
+            // We are using a placeholder based on the profile owner's likely name format.
+            const listItem = `
+              <li>
+                Sargin, I., et al. (${year}). ${title}. <em>${journal}</em>. 
+                ${doiLink ? `<a href="${doiLink}" target="_blank">[Link]</a>` : ''}
+              </li>`;
+            publicationsByYear[year].push(listItem);
+          }
+        });
+        
+        // Clear the loader
+        loader.style.display = 'none';
+
+        // Get sorted years (most recent first)
+        const sortedYears = Object.keys(publicationsByYear).sort((a, b) => b - a);
+
+        // Populate the filter dropdown and the publications list
+        sortedYears.forEach(year => {
+          // Add year to the filter
+          const option = document.createElement('option');
+          option.value = year;
+          option.textContent = year;
+          yearFilter.appendChild(option);
+          
+          // Create the HTML for this year's publications
+          const yearGroup = document.createElement('div');
+          yearGroup.className = 'year-group';
+          yearGroup.setAttribute('data-year', year);
+          
+          const yearHeading = document.createElement('div');
+          yearHeading.className = 'year-heading';
+          yearHeading.textContent = year;
+          
+          const ul = document.createElement('ul');
+          ul.className = 'publications-list';
+          ul.innerHTML = publicationsByYear[year].join('');
+          
+          yearGroup.appendChild(yearHeading);
+          yearGroup.appendChild(ul);
+          container.appendChild(yearGroup);
+        });
+
+      } catch (error) {
+        loader.textContent = 'Failed to load publications. Please try again later.';
+        console.error("Error fetching ORCID data:", error);
+      }
+    }
+
+    // Run the fetch function when the page loads
+    document.addEventListener('DOMContentLoaded', fetchAndDisplayPublications);
   </script>
 
-  <!-- Load Navbar and Footer HTML -->
   <script>
     fetch("/partials/navbar.html")
       .then((response) => response.text())
