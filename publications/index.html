@@ -4,8 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MIStraLab - Publications</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css"/>
   <style>
+    :root {
+      --ink: #002244;
+      --ink-weak: #555;
+      --accent: #0056b3;
+      --bg-soft: #f8f9fa;
+      --border-color: #dee2e6;
+    }
+
     .section {
       padding: 30px;
       margin: 20px auto;
@@ -13,78 +22,122 @@
       max-width: 1100px;
       background-color: white;
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     h2 {
       font-size: 36px;
       text-align: center;
-      color: #002244;
-      margin-bottom: 20px;
-    }
-
-    .filter-container {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    select {
-      padding: 8px 12px;
-      font-size: 16px;
-    }
-
-    .year-group {
+      color: var(--ink);
       margin-bottom: 30px;
     }
 
-    .year-heading {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #002244;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
+    /* --- Filter Controls --- */
+    .filter-controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
     }
 
+    .filter-controls input[type="text"],
+    .filter-controls select {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+    }
+
+    .filter-controls input[type="text"] {
+      flex-grow: 1; /* Makes the search bar take up available space */
+    }
+
+    /* --- Publications List --- */
     ul.publications-list {
       list-style: none;
-      padding-left: 20px;
+      padding: 0;
       margin: 0;
     }
 
-    .publications-list li {
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-
-    .publications-list a {
-      color: #002244;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .publications-list a:hover {
-      text-decoration: underline;
+    .publication-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2em;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #f0f0f0;
     }
     
+    .publication-item::before {
+      content: '📄';
+      font-size: 1.5em;
+      margin-top: -2px;
+      color: var(--ink-weak);
+    }
+
+    .publication-content {
+      flex-grow: 1;
+    }
+    
+    .publication-authors {
+      color: var(--ink-weak);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    
+    .publication-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .publication-title:hover {
+      text-decoration: underline;
+    }
+
+    .publication-venue {
+      font-style: italic;
+      color: var(--ink);
+      margin-top: 6px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .action-buttons a {
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      color: var(--ink-weak);
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .action-buttons a:hover {
+      background-color: var(--bg-soft);
+      border-color: #aaa;
+      color: var(--ink);
+    }
+
     #loader {
       text-align: center;
       font-size: 18px;
       color: #555;
+      padding: 40px;
     }
 
     @media (max-width: 600px) {
       h2 {
         font-size: 28px;
       }
-
-      .year-heading {
-        font-size: 20px;
-      }
-
-      select {
-        width: 100%;
-        max-width: 300px;
+      .filter-controls {
+        flex-direction: column;
       }
     }
   </style>
@@ -96,11 +149,17 @@
   <div class="section">
     <h2>Publications</h2>
 
-    <div class="filter-container">
-      <label for="yearFilter">Filter by year:</label>
-      <select id="yearFilter" onchange="filterPublications()">
-        <option value="all">All</option>
-        </select>
+    <div class="filter-controls">
+      <input type="text" id="searchInput" placeholder="Search publications...">
+      <select id="typeFilter">
+        <option value="all">All Types</option>
+        <option value="journal">Journal Articles</option>
+        <option value="conference">Conference Papers</option>
+      </select>
+      <select id="dateFilter">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+      </select>
     </div>
 
     <div id="publications-container">
@@ -112,58 +171,53 @@
   <div id="footer-placeholder"></div>
 
   <script>
-    // Function to filter publications based on the dropdown selection
-    function filterPublications() {
-      const selectedYear = document.getElementById("yearFilter").value;
-      const groups = document.querySelectorAll(".year-group");
-
-      groups.forEach(group => {
-        const year = group.getAttribute("data-year");
-        group.style.display = (selectedYear === "all" || selectedYear === year) ? "block" : "none";
-      });
-    }
-
-    // --- NEW (v2): Function to fetch and display publications with full author lists ---
     async function fetchAndDisplayPublications() {
-      const orcidId = "0000-0001-5156-5448";
+      const orcidId = "0000-0001-5156-5448"; // The ORCID ID for the PI
+      const piName = "Sargin, I."; // The name to highlight in author lists
       const container = document.getElementById('publications-container');
-      const yearFilter = document.getElementById('yearFilter');
       const loader = document.getElementById('loader');
 
       try {
-        // STEP 1: Fetch the summary list of all works to get their "put-codes"
         const summaryUrl = `https://pub.orcid.org/v3.0/${orcidId}/works`;
         const summaryResponse = await fetch(summaryUrl, { headers: { 'Accept': 'application/json' } });
         if (!summaryResponse.ok) throw new Error(`HTTP error! Status: ${summaryResponse.status}`);
+        
         const summaryData = await summaryResponse.json();
         const workSummaries = summaryData.group.map(work => work['work-summary'][0]);
 
-        // STEP 2: Create a list of promises, one for each publication's full detail
         const detailPromises = workSummaries.map(summary => {
           const putCode = summary['put-code'];
           const detailUrl = `https://pub.orcid.org/v3.0/${orcidId}/work/${putCode}`;
           return fetch(detailUrl, { headers: { 'Accept': 'application/json' } }).then(res => res.json());
         });
 
-        // STEP 3: Wait for all the detail requests to complete
         const fullDetails = await Promise.all(detailPromises);
 
-        const publicationsByYear = {};
+        // Sort publications by year, most recent first
+        fullDetails.sort((a, b) => {
+            const yearA = a['publication-date']?.year?.value || 0;
+            const yearB = b['publication-date']?.year?.value || 0;
+            return yearB - yearA;
+        });
+
+        let allPublicationsHTML = '';
 
         fullDetails.forEach(detail => {
           const year = detail['publication-date']?.year?.value;
           const title = detail.title?.title?.value;
           const journal = detail['journal-title']?.value || '';
 
-          // --- Process the full author list ---
           let authors = 'N/A';
           if (detail.contributors?.contributor) {
-              const contributorNames = detail.contributors.contributor.map(c => c['credit-name']?.value).filter(Boolean);
-              authors = contributorNames.join(', ');
+            const contributorNames = detail.contributors.contributor.map(c => c['credit-name']?.value).filter(Boolean);
+            authors = contributorNames.join(', ');
+            // Highlight the Principal Investigator's name
+            if (piName) {
+              authors = authors.replace(piName, `<strong>${piName}</strong>`);
+            }
           }
 
-          // Find the DOI link
-          let doiLink = '';
+          let doiLink = '#';
           const externalIds = detail['external-ids']?.['external-id'];
           if (externalIds) {
             const doiObject = externalIds.find(id => id['external-id-type'] === 'doi');
@@ -173,48 +227,28 @@
           }
 
           if (year && title) {
-            if (!publicationsByYear[year]) {
-              publicationsByYear[year] = [];
-            }
-            const listItem = `
-              <li>
-                ${authors} (${year}). ${title}. <em>${journal}</em>. 
-                ${doiLink ? `<a href="${doiLink}" target="_blank">[Link]</a>` : ''}
+            allPublicationsHTML += `
+              <li class="publication-item">
+                <div class="publication-content">
+                  <div class="publication-authors">${authors}</div>
+                  <a href="${doiLink}" target="_blank" class="publication-title">${title} (${year})</a>
+                  <div class="publication-venue">${journal}</div>
+                  <div class="action-buttons">
+                    <a href="#" class="btn-cite" onclick="alert('Citation functionality to be added.'); return false;">Cite</a>
+                    <a href="${doiLink}" target="_blank" class="btn-doi">DOI</a>
+                    <a href="${doiLink}" target="_blank" class="btn-url">URL</a>
+                  </div>
+                </div>
               </li>`;
-            publicationsByYear[year].push(listItem);
           }
         });
 
-        // Clear the loader
         loader.style.display = 'none';
 
-        // Get sorted years (most recent first) and populate the page
-        const sortedYears = Object.keys(publicationsByYear).sort((a, b) => b - a);
-
-        sortedYears.forEach(year => {
-          // Add year to the filter
-          const option = document.createElement('option');
-          option.value = year;
-          option.textContent = year;
-          yearFilter.appendChild(option);
-          
-          // Create the HTML for this year's publications
-          const yearGroup = document.createElement('div');
-          yearGroup.className = 'year-group';
-          yearGroup.setAttribute('data-year', year);
-          
-          const yearHeading = document.createElement('div');
-          yearHeading.className = 'year-heading';
-          yearHeading.textContent = year;
-          
-          const ul = document.createElement('ul');
-          ul.className = 'publications-list';
-          ul.innerHTML = publicationsByYear[year].join('');
-          
-          yearGroup.appendChild(yearHeading);
-          yearGroup.appendChild(ul);
-          container.appendChild(yearGroup);
-        });
+        const ul = document.createElement('ul');
+        ul.className = 'publications-list';
+        ul.innerHTML = allPublicationsHTML;
+        container.appendChild(ul);
 
       } catch (error) {
         loader.textContent = 'Failed to load publications. Please try again later.';
@@ -222,19 +256,17 @@
       }
     }
 
-    // Run the fetch function when the page loads
     document.addEventListener('DOMContentLoaded', fetchAndDisplayPublications);
   </script>
 
   <script>
+    // --- Standard Navbar and Footer Loading Script ---
     fetch("/partials/navbar.html")
       .then((response) => response.text())
       .then((data) => {
         document.getElementById("navbar-placeholder").innerHTML = data;
-
         const toggle = document.getElementById("hamburger-toggle");
         const links = document.getElementById("nav-links");
-
         if (toggle && links) {
           let isOpen = false;
           toggle.addEventListener("click", () => {
