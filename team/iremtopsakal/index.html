@@ -92,15 +92,15 @@
           margin-bottom: 10px;
           font-size: 1.1rem;
         }
-
-        /* General list styling for Research Area */
-        .info-block ul {
+        
+        /* UPDATED: General list styling for Research Area */
+        .info-block ul.research-list {
           padding-left: 20px;
           margin: 0;
-          color: var(--ink-weak);
+          color: var(--ink); /* This now sets the research text to black */
         }
 
-        .info-block ul li {
+        .info-block ul.research-list li {
           margin-bottom: 6px;
         }
         
@@ -108,6 +108,7 @@
         .education-list {
           list-style: none;
           padding-left: 0;
+          margin: 0;
         }
         .education-list li {
           display: flex;
@@ -122,7 +123,7 @@
         }
         .education-list .degree {
           display: block;
-          font-weight: 600;
+          font-weight: normal; /* UPDATED: Changed from 600 to normal */
           color: var(--ink);
         }
         .education-list .university {
@@ -230,7 +231,7 @@
         <div class="info-grid">
             <div class="info-block">
                 <h3>Research Area</h3>
-                <ul>
+                <ul class="research-list">
                     <li>Process optimization</li>
                     <li>Reinforcement learning</li>
                     <li>Hydrometallurgy</li>
