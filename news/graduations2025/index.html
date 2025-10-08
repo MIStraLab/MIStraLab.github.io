@@ -76,10 +76,11 @@
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
+            align-items: flex-start; /* This line fixes the distortion */
         }
         .news-gallery img {
             width: 100%;
-            max-width: 250px; /* keeps them reasonable */
+            max-width: 250px;
             height: auto;
             border-radius: 4px;
         }
@@ -95,7 +96,6 @@
 </head>
 <body>
 
-    <!-- Navbar -->
     <div id="navbar-placeholder"></div>
 	
     <div class="section">
@@ -108,24 +108,23 @@
             </div>
             <div class="news-content">
                 <p>This year, four of our master’s students from MIStraLab research group successfully completed their graduate studies. We sincerely thank them for their contributions to the group and wish them continued success in their academic and professional careers.</p>
-              <ul>
-                    <li>
-                        <b>Ömer Gökhan Tarman</b>: A Materials Informatics Approach To Understand Processing-Structure-Property Relationships In Boron Carbide Ceramics
-                    </li>
-                    <li>
-                        <b>Mehmet Şamil Dinçer</b>: Thermodynamics Behavior Prediction Of Nickel Alloys At Elevated Temperatures With Artificial Intelligence
-                    </li>
-                    <li>
-                        <b>Umut Can Gülletutan</b>: Melt Pool Width Prediction With Machine Learning In Selective Laser Melting
-                    </li>
-                    <li>
-                        <b>Nusret Cem Diyarbakır</b>: Experimental Characterization And Multi-Scale Modeling Of Two-Dimensional Woven Composites
-                    </li>
-                  </ul>
+                 <ul>
+                     <li>
+                         <b>Ömer Gökhan Tarman</b>: A Materials Informatics Approach To Understand Processing-Structure-Property Relationships In Boron Carbide Ceramics
+                     </li>
+                     <li>
+                         <b>Mehmet Şamil Dinçer</b>: Thermodynamics Behavior Prediction Of Nickel Alloys At Elevated Temperatures With Artificial Intelligence
+                     </li>
+                     <li>
+                         <b>Umut Can Gülletutan</b>: Melt Pool Width Prediction With Machine Learning In Selective Laser Melting
+                     </li>
+                     <li>
+                         <b>Nusret Cem Diyarbakır</b>: Experimental Characterization And Multi-Scale Modeling Of Two-Dimensional Woven Composites
+                     </li>
+                 </ul>
             </div>
         </div>
 
-        <!-- Image gallery section -->
         <div class="news-gallery">
             <img src="/images/news/gokhanmsc.jpg" alt="Photo 1">
             <img src="/images/news/samilmsc.jpg" alt="Photo 2">
@@ -134,10 +133,8 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <div id="footer-placeholder"></div>
 
-    <!-- Navbar & Footer Loading -->
     <script>
     fetch("/partials/navbar.html")
       .then((response) => response.text())
@@ -171,8 +168,7 @@
       .then((data) => {
         document.getElementById("footer-placeholder").innerHTML = data;
       });
-   </script>
+    </script>
 
 </body>
 </html>
-
