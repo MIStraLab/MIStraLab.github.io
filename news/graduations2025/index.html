@@ -90,7 +90,7 @@
             opacity: 0.8;
         }
 
-        /* --- NEW: MODAL (LIGHTBOX) STYLES --- */
+        /* --- MODAL (LIGHTBOX) STYLES --- */
         .modal {
             display: none; /* Hidden by default */
             position: fixed;
@@ -143,8 +143,27 @@
         <div class="date">Published on September 25, 2025</div>
 
         <div class="news-container">
+            <div class="news-image">
+                <img src="/images/news/graduations2025.jpg" alt="News Image">
             </div>
-
+            <div class="news-content">
+                <p>This year, four of our master’s students from MIStraLab research group successfully completed their graduate studies. We sincerely thank them for their contributions to the group and wish them continued success in their academic and professional careers.</p>
+                 <ul>
+                     <li>
+                         <b>Ömer Gökhan Tarman</b>: A Materials Informatics Approach To Understand Processing-Structure-Property Relationships In Boron Carbide Ceramics
+                     </li>
+                     <li>
+                         <b>Mehmet Şamil Dinçer</b>: Thermodynamics Behavior Prediction Of Nickel Alloys At Elevated Temperatures With Artificial Intelligence
+                     </li>
+                     <li>
+                         <b>Umut Can Gülletutan</b>: Melt Pool Width Prediction With Machine Learning In Selective Laser Melting
+                     </li>
+                     <li>
+                         <b>Nusret Cem Diyarbakır</b>: Experimental Characterization And Multi-Scale Modeling Of Two-Dimensional Woven Composites
+                     </li>
+                 </ul>
+            </div>
+        </div>
         <div class="news-gallery">
             <img src="/images/news/gokhanmsc.jpg" alt="Photo 1">
             <img src="/images/news/samilmsc.jpg" alt="Photo 2">
@@ -170,7 +189,7 @@
             .then(response => response.text())
             .then(data => { document.getElementById("footer-placeholder").innerHTML = data; });
 
-        // --- NEW: MODAL (LIGHTBOX) JAVASCRIPT ---
+        // MODAL (LIGHTBOX) JAVASCRIPT
         
         // Get the modal elements
         const modal = document.getElementById("imageModal");
