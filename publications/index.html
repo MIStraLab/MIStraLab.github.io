@@ -104,7 +104,7 @@
     </div>
 
     <div id="publications-container">
-        <div id="loader">Loading publications...</div>
+        <div id="loader">Loading publications... This may take a moment.</div>
     </div>
 
   </div>
@@ -123,44 +123,52 @@
       });
     }
 
-    // --- NEW: Function to fetch and display publications from ORCID ---
+    // --- NEW (v2): Function to fetch and display publications with full author lists ---
     async function fetchAndDisplayPublications() {
       const orcidId = "0000-0001-5156-5448";
-      const apiUrl = `https://pub.orcid.org/v3.0/${orcidId}/works`;
       const container = document.getElementById('publications-container');
       const yearFilter = document.getElementById('yearFilter');
       const loader = document.getElementById('loader');
 
       try {
-        const response = await fetch(apiUrl, {
-          headers: { 'Accept': 'application/json' }
+        // STEP 1: Fetch the summary list of all works to get their "put-codes"
+        const summaryUrl = `https://pub.orcid.org/v3.0/${orcidId}/works`;
+        const summaryResponse = await fetch(summaryUrl, { headers: { 'Accept': 'application/json' } });
+        if (!summaryResponse.ok) throw new Error(`HTTP error! Status: ${summaryResponse.status}`);
+        const summaryData = await summaryResponse.json();
+        const workSummaries = summaryData.group.map(work => work['work-summary'][0]);
+
+        // STEP 2: Create a list of promises, one for each publication's full detail
+        const detailPromises = workSummaries.map(summary => {
+          const putCode = summary['put-code'];
+          const detailUrl = `https://pub.orcid.org/v3.0/${orcidId}/work/${putCode}`;
+          return fetch(detailUrl, { headers: { 'Accept': 'application/json' } }).then(res => res.json());
         });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        // STEP 3: Wait for all the detail requests to complete
+        const fullDetails = await Promise.all(detailPromises);
 
-        const data = await response.json();
-        const publications = data.group;
-        
-        // This will hold our publications grouped by year, e.g., { "2023": [...], "2021": [...] }
         const publicationsByYear = {};
 
-        publications.forEach(work => {
-          const summary = work['work-summary'][0];
-          const year = summary['publication-date']?.year?.value;
-          const title = summary.title?.title?.value;
-          const journal = summary['journal-title']?.value || 'N/A';
-          
-          // Find the DOI link if it exists
+        fullDetails.forEach(detail => {
+          const year = detail['publication-date']?.year?.value;
+          const title = detail.title?.title?.value;
+          const journal = detail['journal-title']?.value || '';
+
+          // --- Process the full author list ---
+          let authors = 'N/A';
+          if (detail.contributors?.contributor) {
+              const contributorNames = detail.contributors.contributor.map(c => c['credit-name']?.value).filter(Boolean);
+              authors = contributorNames.join(', ');
+          }
+
+          // Find the DOI link
           let doiLink = '';
-          const externalIds = summary['external-ids']['external-id'];
+          const externalIds = detail['external-ids']?.['external-id'];
           if (externalIds) {
             const doiObject = externalIds.find(id => id['external-id-type'] === 'doi');
             if (doiObject) {
-              // The DOI value itself might be a URL or just the ID. We construct a full URL.
-              const doiValue = doiObject['external-id-value'];
-              doiLink = `https://doi.org/${doiValue}`;
+              doiLink = `https://doi.org/${doiObject['external-id-value']}`;
             }
           }
 
@@ -168,24 +176,21 @@
             if (!publicationsByYear[year]) {
               publicationsByYear[year] = [];
             }
-            // Note: The /works endpoint does not provide a full, formatted author list.
-            // We are using a placeholder based on the profile owner's likely name format.
             const listItem = `
               <li>
-                Sargin, I., et al. (${year}). ${title}. <em>${journal}</em>. 
+                ${authors} (${year}). ${title}. <em>${journal}</em>. 
                 ${doiLink ? `<a href="${doiLink}" target="_blank">[Link]</a>` : ''}
               </li>`;
             publicationsByYear[year].push(listItem);
           }
         });
-        
+
         // Clear the loader
         loader.style.display = 'none';
 
-        // Get sorted years (most recent first)
+        // Get sorted years (most recent first) and populate the page
         const sortedYears = Object.keys(publicationsByYear).sort((a, b) => b - a);
 
-        // Populate the filter dropdown and the publications list
         sortedYears.forEach(year => {
           // Add year to the filter
           const option = document.createElement('option');
