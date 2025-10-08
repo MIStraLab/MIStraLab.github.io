@@ -40,7 +40,7 @@
           max-width:260px;
           border-radius:10px;
           object-fit:cover;
-          aspect-ratio: 3 / 4; /* keeps the portrait tidy on all sizes */
+          aspect-ratio: 3 / 4;
           box-shadow:0 1px 2px rgba(0,0,0,.06);
         }
 
@@ -77,10 +77,10 @@
         }
         .icons a:hover{ background:#f2f6fb; border-color:#cdd9ea; transform:translateY(-1px); }
 
-        /* -------- NEW: Info Grid for Research & Education -------- */
+        /* -------- Info Grid for Research & Education -------- */
         .info-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* Two equal columns */
+          grid-template-columns: 1fr 1fr;
           gap: 24px;
           margin-top: 24px;
           text-align: left;
@@ -93,14 +93,43 @@
           font-size: 1.1rem;
         }
 
+        /* General list styling for Research Area */
         .info-block ul {
-          padding-left: 20px; /* Indent bullet points */
+          padding-left: 20px;
           margin: 0;
           color: var(--ink-weak);
         }
 
         .info-block ul li {
           margin-bottom: 6px;
+        }
+        
+        /* Specific styling for the new Education list */
+        .education-list {
+          list-style: none;
+          padding-left: 0;
+        }
+        .education-list li {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          margin-bottom: 16px;
+        }
+        .education-list i {
+          color: var(--ink);
+          font-size: 22px;
+          margin-top: 2px;
+        }
+        .education-list .degree {
+          display: block;
+          font-weight: 600;
+          color: var(--ink);
+        }
+        .education-list .university {
+          display: block;
+          color: var(--ink-weak);
+          font-size: 0.95rem;
+          margin-top: 2px;
         }
 
         /* -------- Other sections -------- */
@@ -147,20 +176,19 @@
         @media (max-width: 640px){
           .section{ padding:22px; }
           .profile{
-            grid-template-columns: 1fr;      /* stack */
-            justify-items:center;           /* center photo */
-            text-align:left;                /* keep body text left */
+            grid-template-columns: 1fr;
+            justify-items:center;
+            text-align:left;
             gap:16px;
           }
           .profile img{
-            max-width: min(85vw, 360px);    /* comfy size on phones */
+            max-width: min(85vw, 360px);
           }
           .details{ width:100%; }
           .details h2{ font-size:1.6rem; }
           .icons{ gap:10px; }
           .icons a{ width:44px; height:44px; font-size:20px; }
-
-          /* NEW: Stack info grid on mobile */
+          
           .info-grid {
             grid-template-columns: 1fr; 
             gap: 20px;
@@ -211,8 +239,14 @@
             </div>
             <div class="info-block">
                 <h3>Education</h3>
-                <ul>
-                    <li>B.Sc. Metallurgical and Materials Engineering, METU (2018 – 2024)</li>
+                <ul class="education-list">
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <span class="degree">B.Sc. Metallurgical and Materials Engineering, 2024</span>
+                            <span class="university">Middle East Technical University</span>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
