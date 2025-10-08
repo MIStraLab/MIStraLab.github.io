@@ -34,22 +34,18 @@
     /* --- Filter Controls --- */
     .filter-controls {
       display: flex;
+      justify-content: flex-end; /* Aligns to the right */
       gap: 15px;
       margin-bottom: 40px;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--border-color);
     }
 
-    .filter-controls input[type="text"],
     .filter-controls select {
       padding: 10px 15px;
       font-size: 16px;
       border: 1px solid var(--border-color);
       border-radius: 6px;
-    }
-
-    .filter-controls input[type="text"] {
-      flex-grow: 1; /* Makes the search bar take up available space */
     }
 
     /* --- Publications List --- */
@@ -132,12 +128,18 @@
       padding: 40px;
     }
 
+    /* Hide items that don't match the filter */
+    .publication-item.hidden {
+      display: none;
+    }
+
     @media (max-width: 600px) {
       h2 {
         font-size: 28px;
       }
       .filter-controls {
         flex-direction: column;
+        align-items: stretch; /* Stretch selects to full width */
       }
     }
   </style>
@@ -150,20 +152,16 @@
     <h2>Publications</h2>
 
     <div class="filter-controls">
-      <input type="text" id="searchInput" placeholder="Search publications...">
-      <select id="typeFilter">
-        <option value="all">All Types</option>
-        <option value="journal">Journal Articles</option>
-        <option value="conference">Conference Papers</option>
-      </select>
-      <select id="dateFilter">
-        <option value="newest">Newest First</option>
-        <option value="oldest">Oldest First</option>
+      <label for="yearFilter">Year:</label>
+      <select id="yearFilter" onchange="filterPublications()">
+        <option value="all">All</option>
       </select>
     </div>
 
     <div id="publications-container">
         <div id="loader">Loading publications... This may take a moment.</div>
+        <ul class="publications-list">
+            </ul>
     </div>
 
   </div>
@@ -171,10 +169,25 @@
   <div id="footer-placeholder"></div>
 
   <script>
+    function filterPublications() {
+      const selectedYear = document.getElementById("yearFilter").value;
+      const publicationItems = document.querySelectorAll(".publication-item");
+
+      publicationItems.forEach(item => {
+        const itemYear = item.getAttribute("data-year");
+        if (selectedYear === "all" || selectedYear === itemYear) {
+          item.classList.remove("hidden");
+        } else {
+          item.classList.add("hidden");
+        }
+      });
+    }
+
     async function fetchAndDisplayPublications() {
       const orcidId = "0000-0001-5156-5448"; // The ORCID ID for the PI
       const piName = "Sargin, I."; // The name to highlight in author lists
-      const container = document.getElementById('publications-container');
+      const publicationsList = document.querySelector('.publications-list');
+      const yearFilter = document.getElementById('yearFilter');
       const loader = document.getElementById('loader');
 
       try {
@@ -200,12 +213,17 @@
             return yearB - yearA;
         });
 
+        const uniqueYears = new Set();
         let allPublicationsHTML = '';
 
         fullDetails.forEach(detail => {
           const year = detail['publication-date']?.year?.value;
           const title = detail.title?.title?.value;
           const journal = detail['journal-title']?.value || '';
+
+          if (year) {
+            uniqueYears.add(year);
+          }
 
           let authors = 'N/A';
           if (detail.contributors?.contributor) {
@@ -228,15 +246,14 @@
 
           if (year && title) {
             allPublicationsHTML += `
-              <li class="publication-item">
+              <li class="publication-item" data-year="${year}">
                 <div class="publication-content">
                   <div class="publication-authors">${authors}</div>
                   <a href="${doiLink}" target="_blank" class="publication-title">${title} (${year})</a>
                   <div class="publication-venue">${journal}</div>
                   <div class="action-buttons">
-                    <a href="#" class="btn-cite" onclick="alert('Citation functionality to be added.'); return false;">Cite</a>
+                    <a href="#" class="btn-cite" onclick="alert('Citation functionality coming soon!'); return false;">Cite</a>
                     <a href="${doiLink}" target="_blank" class="btn-doi">DOI</a>
-                    <a href="${doiLink}" target="_blank" class="btn-url">URL</a>
                   </div>
                 </div>
               </li>`;
@@ -244,11 +261,15 @@
         });
 
         loader.style.display = 'none';
+        publicationsList.innerHTML = allPublicationsHTML;
 
-        const ul = document.createElement('ul');
-        ul.className = 'publications-list';
-        ul.innerHTML = allPublicationsHTML;
-        container.appendChild(ul);
+        // Populate year filter dropdown
+        Array.from(uniqueYears).sort((a, b) => b - a).forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearFilter.appendChild(option);
+        });
 
       } catch (error) {
         loader.textContent = 'Failed to load publications. Please try again later.';
