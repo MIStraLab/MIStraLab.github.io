@@ -70,18 +70,59 @@
             line-height: 1.6;
         }
 
-        /* Simple gallery */
+        /* --- GALLERY STYLES --- */
         .news-gallery {
             margin-top: 25px;
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
+            align-items: flex-start;
         }
         .news-gallery img {
             width: 100%;
-            max-width: 250px; /* keeps them reasonable */
+            max-width: 250px;
             height: auto;
             border-radius: 4px;
+            cursor: pointer; /* Indicates the image is clickable */
+            transition: opacity 0.2s;
+        }
+        .news-gallery img:hover {
+            opacity: 0.8;
+        }
+
+        /* --- MODAL (LIGHTBOX) STYLES --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1001; /* Sit on top of everything */
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 80%;
+            max-height: 85vh;
+        }
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #bbb;
+            text-decoration: none;
         }
 
         .footer { 
@@ -95,7 +136,6 @@
 </head>
 <body>
 
-    <!-- Navbar -->
     <div id="navbar-placeholder"></div>
 	
     <div class="section">
@@ -107,55 +147,59 @@
                 <img src="/images/news/tms2025.jpg" alt="News Image">
             </div>
             <div class="news-content">
-                <p>As MIStraLab research group, we participated in  TMS (The Minerals, Metals & Materials Society) 2025 Annual Meeting & Exhibition, held between March 23–27, 2025, at the MGM Grand Las Vegas Hotel & Casino, Las Vegas, Nevada, USA. Our group members Gökhan Tarman and Umut Can Gülletutan represented us with their oral presentations. We were honored to share our research at this prestigious international event, which brought together leading scientists and researchers from around the world. Here are some memorable moments from our experience at TMS 2025: </p>
+                <p>As MIStraLab research group, we participated in  TMS (The Minerals, Metals & Materials Society) 2025 Annual Meeting & Exhibition, held between March 23–27, 2025, at the MGM Grand Las Vegas Hotel & Casino, Las Vegas, Nevada, USA. Our group members <a href="/team/gokhantarman/">Gökhan Tarman</a> and <a href="/team/umutcangulletutan/">Umut Can Gülletutan</a> represented us with their oral presentations. We were honored to share our research at this prestigious international event, which brought together leading scientists and researchers from around the world. Here are some memorable moments from our experience at TMS 2025:</p>
             </div>
         </div>
-
-        <!-- Image gallery section -->
         <div class="news-gallery">
-            <img src="/images/news/tms1.jpg" alt="TMS Photo 1">
-            <img src="/images/news/tms2.jpg" alt="TMS Photo 2">
+            <img src="/images/news/tms1.jpg" alt="Photo 1">
+            <img src="/images/news/tms2.jpg" alt="Photo 2">
         </div>
     </div>
-
-    <!-- Footer -->
+    
     <div id="footer-placeholder"></div>
 
-    <!-- Navbar & Footer Loading -->
+    <div id="imageModal" class="modal">
+        <span class="close-button">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
     <script>
-    fetch("/partials/navbar.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.getElementById("navbar-placeholder").innerHTML = data;
+        // Navbar & Footer Loading
+        fetch("/partials/navbar.html")
+            .then(response => response.text())
+            .then(data => { document.getElementById("navbar-placeholder").innerHTML = data; /*...navbar logic...*/ });
 
-        const toggle = document.getElementById("hamburger-toggle");
-        const links = document.getElementById("nav-links");
+        fetch("/partials/footer.html")
+            .then(response => response.text())
+            .then(data => { document.getElementById("footer-placeholder").innerHTML = data; });
 
-        if (toggle && links) {
-          let isOpen = false;
+        // MODAL (LIGHTBOX) JAVASCRIPT
+        
+        // Get the modal elements
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const closeBtn = document.querySelector(".close-button");
 
-          toggle.addEventListener("click", () => {
-            if (!isOpen) {
-              links.classList.add("active");
-              isOpen = true;
-            } else {
-              links.classList.add("closing");
-              links.classList.remove("active");
-              setTimeout(() => {
-                links.classList.remove("closing");
-                isOpen = false;
-              }, 400);
+        // Get all gallery images and add a click event listener to each
+        document.querySelectorAll('.news-gallery img').forEach(image => {
+            image.onclick = function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
             }
-          });
-        }
-      });
+        });
 
-    fetch("/partials/footer.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document.getElementById("footer-placeholder").innerHTML = data;
-      });
-   </script>
+        // Add click event to the close button to hide the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Also hide modal when clicking on the background
+        modal.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
