@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/style.css">
 
   <style>
-    /* Team Page Specific Styling */
+    /* Common Section Styling */
     .section {
       padding: 30px;
       margin: 20px auto;
@@ -23,62 +23,94 @@
       font-size: 36px;
       text-align: center;
       color: #002244;
-      margin-bottom: 20px;
-    }
-
-    .member {
-      display: flex;
-      align-items: flex-start;
       margin-bottom: 30px;
     }
 
-    .member img {
-      width: 160px;
-      height: 213px;
-      object-fit: cover;
-      margin-right: 20px;
+    /* Section headings like "Principal Investigator" */
+    .section h3 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
     }
 
-    .member-info h3 a {
+    /* --- NEW CARD LAYOUT STYLES --- */
+
+    /* The grid container for the cards */
+    .member-grid {
+      display: grid;
+      /* This creates a responsive grid. It will fit as many 180px cards as it can, and they will grow to fill the space. */
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 30px; /* This is the space between the cards */
+    }
+
+    /* The individual member card */
+    .member-card {
+      text-align: center;
+      background-color: #f9f9f9;
+      padding: 20px 15px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .member-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    }
+
+    /* The circular profile picture */
+    .member-card img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%; /* This makes the image a circle */
+      object-fit: cover; /* Prevents the image from stretching */
+      margin-bottom: 15px;
+      border: 3px solid white;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    /* Member's name */
+    .member-card h4 {
+      margin: 0 0 10px 0;
+      font-size: 1.1em;
+    }
+
+    .member-card h4 a {
       text-decoration: none;
       color: #002244;
     }
-
-    .icons {
-      margin-top: 10px;
+     .member-card h4 a:hover {
+      text-decoration: underline;
     }
 
-    .icons a {
-      margin-right: 10px;
+    /* Social media icons */
+    .card-icons a {
+      margin: 0 6px;
       text-decoration: none;
-      color: #002244;
-      font-size: 18px;
+      color: #555; /* Slightly muted color for icons */
+      font-size: 20px;
+      transition: color 0.2s ease;
     }
 
-    .icons a:hover {
+    .card-icons a:hover {
       color: #0056b3;
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
   <div id="navbar-placeholder"></div>
 
-  <!-- Members Section -->
   <div class="section">
     <h2 class="page-title">Members</h2>
 
     <h3>Principal Investigator</h3>
-    <div class="member">
-      <img src="/images/profiles/sargin.jpg" alt="Principal Investigator">
-      <div class="member-info">
-        <h3><a href="/team/sargin/">Dr. Irmak Sargın</a></h3>
-        <p> • Post-doc, Washington State University, WA, USA (2015-2018)</p>
-        <p> • Post-doc, Massachusetts Institute of Technology, MA, USA (2016-2017)</p>
-        <p> • Ph.D. Iowa State University, IA, USA (2015)</p>
-        <p><strong>Research Area:</strong> Materials Informatics, Materials Criticality</p>
-        <div class="icons">
+    <div class="member-grid">
+      <div class="member-card">
+        <a href="/team/sargin/"><img src="/images/profiles/sargin.jpg" alt="Dr. Irmak Sargın"></a>
+        <h4><a href="/team/sargin/">Dr. Irmak Sargın</a></h4>
+        <div class="card-icons">
           <a href="mailto:isargin@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
           <a href="https://orcid.org/0000-0001-5156-5448" target="_blank" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
           <a href="https://scholar.google.com/citations?user=ag_2tt4AAAAJ&hl=en" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
@@ -86,198 +118,123 @@
       </div>
     </div>
 
-    
     <h3>PhD Students</h3>
-
-      <div class="member">
-      <img src="/images/kedos.jpg" alt="Student 7">
-      <div class="member-info">
-        <h3><a href="/team/student7/">Name Surname</a></h3>
-        <p><strong>Education:</strong> M.Sc. in ...</p>
-        <p><strong>Research Area:</strong> Computational Materials Science...</p>
-        <div class="icons">
-          <a href="mailto:example@example"><i class="fas fa-envelope"></i></a>
-          <a href="www.linkedin.com/in/example" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/example" target="_blank"><i class="fab fa-github"></i></a>
+    <div class="member-grid">
+        <div class="member-card">
+          <a href="/team/student7/"><img src="/images/kedos.jpg" alt="PhD Student"></a>
+          <h4><a href="/team/student7/">Name Surname</a></h4>
+          <div class="card-icons">
+            <a href="mailto:example@example" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/example" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          </div>
         </div>
-      </div>
-    </div>
-    
+        </div>
+
     <h3>Master Students</h3>
-
-    <div class="member">
-      <img src="/images/profiles/ugurakbulut.jpg" alt="Rıza Uğur Akbulut">
-      <div class="member-info">
-        <h3><a href="/team/ugurakbulut/">Rıza Uğur Akbulut</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> Sept 2024 - cont.</p>
-        <p> • B.Sc. Metallurgical and Materials Engineering, METU (2024)</p>
-        <p> • Minor, Solid State Physics, METU (2025)</p>
-        <p><strong>Research Area:</strong> Electronic properties of materials</p>
-        <div class="icons">
-          <a href="mailto:uakbulut@metu.edu.tr"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/rugurakbulut/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <div class="member-grid">
+      <div class="member-card">
+        <a href="/team/ugurakbulut/"><img src="/images/profiles/ugurakbulut.jpg" alt="Rıza Uğur Akbulut"></a>
+        <h4><a href="/team/ugurakbulut/">Rıza Uğur Akbulut</a></h4>
+        <div class="card-icons">
+          <a href="mailto:uakbulut@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/rugurakbulut/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-    </div>
-
-    <div class="member">
-      <img src="/images/profiles/iremtopsakal.jpg" alt="İrem Topsakal">
-      <div class="member-info">
-        <h3><a href="/team/iremtopsakal/">İrem Topsakal</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> Sept 2024 - cont.</p>
-        <p> • B.Sc. Metallurgical and Materials Engineering, METU (2024)</p>
-        <p><strong>Research Area:</strong> Chemical process optimization </p>
-        <div class="icons">
-          <a href="mailto:iremto@metu.edu.tr"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/iremtopsakal" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/iremtopsakal" target="_blank"><i class="fab fa-github"></i></a>
+      <div class="member-card">
+        <a href="/team/iremtopsakal/"><img src="/images/profiles/iremtopsakal.jpg" alt="İrem Topsakal"></a>
+        <h4><a href="/team/iremtopsakal/">İrem Topsakal</a></h4>
+        <div class="card-icons">
+          <a href="mailto:iremto@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/iremtopsakal" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/iremtopsakal" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
       </div>
-    </div>
-
-    <div class="member">
-      <img src="/images/profiles/dilarahasil.jpg" alt="Dilara Hasıl">
-      <div class="member-info">
-        <h3><a href="/team/dilarahasil/">Dilara Hasıl</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> Jan 2024 - cont.</p>
-        <p> • B.Sc. Metallurgical and Materials Engineering, METU (2022) </p>
-        <p> • Minor, Production in Mechanical Engineering, METU (2023)</p>
-        <p><strong>Research Area:</strong> Chemical process optimization </p>
-        <div class="icons">
-          <a href="mailto:dilara.hasil@metu.edu.tr"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/dilara-has%C4%B1l/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <div class="member-card">
+        <a href="/team/dilarahasil/"><img src="/images/profiles/dilarahasil.jpg" alt="Dilara Hasıl"></a>
+        <h4><a href="/team/dilarahasil/">Dilara Hasıl</a></h4>
+        <div class="card-icons">
+          <a href="mailto:dilara.hasil@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/dilara-has%C4%B1l/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
+      <div class="member-card">
+        <a href="/team/samildincer/"><img src="/images/profiles/samildincer.jpg" alt="Mehmet Şamil Dinçer"></a>
+        <h4><a href="/team/samildincer/">Mehmet Şamil Dinçer</a></h4>
+        <div class="card-icons">
+          <a href="mailto:samildincer@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/mehmet-%C5%9Famil-din%C3%A7er/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="member-card">
+        <a href="/team/gulcehreyuksel/"><img src="/images/profiles/gulcehreyuksel.jpg" alt="Gülçehre Duygu Yüksel"></a>
+        <h4><a href="/team/gulcehreyuksel/">Gülçehre Duygu Yüksel</a></h4>
+        <div class="card-icons">
+          <a href="mailto:yukselg@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/gulcehreyuksel/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/gulcehre" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="member-card">
+        <a href="/team/ulascanyazar/"><img src="/images/profiles/ulascanyazar.png" alt="Ulaş Can Yazar"></a>
+        <h4><a href="/team/ulascanyazar/">Ulaş Can Yazar</a></h4>
+        <div class="card-icons">
+          <a href="mailto:can.yazarg@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/ulascanyazar/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+       <div class="member-card">
+        <a href="/team/ilkeyilmaz/"><img src="/images/profiles/ilkeyilmaz.jpg" alt="İlke Yılmaz"></a>
+        <h4><a href="/team/ilkeyilmaz/">İlke Yılmaz</a></h4>
+        <div class="card-icons">
+          <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/yilmaz-ilke/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+       <div class="member-card">
+        <a href="/team/aleynadaldal/"><img src="/images/profiles/aleynadaldal.jpg" alt="Aleyna Daldal"></a>
+        <h4><a href="/team/aleynadaldal/">Aleyna Daldal</a></h4>
+        <div class="card-icons">
+          <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/aleynadaldal/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+       <div class="member-card">
+        <a href="/team/ogulcandemirdag/"><img src="/images/profiles/ogulcandemirdag.jpg" alt="Oğulcan Demirdağ"></a>
+        <h4><a href="/team/ogulcandemirdag/">Ünver Oğulcan Demirdağ</a></h4>
+        <div class="card-icons">
+          <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/%C3%BCnver-o%C4%9Fulcan-demira%C4%9F-426434159/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="member-card">
+        <a href="/team/umutcangulletutan/"><img src="/images/profiles/umutcangulletutan.jpg" alt="Umut Can Gülletutan"></a>
+        <h4><a href="/team/umutcangulletutan/">Umut Can Gülletutan</a></h4>
+        <div class="card-icons">
+          <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/umutgulletutan/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+       <div class="member-card">
+          <a href="/team/student6/"><img src="/images/kedos.jpg" alt="Master Student"></a>
+          <h4><a href="/team/student6/">Name Surname</a></h4>
+          <div class="card-icons">
+            <a href="mailto:example@example" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/example" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
     </div>
-
     
-  <div class="member">
-      <img src="/images/profiles/samildincer.jpg" alt="Mehmet Şamil Dinçer">
-      <div class="member-info">
-        <h3><a href="/team/samildincer/">Mehmet Şamil Dinçer</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> Sept 2022 - cont.</p>
-        <p> • B.Sc. Metallurgical and Materials Engineering, METU (2022) </p>
-        <p><strong>Research Area:</strong> Computational thermodynamics </p>
-        <div class="icons">
-          <a href="mailto:samildincer@gmail.com"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/mehmet-%C5%9Famil-din%C3%A7er/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-    </div>
-
-
-  <div class="member">
-      <img src="/images/profiles/gulcehreyuksel.jpg" alt="Gülçehre Duygu Yüksel">
-      <div class="member-info">
-        <h3><a href="/team/gulcehreyuksel/">Gülçehre Duygu Yüksel</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> 2023 - cont.</p>
-        <p> • B.Sc. Metallurgical and Materials Engineering, METU (2023) </p>
-        <p><strong>Research Area:</strong> Electronic properties of materials</p>
-        <div class="icons">
-          <a href="mailto:yukselg@metu.edu.tr"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/gulcehreyuksel/" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/gulcehre" target="_blank"><i class="fab fa-github"></i></a>          
-        </div>
-      </div>
-    </div>
-    
-      <div class="member">
-      <img src="/images/profiles/ulascanyazar.png" alt="Ulaş Can Yazar">
-      <div class="member-info">
-        <h3><a href="/team/ulascanyazar/">Ulaş Can Yazar</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> Jan 2025 - cont.</p>
-        <p> • B.Sc. Physics, METU (2024) </p>
-        <p><strong>Research Area:</strong> Accelerated materials discovery</p>
-        <div class="icons">
-          <a href="mailto:can.yazarg@metu.edu.tr"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/ulascanyazar/" target="_blank"><i class="fab fa-linkedin"></i></a>    
-        </div>
-      </div>
-      </div>
-    
-      <div class="member">
-      <img src="/images/profiles/ilkeyilmaz.jpg" alt="İlke Yılmaz">
-      <div class="member-info">
-        <h3><a href="/team/ilkeyilmaz/">İlke Yılmaz</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> Sept 2023 - cont.</p>
-        <p> • B.Sc. Metallurgical and Materials Engineering, METU (2023) </p>
-        <p><strong>Research Area:</strong> </p>
-        <div class="icons">
-          <a href="mailto:"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/yilmaz-ilke/" target="_blank"><i class="fab fa-linkedin"></i></a>    
-        </div>
-      </div>
-    </div>
-
-
-    <div class="member">
-      <img src="/images/profiles/aleynadaldal.jpg" alt="Aleyna Daldal">
-      <div class="member-info">
-        <h3><a href="/team/aleynadaldal/">Aleyna Daldal</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> Sept 2025 - cont.</p>
-        <p> • B.Sc. Physics, METU (2025) </p>
-        <p><strong>Research Area:</strong> </p>
-        <div class="icons">
-          <a href="mailto:"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/aleynadaldal/" target="_blank"><i class="fab fa-linkedin"></i></a>    
-        </div>
-      </div>
-    </div>
-
-    <div class="member">
-      <img src="/images/profiles/ogulcandemirdag.jpg" alt="Oğulcan Demirdağ">
-      <div class="member-info">
-        <h3><a href="/team/ogulcandemirdag/">Ünver Oğulcan Demirdağ</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> Oct 2023 - cont.</p>
-        <p> • B.Sc. Metallurgical and Materials Engineering, METU (2023) </p>
-        <p><strong>Research Area:</strong> </p>
-        <div class="icons">
-          <a href="mailto:"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/%C3%BCnver-o%C4%9Fulcan-demira%C4%9F-426434159/" target="_blank"><i class="fab fa-linkedin"></i></a>    
-        </div>
-      </div>
-    </div>
-
-      <div class="member">
-      <img src="/images/profiles/umutcangulletutan.jpg" alt="Umut Can Gülletutan">
-      <div class="member-info">
-        <h3><a href="/team/umutcangulletutan/">Umut Can Gülletutan</a></h3>
-        <p style="color: #777; font-size: 0.9em; margin-top: -8px;"> Oct 2022 - cont.</p>
-        <p> • B.Sc. Metallurgical and Materials Engineering, METU (2021) </p>
-        <p><strong>Research Area: </strong> Additive Manufacturing and Machine Learning Models </p>
-        <div class="icons">
-          <a href="mailto:"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/umutgulletutan/" target="_blank"><i class="fab fa-linkedin"></i></a>    
-        </div>
-      </div>
-    </div>
-
-    
-  <div class="member">
-      <img src="/images/kedos.jpg" alt="Student 6">
-      <div class="member-info">
-        <h3><a href="/team/student6/">Name Surname</a></h3>
-        <p><strong>Education:</strong> M.Sc. in ...</p>
-        <p><strong>Research Area:</strong> Computational Materials Science...</p>
-        <div class="icons">
-          <a href="mailto:example@example"><i class="fas fa-envelope"></i></a>
-          <a href="www.linkedin.com/in/example" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/example" target="_blank"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-    </div>
-
     <h3>Alumni</h3>
-
-
+    <div class="member-grid">
+        </div>
 
   </div>
 
   
-  <!-- Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- Load Navbar and Footer -->
   <script>
     fetch("/partials/navbar.html")
       .then((response) => response.text())
@@ -315,35 +272,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
