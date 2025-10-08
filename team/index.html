@@ -34,20 +34,22 @@
         padding-bottom: 10px;
     }
 
-    /* --- NEW CARD LAYOUT STYLES --- */
+    /* --- FINAL CARD LAYOUT STYLES --- */
 
     /* The grid container for the cards */
     .member-grid {
       display: grid;
-      /* This creates a responsive grid. It will fit as many 180px cards as it can, and they will grow to fill the space. */
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 30px; /* This is the space between the cards */
+      gap: 30px;
+      /* This centers the grid items horizontally */
+      justify-content: center; 
     }
 
     /* The individual member card */
     .member-card {
       text-align: center;
-      background-color: #f9f9f9;
+      /* This removes the grey background */
+      background-color: white; 
       padding: 20px 15px;
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
@@ -88,7 +90,7 @@
     .card-icons a {
       margin: 0 6px;
       text-decoration: none;
-      color: #555; /* Slightly muted color for icons */
+      color: #555;
       font-size: 20px;
       transition: color 0.2s ease;
     }
