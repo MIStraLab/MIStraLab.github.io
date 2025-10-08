@@ -34,26 +34,26 @@
         padding-bottom: 10px;
     }
 
-    /* --- FINAL CARD LAYOUT STYLES --- */
+    /* --- FINAL CORRECTED CARD LAYOUT STYLES --- */
 
-    /* The grid container for the cards */
+    /* The container for the cards */
     .member-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 30px;
-      /* This centers the grid items horizontally */
-      justify-content: center; 
+      display: flex;       /* Use Flexbox for layout */
+      flex-wrap: wrap;     /* Allow items to wrap to the next line */
+      gap: 30px;           /* Space between cards */
+      justify-content: center; /* This now works perfectly to center the items */
     }
 
     /* The individual member card */
     .member-card {
       text-align: center;
-      /* This removes the grey background */
       background-color: white; 
       padding: 20px 15px;
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      /* Set a base width for flex items */
+      width: 180px; 
     }
 
     .member-card:hover {
