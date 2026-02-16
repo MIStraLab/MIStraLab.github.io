@@ -28,20 +28,21 @@
 
     /* Section headings like "Principal Investigator" */
     .section h3 {
-        margin-top: 20px;
+        margin-top: 40px;
         margin-bottom: 20px;
         border-bottom: 2px solid #eee;
         padding-bottom: 10px;
+        color: #002244;
     }
 
     /* --- FINAL CORRECTED CARD LAYOUT STYLES --- */
 
     /* The container for the cards */
     .member-grid {
-      display: flex;       /* Use Flexbox for layout */
-      flex-wrap: wrap;     /* Allow items to wrap to the next line */
-      gap: 30px;           /* Space between cards */
-      justify-content: center; /* This now works perfectly to center the items */
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
     }
 
     /* The individual member card */
@@ -52,7 +53,6 @@
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      /* Set a base width for flex items */
       width: 180px; 
     }
 
@@ -65,8 +65,8 @@
     .member-card img {
       width: 130px;
       height: 130px;
-      border-radius: 50%; /* This makes the image a circle */
-      object-fit: cover; /* Prevents the image from stretching */
+      border-radius: 50%;
+      object-fit: cover;
       margin-bottom: 15px;
       border: 3px solid white;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
@@ -76,13 +76,15 @@
     .member-card h4 {
       margin: 0 0 10px 0;
       font-size: 1.1em;
+      line-height: 1.3;
     }
 
     .member-card h4 a {
       text-decoration: none;
       color: #002244;
     }
-     .member-card h4 a:hover {
+    
+    .member-card h4 a:hover {
       text-decoration: underline;
     }
 
@@ -108,6 +110,7 @@
     <h2 class="page-title">Members</h2>
 
     <h3>Principal Investigator</h3>
+    <div class="member-grid">
       <div class="member-card">
         <a href="/team/samildincer/"><img src="/images/profiles/samildincer.jpg" alt="Mehmet Şamil Dinçer"></a>
         <h4><a href="/team/samildincer/">Mehmet Şamil Dinçer</a></h4>
@@ -120,16 +123,16 @@
 
     <h3>PhD Students</h3>
     <div class="member-grid">
-        <div class="member-card">
-          <a href="/team/student7/"><img src="/images/kedos.jpg" alt="PhD Student"></a>
-          <h4><a href="/team/student7/">Name Surname</a></h4>
-          <div class="card-icons">
-            <a href="mailto:example@example" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/example" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          </div>
+      <div class="member-card">
+        <a href="/team/student7/"><img src="/images/kedos.jpg" alt="PhD Student"></a>
+        <h4><a href="/team/student7/">Name Surname</a></h4>
+        <div class="card-icons">
+          <a href="mailto:example@example" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/example" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
-        </div>
+      </div>
+    </div>
 
     <h3>Master Students</h3>
     <div class="member-grid">
@@ -141,6 +144,7 @@
           <a href="https://www.linkedin.com/in/rugurakbulut/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
+
       <div class="member-card">
         <a href="/team/iremtopsakal/"><img src="/images/profiles/iremtopsakal.jpg" alt="İrem Topsakal"></a>
         <h4><a href="/team/iremtopsakal/">İrem Topsakal</a></h4>
@@ -150,6 +154,7 @@
           <a href="https://github.com/iremtopsakal" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
       </div>
+
       <div class="member-card">
         <a href="/team/dilarahasil/"><img src="/images/profiles/dilarahasil.jpg" alt="Dilara Hasıl"></a>
         <h4><a href="/team/dilarahasil/">Dilara Hasıl</a></h4>
@@ -158,6 +163,7 @@
           <a href="https://www.linkedin.com/in/dilara-has%C4%B1l/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
+
       <div class="member-card">
         <a href="/team/samildincer/"><img src="/images/profiles/samildincer.jpg" alt="Mehmet Şamil Dinçer"></a>
         <h4><a href="/team/samildincer/">Mehmet Şamil Dinçer</a></h4>
@@ -166,6 +172,7 @@
           <a href="https://www.linkedin.com/in/mehmet-%C5%9Famil-din%C3%A7er/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
+
       <div class="member-card">
         <a href="/team/gulcehreyuksel/"><img src="/images/profiles/gulcehreyuksel.jpg" alt="Gülçehre Duygu Yüksel"></a>
         <h4><a href="/team/gulcehreyuksel/">Gülçehre Duygu Yüksel</a></h4>
@@ -175,6 +182,7 @@
           <a href="https://github.com/gulcehre" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
       </div>
+
       <div class="member-card">
         <a href="/team/ulascanyazar/"><img src="/images/profiles/ulascanyazar.png" alt="Ulaş Can Yazar"></a>
         <h4><a href="/team/ulascanyazar/">Ulaş Can Yazar</a></h4>
@@ -183,7 +191,8 @@
           <a href="https://www.linkedin.com/in/ulascanyazar/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-       <div class="member-card">
+
+      <div class="member-card">
         <a href="/team/ilkeyilmaz/"><img src="/images/profiles/ilkeyilmaz.jpg" alt="İlke Yılmaz"></a>
         <h4><a href="/team/ilkeyilmaz/">İlke Yılmaz</a></h4>
         <div class="card-icons">
@@ -191,7 +200,8 @@
           <a href="https://www.linkedin.com/in/yilmaz-ilke/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-       <div class="member-card">
+
+      <div class="member-card">
         <a href="/team/aleynadaldal/"><img src="/images/profiles/aleynadaldal.jpg" alt="Aleyna Daldal"></a>
         <h4><a href="/team/aleynadaldal/">Aleyna Daldal</a></h4>
         <div class="card-icons">
@@ -199,7 +209,8 @@
           <a href="https://www.linkedin.com/in/aleynadaldal/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-       <div class="member-card">
+
+      <div class="member-card">
         <a href="/team/ogulcandemirdag/"><img src="/images/profiles/ogulcandemirdag.jpg" alt="Oğulcan Demirdağ"></a>
         <h4><a href="/team/ogulcandemirdag/">Ünver Oğulcan Demirdağ</a></h4>
         <div class="card-icons">
@@ -207,6 +218,7 @@
           <a href="https://www.linkedin.com/in/%C3%BCnver-o%C4%9Fulcan-demira%C4%9F-426434159/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
+
       <div class="member-card">
         <a href="/team/umutcangulletutan/"><img src="/images/profiles/umutcangulletutan.jpg" alt="Umut Can Gülletutan"></a>
         <h4><a href="/team/umutcangulletutan/">Umut Can Gülletutan</a></h4>
@@ -215,27 +227,26 @@
           <a href="https://www.linkedin.com/in/umutgulletutan/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-       <div class="member-card">
-          <a href="/team/student6/"><img src="/images/kedos.jpg" alt="Master Student"></a>
-          <h4><a href="/team/student6/">Name Surname</a></h4>
-          <div class="card-icons">
-            <a href="mailto:example@example" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/example" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          </div>
+
+      <div class="member-card">
+        <a href="/team/student6/"><img src="/images/kedos.jpg" alt="Master Student"></a>
+        <h4><a href="/team/student6/">Name Surname</a></h4>
+        <div class="card-icons">
+          <a href="mailto:example@example" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/example" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
         </div>
+      </div>
     </div>
-    
+
     <h3>Alumni</h3>
     <div class="member-grid">
-        </div>
+      </div>
 
-  </div>
-
-  
-  <div id="footer-placeholder"></div>
+  </div> <div id="footer-placeholder"></div>
 
   <script>
+    // Fetch and handle Navbar
     fetch("/partials/navbar.html")
       .then((response) => response.text())
       .then((data) => {
@@ -246,7 +257,6 @@
 
         if (toggle && links) {
           let isOpen = false;
-
           toggle.addEventListener("click", () => {
             if (!isOpen) {
               links.classList.add("active");
@@ -263,6 +273,7 @@
         }
       });
 
+    // Fetch and handle Footer
     fetch("/partials/footer.html")
       .then((response) => response.text())
       .then((data) => {
@@ -272,4 +283,3 @@
 
 </body>
 </html>
-
