@@ -95,65 +95,35 @@
       color: #0056b3;
     }
 
-    /* --- ALUMNI LIST STYLES (UPDATED) --- */
+    /* --- SIMPLE ALUMNI LIST STYLES --- */
     .alumni-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      max-width: 800px; /* Wider to fit the thesis title */
+      padding-left: 20px; /* Standard indentation */
+      margin-top: 10px;
+      font-size: 16px;
+      line-height: 1.6;
     }
 
-    .alumni-item {
-      margin-bottom: 10px;
+    .alumni-list li {
+      margin-bottom: 12px;
+      color: #444;
     }
 
-    /* The clickable row */
-    .alumni-link {
-      display: flex;
-      justify-content: space-between; /* Pushes Year to the right */
-      align-items: center;
-      padding: 15px 20px;
-      background-color: #f8f9fa;
-      border-radius: 8px;
-      text-decoration: none;
-      color: #333;
-      transition: all 0.2s ease;
-      border-left: 5px solid transparent;
-    }
-
-    .alumni-link:hover {
-      background-color: #e9ecef;
-      border-left: 5px solid #002244;
-      transform: translateX(5px); /* Slight movement effect */
-    }
-
-    /* Container for Name and Thesis */
-    .alumni-info {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-    }
-
-    .alumni-name {
-      font-size: 1.1em;
+    /* Style specifically for the clickable name */
+    .alumni-name-link {
       font-weight: bold;
       color: #002244;
+      text-decoration: none;
+      margin-right: 5px;
     }
 
-    .alumni-thesis {
-      font-size: 0.9em;
-      color: #666;
+    .alumni-name-link:hover {
+      text-decoration: underline;
+      color: #0056b3;
+    }
+
+    .thesis-title {
       font-style: italic;
-      margin-top: 4px;
-    }
-
-    /* Graduation Year styling */
-    .alumni-year {
-      font-weight: bold;
-      color: #555;
-      margin-left: 20px;
-      white-space: nowrap; /* Prevents year from breaking lines */
-      font-size: 0.95em;
+      color: #666;
     }
   </style>
 </head>
@@ -187,6 +157,16 @@
         </div>
       </div>
       
+      <div class="member-card">
+        <a href="/team/student7/"><img src="/images/kedos.jpg" alt="PhD Student"></a>
+        <h4><a href="/team/student7/">Name Surname</a></h4>
+        <div class="card-icons">
+          <a href="mailto:example@example" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/example" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
 
     <h3>Master Students</h3>
     <div class="member-grid">
@@ -238,7 +218,7 @@
       </div>
 
       <div class="member-card">
-        <a href="/team/ilkeyilmaz/"><img src="/images/profiles/noimage.jpg" alt="İlke Yılmaz"></a>
+        <a href="/team/ilkeyilmaz/"><img src="/images/profiles/ilkeyilmaz.jpg" alt="İlke Yılmaz"></a>
         <h4><a href="/team/ilkeyilmaz/">İlke Yılmaz</a></h4>
         <div class="card-icons">
           <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
@@ -247,7 +227,7 @@
       </div>
 
       <div class="member-card">
-        <a href="/team/aleynadaldal/"><img src="/images/profiles/noimage.jpg" alt="Aleyna Daldal"></a>
+        <a href="/team/aleynadaldal/"><img src="/images/profiles/aleynadaldal.jpg" alt="Aleyna Daldal"></a>
         <h4><a href="/team/aleynadaldal/">Aleyna Daldal</a></h4>
         <div class="card-icons">
           <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
@@ -256,7 +236,7 @@
       </div>
 
       <div class="member-card">
-        <a href="/team/ogulcandemirdag/"><img src="/images/profiles/noimage.jpg" alt="Oğulcan Demirdağ"></a>
+        <a href="/team/ogulcandemirdag/"><img src="/images/profiles/ogulcandemirdag.jpg" alt="Oğulcan Demirdağ"></a>
         <h4><a href="/team/ogulcandemirdag/">Ünver Oğulcan Demirdağ</a></h4>
         <div class="card-icons">
           <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
@@ -278,20 +258,13 @@
     <h3>Alumni</h3>
     <ul class="alumni-list">
       
-      <li class="alumni-item">
-        <a href="/team/umutcangulletutan/" class="alumni-link">
-          <div class="alumni-info">
-            <span class="alumni-name">
-              <i class="fas fa-user-graduate" style="margin-right:8px; color:#6c757d;"></i>
-              Umut Can Gülletutan
-            </span>
-            <span class="alumni-thesis">Thesis: "Optimization of Multi-Agent Systems in..."</span>
-          </div>
-          <span class="alumni-year">Graduated: 2024</span>
-        </a>
+      <li>
+        <a href="/team/umutcangulletutan/" class="alumni-name-link">Umut Can Gülletutan</a> 
+        — Graduated: 2024 — 
+        <span class="thesis-title">Thesis: "Optimization of Multi-Agent Systems in..."</span>
       </li>
-      
-    </ul>
+
+      </ul>
 
   </div>
 
@@ -333,4 +306,3 @@
 
 </body>
 </html>
-
