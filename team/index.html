@@ -95,36 +95,59 @@
       color: #0056b3;
     }
 
-    /* --- SIMPLE ALUMNI LIST STYLES --- */
-    .alumni-list {
-      padding-left: 20px; /* Standard indentation */
+    /* --- ALUMNI TABLE STYLES (Excel-like) --- */
+    .table-responsive {
+      overflow-x: auto; /* Allows scrolling on mobile if table is too wide */
+    }
+
+    .alumni-table {
+      width: 100%;
+      border-collapse: collapse;
       margin-top: 10px;
-      font-size: 16px;
-      line-height: 1.6;
+      font-size: 0.95rem;
+      color: #333;
     }
 
-    .alumni-list li {
-      margin-bottom: 12px;
-      color: #444;
+    .alumni-table thead {
+      background-color: #f8fafc;
+      border-bottom: 2px solid #eef2f7;
     }
 
-    /* Style specifically for the clickable name */
-    .alumni-name-link {
-      font-weight: bold;
+    .alumni-table th {
+      text-align: left;
+      padding: 12px 15px;
       color: #002244;
-      text-decoration: none;
-      margin-right: 5px;
+      font-weight: bold;
     }
 
-    .alumni-name-link:hover {
+    .alumni-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+
+    /* Hover effect for rows */
+    .alumni-table tbody tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    /* Link styling within table */
+    .alumni-table a {
+      text-decoration: none;
+      color: #002244;
+      font-weight: 600;
+    }
+    .alumni-table a:hover {
       text-decoration: underline;
       color: #0056b3;
     }
 
-    .thesis-title {
-      font-style: italic;
-      color: #666;
-    }
+    /* Specific column widths (optional, helps layout) */
+    .col-name { width: 20%; }
+    .col-degree { width: 10%; }
+    .col-year { width: 10%; }
+    .col-thesis { width: 60%; }
+
   </style>
 </head>
 <body>
@@ -156,7 +179,6 @@
           <a href="https://www.linkedin.com/in/mehmet-%C5%9Famil-din%C3%A7er/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-      
     </div>
 
     <h3>Master Students</h3>
@@ -247,15 +269,26 @@
     </div>
 
     <h3>Alumni</h3>
-    <ul class="alumni-list">
-      
-      <li>
-        <a href="/team/umutcangulletutan/" class="alumni-name-link">Umut Can Gülletutan</a> 
-        — Graduated: 2025 — 
-        <span class="thesis-title">Thesis: "Melt Pool Width Prediction With Machine Learning In Selective Laser Melting"</span>
-      </li>
-
-      </ul>
+    <div class="table-responsive">
+      <table class="alumni-table">
+        <thead>
+          <tr>
+            <th class="col-name">Name</th>
+            <th class="col-degree">Degree</th>
+            <th class="col-year">Year</th>
+            <th class="col-thesis">Thesis Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="/team/umutcangulletutan/">Umut Can Gülletutan</a></td>
+            <td>M.Sc.</td>
+            <td>2025</td>
+            <td>Melt Pool Width Prediction With Machine Learning In Selective Laser Melting</td>
+          </tr>
+          </tbody>
+      </table>
+    </div>
 
   </div>
 
@@ -297,6 +330,3 @@
 
 </body>
 </html>
-
-
-
