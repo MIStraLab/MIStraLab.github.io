@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +40,7 @@
           max-width:260px;
           border-radius:10px;
           object-fit:cover;
-          aspect-ratio: 3 / 4; /* keeps the portrait tidy on all sizes */
+          aspect-ratio: 3 / 4;
           box-shadow:0 1px 2px rgba(0,0,0,.06);
         }
 
@@ -78,40 +77,56 @@
         }
         .icons a:hover{ background:#f2f6fb; border-color:#cdd9ea; transform:translateY(-1px); }
 
+        /* -------- Info Grid for Research & Education -------- */
+        .info-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          margin-top: 24px;
+          text-align: left;
+        }
+
+        .info-block h3 {
+          color: var(--ink);
+          margin-top: 0;
+          margin-bottom: 10px;
+          font-size: 1.1rem;
+        }
+        
+        /* Education List Styling */
+        .education-list {
+          list-style: none;
+          padding-left: 0;
+          margin: 0;
+        }
+        .education-list li {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          margin-bottom: 16px;
+        }
+        .education-list i {
+          color: var(--ink);
+          font-size: 22px;
+          margin-top: 2px;
+        }
+        .education-list .degree {
+          display: block;
+          font-weight: normal;
+          color: var(--ink);
+        }
+        .education-list .university {
+          display: block;
+          color: var(--ink-weak);
+          font-size: 0.95rem;
+          margin-top: 2px;
+        }
+
+        /* -------- Other sections -------- */
         .publications h3,
-        .pet-section h3{
+        .conferences h3 {
           color:var(--ink);
           margin:10px 0 12px;
-        }
-
-        /* Emoji bullets for Education */
-        .emoji-bullets{ list-style:none; padding:0; margin:6px 0 14px; }
-        .emoji-bullets li::before{ content:"🔹 "; }
-
-        /* -------- Pet photos grid -------- */
-        .pet-grid{
-          display:grid;
-          grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
-          gap:14px;
-          margin-top:12px;
-        }
-        .pet-grid figure{
-          margin:0;
-          background:var(--soft);
-          border:1px solid var(--soft-border);
-          border-radius:10px;
-          overflow:hidden;
-        }
-        .pet-grid img{
-          width:100%;
-          height:220px;
-          object-fit:cover;
-          display:block;
-        }
-        .pet-grid figcaption{
-          font-size:.92rem;
-          color:#555;
-          padding:10px 12px;
         }
 
         /* -------- Mobile tweaks -------- */
@@ -124,27 +139,25 @@
         @media (max-width: 640px){
           .section{ padding:22px; }
           .profile{
-            grid-template-columns: 1fr;      /* stack */
-            justify-items:center;            /* center photo */
-            text-align:left;                 /* keep body text left */
+            grid-template-columns: 1fr;
+            justify-items:center;
+            text-align:left;
             gap:16px;
           }
           .profile img{
-            max-width: min(85vw, 360px);     /* comfy size on phones */
+            max-width: min(85vw, 360px);
           }
           .details{ width:100%; }
           .details h2{ font-size:1.6rem; }
           .icons{ gap:10px; }
           .icons a{ width:44px; height:44px; font-size:20px; }
-
-          .pet-grid{
-            grid-template-columns:repeat(auto-fill, minmax(140px,1fr));
-            gap:10px;
+          
+          .info-grid {
+            grid-template-columns: 1fr; 
+            gap: 20px;
           }
-          .pet-grid img{ height:180px; }
         }
 
-        /* Reduce motion accessibility */
         @media (prefers-reduced-motion: reduce){
           .icons a{ transition:none; }
         }
@@ -152,28 +165,34 @@
 </head>
 <body>
 
-  <!-- Navbar (unchanged) -->
   <div id="navbar-placeholder"></div>
 
   <div class="section">
     <div class="profile">
-      <img src="/images/profiles/aleynadaldal.png" alt="Ulaş Can Yazar">
+      <img src="/images/profiles/aleynadaldal.png" alt="Aleyna Daldal">
       <div class="details">
         <h2>Aleyna Daldal</h2>
-        <p class="tenure"> MSc. Student | Sept 2025 – cont.</p>
+        <p class="tenure">MSc. Student | Sept 2025 – cont.</p>
 
         <div class="icons">
-          <a href="mailto:"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/aleynadaldal/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/aleynadaldal/" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
-          
-        <p><strong>Education:</strong></p>
-        <ul class="emoji-bullets">
-          <li>B.Sc. Physics, METU (2019 – 2025)</li>
-        </ul>
+        
+        <div class="info-grid">
+            <div class="info-block">
+                <h3>Education</h3>
+                <ul class="education-list">
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <span class="degree">B.Sc. Physics, 2025</span>
+                            <span class="university">Middle East Technical University</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-        <p><strong>Research Area:</strong></p>
-        <p></p>
       </div>
     </div>
 
@@ -184,19 +203,16 @@
       </ul>
     </div>
 
-
     <div class="publications">
       <h3>Publications</h3>
       <ul>
-        <li>  Hopefully soon :) </li>
+        <li> Hopefully soon :) </li>
       </ul>
     </div>
   </div>
 
-  <!-- Footer (unchanged) -->
   <div id="footer-placeholder"></div>
 
-  <!-- Load Navbar and Footer (unchanged) -->
   <script>
     fetch("/partials/navbar.html")
       .then(r => r.text())
