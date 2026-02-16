@@ -95,44 +95,65 @@
       color: #0056b3;
     }
 
-    /* --- ALUMNI LIST STYLES --- */
+    /* --- ALUMNI LIST STYLES (UPDATED) --- */
     .alumni-list {
       list-style: none;
       padding: 0;
-      margin: 0;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
+      max-width: 800px; /* Wider to fit the thesis title */
     }
 
     .alumni-item {
       margin-bottom: 10px;
     }
 
-    .alumni-item a {
+    /* The clickable row */
+    .alumni-link {
       display: flex;
+      justify-content: space-between; /* Pushes Year to the right */
       align-items: center;
       padding: 15px 20px;
       background-color: #f8f9fa;
       border-radius: 8px;
       text-decoration: none;
       color: #333;
-      font-weight: 500;
       transition: all 0.2s ease;
       border-left: 5px solid transparent;
     }
 
-    .alumni-item a:hover {
+    .alumni-link:hover {
       background-color: #e9ecef;
       border-left: 5px solid #002244;
-      padding-left: 25px;
+      transform: translateX(5px); /* Slight movement effect */
+    }
+
+    /* Container for Name and Thesis */
+    .alumni-info {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .alumni-name {
+      font-size: 1.1em;
+      font-weight: bold;
       color: #002244;
     }
 
-    .alumni-icon {
-      margin-right: 15px;
-      color: #6c757d;
-      font-size: 1.2em;
+    .alumni-thesis {
+      font-size: 0.9em;
+      color: #666;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    /* Graduation Year styling */
+    .alumni-year {
+      font-weight: bold;
+      color: #555;
+      margin-left: 20px;
+      white-space: nowrap; /* Prevents year from breaking lines */
+      font-size: 0.95em;
     }
   </style>
 </head>
@@ -146,7 +167,7 @@
     <h3>Principal Investigator</h3>
     <div class="member-grid">
       <div class="member-card">
-        <a href="/team/sargin/"><img src="/images/profiles/sargin.jpg" alt="Irmak Sargın"></a>
+        <a href="/team/irmaksargin/"><img src="/images/profiles/irmaksargin.jpg" alt="Irmak Sargın"></a>
         <h4><a href="/team/irmaksargin/">Irmak Sargın</a></h4>
         <div class="card-icons">
           <a href="mailto:isargin@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
@@ -157,7 +178,6 @@
 
     <h3>PhD Students</h3>
     <div class="member-grid">
-      
       <div class="member-card">
         <a href="/team/samildincer/"><img src="/images/profiles/samildincer.jpg" alt="Mehmet Şamil Dinçer"></a>
         <h4><a href="/team/samildincer/">Mehmet Şamil Dinçer</a></h4>
@@ -166,17 +186,7 @@
           <a href="https://www.linkedin.com/in/mehmet-%C5%9Famil-din%C3%A7er/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-
-      <div class="member-card">
-        <a href="/team/student7/"><img src="/images/kedos.jpg" alt="PhD Student"></a>
-        <h4><a href="/team/student7/">Name Surname</a></h4>
-        <div class="card-icons">
-          <a href="mailto:example@example" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/example" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-    </div>
+      
 
     <h3>Master Students</h3>
     <div class="member-grid">
@@ -228,7 +238,7 @@
       </div>
 
       <div class="member-card">
-        <a href="/team/ilkeyilmaz/"><img src="/images/profiles/ilkeyilmaz.jpg" alt="İlke Yılmaz"></a>
+        <a href="/team/ilkeyilmaz/"><img src="/images/profiles/noimage.jpg" alt="İlke Yılmaz"></a>
         <h4><a href="/team/ilkeyilmaz/">İlke Yılmaz</a></h4>
         <div class="card-icons">
           <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
@@ -237,7 +247,7 @@
       </div>
 
       <div class="member-card">
-        <a href="/team/aleynadaldal/"><img src="/images/profiles/aleynadaldal.jpg" alt="Aleyna Daldal"></a>
+        <a href="/team/aleynadaldal/"><img src="/images/profiles/noimage.jpg" alt="Aleyna Daldal"></a>
         <h4><a href="/team/aleynadaldal/">Aleyna Daldal</a></h4>
         <div class="card-icons">
           <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
@@ -246,7 +256,7 @@
       </div>
 
       <div class="member-card">
-        <a href="/team/ogulcandemirdag/"><img src="/images/profiles/ogulcandemirdag.jpg" alt="Oğulcan Demirdağ"></a>
+        <a href="/team/ogulcandemirdag/"><img src="/images/profiles/noimage.jpg" alt="Oğulcan Demirdağ"></a>
         <h4><a href="/team/ogulcandemirdag/">Ünver Oğulcan Demirdağ</a></h4>
         <div class="card-icons">
           <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
@@ -269,9 +279,15 @@
     <ul class="alumni-list">
       
       <li class="alumni-item">
-        <a href="/team/umutcangulletutan/">
-          <i class="fas fa-user-graduate alumni-icon"></i> 
-          Umut Can Gülletutan
+        <a href="/team/umutcangulletutan/" class="alumni-link">
+          <div class="alumni-info">
+            <span class="alumni-name">
+              <i class="fas fa-user-graduate" style="margin-right:8px; color:#6c757d;"></i>
+              Umut Can Gülletutan
+            </span>
+            <span class="alumni-thesis">Thesis: "Optimization of Multi-Agent Systems in..."</span>
+          </div>
+          <span class="alumni-year">Graduated: 2024</span>
         </a>
       </li>
       
@@ -317,4 +333,3 @@
 
 </body>
 </html>
-
