@@ -26,7 +26,7 @@
       margin-bottom: 30px;
     }
 
-    /* Section headings like "Principal Investigator" */
+    /* Section headings */
     .section h3 {
         margin-top: 40px;
         margin-bottom: 20px;
@@ -35,9 +35,7 @@
         color: #002244;
     }
 
-    /* --- FINAL CORRECTED CARD LAYOUT STYLES --- */
-
-    /* The container for the cards */
+    /* --- MEMBER CARDS (Grid Layout) --- */
     .member-grid {
       display: flex;
       flex-wrap: wrap;
@@ -45,7 +43,6 @@
       justify-content: center;
     }
 
-    /* The individual member card */
     .member-card {
       text-align: center;
       background-color: white; 
@@ -61,7 +58,6 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.12);
     }
 
-    /* The circular profile picture */
     .member-card img {
       width: 130px;
       height: 130px;
@@ -72,7 +68,6 @@
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
 
-    /* Member's name */
     .member-card h4 {
       margin: 0 0 10px 0;
       font-size: 1.1em;
@@ -88,7 +83,6 @@
       text-decoration: underline;
     }
 
-    /* Social media icons */
     .card-icons a {
       margin: 0 6px;
       text-decoration: none;
@@ -99,6 +93,46 @@
 
     .card-icons a:hover {
       color: #0056b3;
+    }
+
+    /* --- ALUMNI LIST STYLES --- */
+    .alumni-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .alumni-item {
+      margin-bottom: 10px;
+    }
+
+    .alumni-item a {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border-left: 5px solid transparent;
+    }
+
+    .alumni-item a:hover {
+      background-color: #e9ecef;
+      border-left: 5px solid #002244;
+      padding-left: 25px;
+      color: #002244;
+    }
+
+    .alumni-icon {
+      margin-right: 15px;
+      color: #6c757d;
+      font-size: 1.2em;
     }
   </style>
 </head>
@@ -112,6 +146,19 @@
     <h3>Principal Investigator</h3>
     <div class="member-grid">
       <div class="member-card">
+        <a href="/team/irmaksargin/"><img src="/images/profiles/irmaksargin.jpg" alt="Irmak Sargın"></a>
+        <h4><a href="/team/irmaksargin/">Irmak Sargın</a></h4>
+        <div class="card-icons">
+          <a href="mailto:isargin@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <h3>PhD Students</h3>
+    <div class="member-grid">
+      
+      <div class="member-card">
         <a href="/team/samildincer/"><img src="/images/profiles/samildincer.jpg" alt="Mehmet Şamil Dinçer"></a>
         <h4><a href="/team/samildincer/">Mehmet Şamil Dinçer</a></h4>
         <div class="card-icons">
@@ -119,10 +166,7 @@
           <a href="https://www.linkedin.com/in/mehmet-%C5%9Famil-din%C3%A7er/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-    </div>
 
-    <h3>PhD Students</h3>
-    <div class="member-grid">
       <div class="member-card">
         <a href="/team/student7/"><img src="/images/kedos.jpg" alt="PhD Student"></a>
         <h4><a href="/team/student7/">Name Surname</a></h4>
@@ -161,15 +205,6 @@
         <div class="card-icons">
           <a href="mailto:dilara.hasil@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
           <a href="https://www.linkedin.com/in/dilara-has%C4%B1l/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <a href="/team/samildincer/"><img src="/images/profiles/samildincer.jpg" alt="Mehmet Şamil Dinçer"></a>
-        <h4><a href="/team/samildincer/">Mehmet Şamil Dinçer</a></h4>
-        <div class="card-icons">
-          <a href="mailto:samildincer@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/mehmet-%C5%9Famil-din%C3%A7er/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
 
@@ -220,15 +255,6 @@
       </div>
 
       <div class="member-card">
-        <a href="/team/umutcangulletutan/"><img src="/images/profiles/umutcangulletutan.jpg" alt="Umut Can Gülletutan"></a>
-        <h4><a href="/team/umutcangulletutan/">Umut Can Gülletutan</a></h4>
-        <div class="card-icons">
-          <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/umutgulletutan/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
         <a href="/team/student6/"><img src="/images/kedos.jpg" alt="Master Student"></a>
         <h4><a href="/team/student6/">Name Surname</a></h4>
         <div class="card-icons">
@@ -240,13 +266,22 @@
     </div>
 
     <h3>Alumni</h3>
-    <div class="member-grid">
-      </div>
+    <ul class="alumni-list">
+      
+      <li class="alumni-item">
+        <a href="/team/umutcangulletutan/">
+          <i class="fas fa-user-graduate alumni-icon"></i> 
+          Umut Can Gülletutan
+        </a>
+      </li>
+      
+    </ul>
 
-  </div> <div id="footer-placeholder"></div>
+  </div>
+
+  <div id="footer-placeholder"></div>
 
   <script>
-    // Fetch and handle Navbar
     fetch("/partials/navbar.html")
       .then((response) => response.text())
       .then((data) => {
@@ -273,7 +308,6 @@
         }
       });
 
-    // Fetch and handle Footer
     fetch("/partials/footer.html")
       .then((response) => response.text())
       .then((data) => {
