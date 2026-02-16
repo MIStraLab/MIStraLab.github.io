@@ -1,1 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MIStraLab - Ömer Gökhan Tarman</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root{
+          --ink:#002244;
+          --ink-weak:#777;
+          --panel:#fff;
+          --ring:rgba(0,0,0,.08);
+          --soft:#f8fafc;
+          --soft-border:#eef2f7;
+        }
 
+        .section{
+          padding:32px;
+          margin:20px auto;
+          width:95%;
+          max-width:1100px;
+          background:var(--panel);
+          border-radius:12px;
+          box-shadow:0 2px 4px rgba(0,0,0,.06);
+        }
+
+        /* -------- Profile block -------- */
+        .profile{
+          display:grid;
+          grid-template-columns: 260px 1fr;
+          gap:28px;
+          align-items:start;
+          margin-bottom:16px;
+        }
+
+        .profile img{
+          width:100%;
+          max-width:260px;
+          border-radius:10px;
+          object-fit:cover;
+          aspect-ratio: 3 / 4;
+          box-shadow:0 1px 2px rgba(0,0,0,.06);
+        }
+
+        .details h2{
+          color:var(--ink);
+          margin:0 0 6px;
+          line-height:1.2;
+        }
+
+        .details .tenure{
+          color:var(--ink-weak);
+          font-size:.95rem;
+          margin:0 0 12px;
+        }
+
+        .icons{
+          display:flex;
+          gap:12px;
+          margin:10px 0 18px;
+          flex-wrap:wrap;
+        }
+        .icons a{
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+          width:40px;
+          height:40px;
+          border-radius:999px;
+          border:1px solid var(--ring);
+          text-decoration:none;
+          color:var(--ink);
+          font-size:18px;
+          transition:transform .08s ease, background .2s ease, border-color .2s ease;
+        }
+        .icons a:hover{ background:#f2f6fb; border-color:#cdd9ea; transform:translateY(-1px); }
+
+        /* -------- Info Grid for Research & Education -------- */
+        .info-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          margin-top: 24px;
+          text-align: left;
+        }
+
+        .info-block h3 {
+          color: var(--ink);
+          margin-top: 0;
+          margin-bottom: 10px;
+          font-size: 1.1rem;
+        }
+        
+        .info-block ul.research-list {
+          padding-left: 20px;
+          margin: 0;
+          color: #000000;
+        }
+
+        .info-block ul.research-list li {
+          margin-bottom: 6px;
+        }
+        
+        /* Education List Styling */
+        .education-list {
+          list-style: none;
+          padding-left: 0;
+          margin: 0;
+        }
+        .education-list li {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          margin-bottom: 16px;
+        }
+        .education-list i {
+          color: var(--ink);
+          font-size: 22px;
+          margin-top: 2px;
+        }
+        .education-list .degree {
+          display: block;
+          font-weight: normal;
+          color: var(--ink);
+        }
+        .education-list .university {
+          display: block;
+          color: var(--ink-weak);
+          font-size: 0.95rem;
+          margin-top: 2px;
+        }
+        
+        /* Thesis Title Styling */
+        .thesis-title {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* -------- Other sections -------- */
+        .publications h3,
+        .conferences h3 {
+          color:var(--ink);
+          margin:10px 0 12px;
+        }
+
+        /* -------- Mobile tweaks -------- */
+        @media (max-width: 900px){
+          .section{ padding:26px; }
+          .profile{ grid-template-columns: 220px 1fr; gap:20px; }
+          .profile img{ max-width:220px; }
+        }
+
+        @media (max-width: 640px){
+          .section{ padding:22px; }
+          .profile{
+            grid-template-columns: 1fr;
+            justify-items:center;
+            text-align:left;
+            gap:16px;
+          }
+          .profile img{
+            max-width: min(85vw, 360px);
+          }
+          .details{ width:100%; }
+          .details h2{ font-size:1.6rem; }
+          .icons{ gap:10px; }
+          .icons a{ width:44px; height:44px; font-size:20px; }
+          
+          .info-grid {
+            grid-template-columns: 1fr; 
+            gap: 20px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce){
+          .icons a{ transition:none; }
+        }
+    </style>
+</head>
+<body>
+
+  <div id="navbar-placeholder"></div>
+
+  <div class="section">
+    <div class="profile">
+      <img src="/images/profiles/noimage.jpg" alt="Ömer Gökhan Tarman">
+      <div class="details">
+        <h2>Ömer Gökhan Tarman</h2>
+        <p class="tenure">PhD Student | Sept 2025 – cont.</p>
+
+        <div class="icons">
+          <a href="mailto:gokhan.tarman@metu.edu.tr" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+        
+
+        <div class="info-grid">
+            <div class="info-block">
+                <h3>Research Area</h3>
+                <ul class="research-list">
+                    <li>Technical Ceramics</li>
+                    <li>Mechanical Properties</li>
+                </ul>
+            </div>
+            <div class="info-block">
+                <h3>Education</h3>
+                <ul class="education-list">
+                    <li>
+                        <i class="fas fa-user-graduate"></i>
+                        <div>
+                            <span class="degree">M.Sc. Metallurgical and Materials Engineering, 2025</span>
+                            <span class="university">Middle East Technical University</span>
+                            <span class="thesis-title">Thesis: "A Materials Informatics Approach To Understand Processing-Structure-Property Relationships In Boron Carbide Ceramics"</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <span class="degree">B.Sc. Material Science and Nanotechnology Engineering, 2021</span>
+                            <span class="university">TOBB University of Economics and Technology</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="conferences">
+      <h3>Conferences</h3>
+      <ul>
+        <li>Tarman, O. G., & Sargin, I. (March 2025). A Materials Informatics Approach to Quantify Processing – Structure – Property Relationship in Boron Carbide Ceramics. Presented at the TMS 2025 Conference</li>
+      </ul>
+    </div>
+
+    <div class="publications">
+      <h3>Publications</h3>
+      <ul>
+        <li> Will be added </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    fetch("/partials/navbar.html")
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById("navbar-placeholder").innerHTML = html;
+
+        const toggle = document.getElementById("hamburger-toggle");
+        const links  = document.getElementById("nav-links");
+        if (toggle && links){
+          let open = false;
+          toggle.addEventListener("click", () => {
+            if (!open){
+              links.classList.add("active");
+              open = true;
+            } else {
+              links.classList.add("closing");
+              links.classList.remove("active");
+              setTimeout(() => {
+                links.classList.remove("closing");
+                open = false;
+              }, 400);
+            }
+          });
+        }
+      });
+
+    fetch("/partials/footer.html")
+      .then(r => r.text())
+      .then(html => { document.getElementById("footer-placeholder").innerHTML = html; });
+  </script>
+</body>
+</html>
