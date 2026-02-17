@@ -118,19 +118,21 @@
         }
         .education-list i {
           color: var(--ink);
-          font-size: 22px;
-          margin-top: 2px;
+          font-size: 18px; /* Slightly smaller icons for cleaner list */
+          margin-top: 4px;
+          width: 25px; /* Fixed width for alignment */
         }
         .education-list .degree {
           display: block;
-          font-weight: normal;
+          font-weight: 600; /* Bolder for the role/degree */
           color: var(--ink);
         }
         .education-list .university {
           display: block;
           color: var(--ink-weak);
-          font-size: 0.95rem;
+          font-size: 0.90rem;
           margin-top: 2px;
+          line-height: 1.4;
         }
 
         /* -------- Publications Section -------- */
@@ -142,14 +144,14 @@
         }
 
         .publications ul {
-            list-style-type: none; /* Removed default bullets */
+            list-style-type: none;
             padding-left: 0;
             margin: 0;
         }
 
         .publications li {
             margin-bottom: 14px;
-            padding-left: 20px;
+            padding-left: 24px;
             position: relative;
             line-height: 1.5;
             color: #333;
@@ -168,6 +170,11 @@
             font-weight: 600;
             color: #002244;
             display: block;
+            text-decoration: none;
+        }
+        .pub-title:hover {
+            text-decoration: underline;
+            color: #0056b3;
         }
         
         .pub-journal {
@@ -248,13 +255,27 @@
                 </ul>
             </div>
             <div class="info-block">
-                <h3>Education</h3>
+                <h3>Education & Experience</h3>
                 <ul class="education-list">
+                    <li>
+                        <i class="fas fa-flask"></i>
+                        <div>
+                            <span class="degree">Post-doc, 2015-2018</span>
+                            <span class="university">Washington State University, WA, USA</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-flask"></i>
+                        <div>
+                            <span class="degree">Post-doc, 2016-2017</span>
+                            <span class="university">Massachusetts Institute of Technology, MA, USA</span>
+                        </div>
+                    </li>
                     <li>
                         <i class="fas fa-graduation-cap"></i>
                         <div>
-                            <span class="degree">Ph.D. in Materials Science, 2015</span>
-                            <span class="university">XYZ University</span>
+                            <span class="degree">Ph.D., 2015</span>
+                            <span class="university">Iowa State University, IA, USA</span>
                         </div>
                     </li>
                 </ul>
@@ -330,8 +351,7 @@
         // Clear "Loading..." text
         list.innerHTML = "";
 
-        // ORCID works are not always sorted by date. We must process them.
-        // We take the first 5 entries from the group array.
+        // Get first 5 works
         const top5 = groups.slice(0, 5);
 
         top5.forEach(workGroup => {
@@ -340,19 +360,19 @@
             // Extract Title
             const title = workSummary.title.title.value;
             
-            // Extract Year (if available)
+            // Extract Year
             let year = "";
             if (workSummary["publication-date"] && workSummary["publication-date"].year) {
                 year = `(${workSummary["publication-date"].year.value})`;
             }
 
-            // Extract Journal Name (if available)
+            // Extract Journal Name
             let journal = "";
             if (workSummary["journal-title"] && workSummary["journal-title"].value) {
                 journal = workSummary["journal-title"].value;
             }
 
-            // Extract DOI Link (if available)
+            // Extract DOI Link
             let link = "#";
             if (workSummary["external-ids"] && workSummary["external-ids"]["external-id"]) {
                 const doiObj = workSummary["external-ids"]["external-id"].find(id => id["external-id-type"] === "doi");
