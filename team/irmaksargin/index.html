@@ -52,7 +52,7 @@
 
         .details .tenure{
           color:var(--ink-weak);
-          font-size: 1.05rem; /* Slightly larger for PI */
+          font-size: 1.05rem;
           font-weight: 500;
           margin:0 0 12px;
         }
@@ -78,7 +78,7 @@
         }
         .icons a:hover{ background:#f2f6fb; border-color:#cdd9ea; transform:translateY(-1px); }
 
-        /* -------- Info Grid for Research & Education -------- */
+        /* -------- Info Grid -------- */
         .info-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -136,23 +136,57 @@
         /* -------- Publications Section -------- */
         .publications h3 {
           color:var(--ink);
-          margin:20px 0 15px;
+          margin:30px 0 15px;
           border-bottom: 1px solid var(--soft-border);
           padding-bottom: 10px;
         }
 
         .publications ul {
-            list-style-type: disc;
-            margin-left: 20px;
-            line-height: 1.6;
-            color: #333;
+            list-style-type: none; /* Removed default bullets */
+            padding-left: 0;
+            margin: 0;
         }
 
         .publications li {
-            margin-bottom: 10px;
+            margin-bottom: 14px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        /* Custom bullet for publications */
+        .publications li::before {
+            content: "📄";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 14px;
         }
 
-        /* -------- Mobile tweaks -------- */
+        .pub-title {
+            font-weight: 600;
+            color: #002244;
+            display: block;
+        }
+        
+        .pub-journal {
+            font-style: italic;
+            color: #555;
+        }
+
+        .pub-year {
+            font-weight: bold;
+            color: #777;
+            margin-left: 6px;
+        }
+        
+        #loading-text {
+            color: #777;
+            font-style: italic;
+        }
+
+        /* Mobile tweaks */
         @media (max-width: 900px){
           .section{ padding:26px; }
           .profile{ grid-template-columns: 220px 1fr; gap:20px; }
@@ -180,10 +214,6 @@
             gap: 20px;
           }
         }
-
-        @media (prefers-reduced-motion: reduce){
-          .icons a{ transition:none; }
-        }
     </style>
 </head>
 <body>
@@ -199,8 +229,12 @@
 
         <div class="icons">
           <a href="mailto:isargin@metu.edu.tr" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          
           <a href="https://orcid.org/0000-0001-5156-5448" target="_blank" title="ORCID" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+          
           <a href="https://scholar.google.com/citations?user=ag_2tt4AAAAJ&hl=en" target="_blank" title="Google Scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          
+          <a href="https://www.linkedin.com" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
         
         <div class="info-grid">
@@ -223,7 +257,7 @@
                             <span class="university">XYZ University</span>
                         </div>
                     </li>
-                    </ul>
+                </ul>
             </div>
         </div>
 
@@ -231,22 +265,21 @@
     </div>
 
     <div class="publications">
-      <h3>Selected Publications</h3>
-      <ul>
-        <li>Doe, J., Sargin, I., et al. (2023). Title of the Research Paper. <em>Journal Name</em>.</li>
-        <li>Sargin, I., et al. (2021). Another Paper Title. <em>Advanced Materials</em>.</li>
-        </ul>
+      <h3>Latest Publications (from ORCID)</h3>
+      <ul id="publication-list">
+        <li id="loading-text">Loading publications...</li>
+      </ul>
     </div>
   </div>
 
   <div id="footer-placeholder"></div>
 
   <script>
+    // 1. Navbar and Footer Loading
     fetch("/partials/navbar.html")
       .then(r => r.text())
       .then(html => {
         document.getElementById("navbar-placeholder").innerHTML = html;
-
         const toggle = document.getElementById("hamburger-toggle");
         const links  = document.getElementById("nav-links");
         if (toggle && links){
@@ -270,6 +303,79 @@
     fetch("/partials/footer.html")
       .then(r => r.text())
       .then(html => { document.getElementById("footer-placeholder").innerHTML = html; });
+
+
+    // 2. AUTOMATIC ORCID PUBLICATION FETCHER
+    const orcidID = "0000-0001-5156-5448"; 
+    const endpoint = `https://pub.orcid.org/v3.0/${orcidID}/works`;
+
+    fetch(endpoint, {
+        headers: {
+            "Accept": "application/json"
+        }
+    })
+    .then(response => {
+        if (!response.ok) { throw new Error("ORCID API unreachable"); }
+        return response.json();
+    })
+    .then(data => {
+        const list = document.getElementById("publication-list");
+        const groups = data.group;
+
+        if (!groups || groups.length === 0) {
+            list.innerHTML = "<li>No public works found on ORCID.</li>";
+            return;
+        }
+
+        // Clear "Loading..." text
+        list.innerHTML = "";
+
+        // ORCID works are not always sorted by date. We must process them.
+        // We take the first 5 entries from the group array.
+        const top5 = groups.slice(0, 5);
+
+        top5.forEach(workGroup => {
+            const workSummary = workGroup["work-summary"][0];
+            
+            // Extract Title
+            const title = workSummary.title.title.value;
+            
+            // Extract Year (if available)
+            let year = "";
+            if (workSummary["publication-date"] && workSummary["publication-date"].year) {
+                year = `(${workSummary["publication-date"].year.value})`;
+            }
+
+            // Extract Journal Name (if available)
+            let journal = "";
+            if (workSummary["journal-title"] && workSummary["journal-title"].value) {
+                journal = workSummary["journal-title"].value;
+            }
+
+            // Extract DOI Link (if available)
+            let link = "#";
+            if (workSummary["external-ids"] && workSummary["external-ids"]["external-id"]) {
+                const doiObj = workSummary["external-ids"]["external-id"].find(id => id["external-id-type"] === "doi");
+                if (doiObj) {
+                    link = "https://doi.org/" + doiObj["external-id-value"];
+                }
+            }
+
+            // Create HTML Element
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <a href="${link}" target="_blank" class="pub-title">${title}</a>
+                <span class="pub-journal">${journal}</span>
+                <span class="pub-year">${year}</span>
+            `;
+            list.appendChild(li);
+        });
+    })
+    .catch(error => {
+        console.error("Error fetching ORCID data:", error);
+        document.getElementById("publication-list").innerHTML = 
+            "<li>Could not load publications automatically. <a href='https://scholar.google.com/citations?user=ag_2tt4AAAAJ&hl=en' target='_blank'>View on Google Scholar</a></li>";
+    });
   </script>
 </body>
 </html>
