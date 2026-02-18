@@ -118,13 +118,13 @@
         }
         .education-list i {
           color: var(--ink);
-          font-size: 18px; /* Slightly smaller icons for cleaner list */
+          font-size: 18px;
           margin-top: 4px;
-          width: 25px; /* Fixed width for alignment */
+          width: 25px;
         }
         .education-list .degree {
           display: block;
-          font-weight: 600; /* Bolder for the role/degree */
+          font-weight: 600;
           color: var(--ink);
         }
         .education-list .university {
@@ -135,62 +135,67 @@
           line-height: 1.4;
         }
 
-        /* -------- Publications Section -------- */
+        /* -------- Formal Publications Styles -------- */
         .publications h3 {
           color:var(--ink);
-          margin:30px 0 15px;
+          margin:30px 0 20px;
           border-bottom: 1px solid var(--soft-border);
           padding-bottom: 10px;
         }
 
-        .publications ul {
-            list-style-type: none;
-            padding-left: 0;
+        .pub-list {
+            list-style: none;
+            padding: 0;
             margin: 0;
         }
 
-        .publications li {
-            margin-bottom: 14px;
-            padding-left: 24px;
-            position: relative;
-            line-height: 1.5;
-            color: #333;
+        .pub-item {
+            margin-bottom: 18px;
+            padding-left: 15px;
+            border-left: 3px solid #002244; /* Blue accent line */
+            transition: border-left-color 0.2s ease;
         }
         
-        /* Custom bullet for publications */
-        .publications li::before {
-            content: "📄";
-            position: absolute;
-            left: 0;
-            top: 2px;
-            font-size: 14px;
+        .pub-item:hover {
+            border-left-color: #0056b3; /* Lighter blue on hover */
+            background-color: #fafbfc;
         }
 
         .pub-title {
+            display: block;
+            font-size: 1.05rem;
             font-weight: 600;
             color: #002244;
-            display: block;
             text-decoration: none;
+            margin-bottom: 4px;
+            line-height: 1.4;
         }
+        
         .pub-title:hover {
             text-decoration: underline;
             color: #0056b3;
         }
-        
+
+        .pub-meta {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
         .pub-journal {
             font-style: italic;
-            color: #555;
+            color: #444;
         }
 
         .pub-year {
-            font-weight: bold;
-            color: #777;
-            margin-left: 6px;
+            font-weight: 600;
+            color: #333;
         }
         
         #loading-text {
             color: #777;
             font-style: italic;
+            padding-left: 15px;
         }
 
         /* Mobile tweaks */
@@ -236,11 +241,8 @@
 
         <div class="icons">
           <a href="mailto:isargin@metu.edu.tr" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
-          
           <a href="https://orcid.org/0000-0001-5156-5448" target="_blank" title="ORCID" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
-          
           <a href="https://scholar.google.com/citations?user=ag_2tt4AAAAJ&hl=en" target="_blank" title="Google Scholar" aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
-          
           <a href="https://www.linkedin.com" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
         
@@ -286,9 +288,9 @@
     </div>
 
     <div class="publications">
-      <h3>Latest Publications (from ORCID)</h3>
-      <ul id="publication-list">
-        <li id="loading-text">Loading publications...</li>
+      <h3>Latest Publications</h3>
+      <ul id="publication-list" class="pub-list">
+        <li id="loading-text">Loading publications from ORCID...</li>
       </ul>
     </div>
   </div>
@@ -326,14 +328,12 @@
       .then(html => { document.getElementById("footer-placeholder").innerHTML = html; });
 
 
-    // 2. AUTOMATIC ORCID PUBLICATION FETCHER
+    // 2. FORMAL ORCID PUBLICATION FETCHER
     const orcidID = "0000-0001-5156-5448"; 
     const endpoint = `https://pub.orcid.org/v3.0/${orcidID}/works`;
 
     fetch(endpoint, {
-        headers: {
-            "Accept": "application/json"
-        }
+        headers: { "Accept": "application/json" }
     })
     .then(response => {
         if (!response.ok) { throw new Error("ORCID API unreachable"); }
@@ -344,11 +344,11 @@
         const groups = data.group;
 
         if (!groups || groups.length === 0) {
-            list.innerHTML = "<li>No public works found on ORCID.</li>";
+            list.innerHTML = "<li class='pub-item'>No public works found on ORCID.</li>";
             return;
         }
 
-        // Clear "Loading..." text
+        // Clear loading text
         list.innerHTML = "";
 
         // Get first 5 works
@@ -363,7 +363,7 @@
             // Extract Year
             let year = "";
             if (workSummary["publication-date"] && workSummary["publication-date"].year) {
-                year = `(${workSummary["publication-date"].year.value})`;
+                year = workSummary["publication-date"].year.value;
             }
 
             // Extract Journal Name
@@ -381,12 +381,22 @@
                 }
             }
 
-            // Create HTML Element
+            // Build formatting: "Title." Journal, Year.
+            // If journal is missing, just show Year.
+            let citationMeta = "";
+            if (journal && year) {
+                citationMeta = `<span class="pub-journal">${journal}</span>, <span class="pub-year">${year}</span>`;
+            } else if (journal) {
+                citationMeta = `<span class="pub-journal">${journal}</span>`;
+            } else if (year) {
+                citationMeta = `<span class="pub-year">(${year})</span>`;
+            }
+
             const li = document.createElement("li");
+            li.className = "pub-item";
             li.innerHTML = `
                 <a href="${link}" target="_blank" class="pub-title">${title}</a>
-                <span class="pub-journal">${journal}</span>
-                <span class="pub-year">${year}</span>
+                <div class="pub-meta">${citationMeta}</div>
             `;
             list.appendChild(li);
         });
@@ -394,7 +404,7 @@
     .catch(error => {
         console.error("Error fetching ORCID data:", error);
         document.getElementById("publication-list").innerHTML = 
-            "<li>Could not load publications automatically. <a href='https://scholar.google.com/citations?user=ag_2tt4AAAAJ&hl=en' target='_blank'>View on Google Scholar</a></li>";
+            "<li class='pub-item'>Could not load publications automatically. <a href='https://scholar.google.com/citations?user=ag_2tt4AAAAJ&hl=en' target='_blank'>View on Google Scholar</a></li>";
     });
   </script>
 </body>
