@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="/css/style.css" />
 
   <style>
-    /* Lab Title Styling */
     .lab-title {
       margin-top: 40px;
       text-align: center;
@@ -16,6 +15,7 @@
     .lab-title h1 {
       font-size: 32px;
       margin: 0 10px 20px 10px;
+      color: #002244;
     }
 
     @media (max-width: 900px) {
@@ -25,7 +25,6 @@
       }
     }
 
-    /* Image and About Section Wrapper */
     .home-section {
       display: flex;
       flex-direction: column;
@@ -38,7 +37,7 @@
       max-width: 900px;
       margin: 0 auto;
       display: block;
-      border-radius: 0px;
+      border-radius: 0;
     }
 
     .about-box {
@@ -50,37 +49,135 @@
       margin: 20px auto;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
+    .home-panel {
+      width: 100%;
+      max-width: 900px;
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 0 auto 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .home-panel h3 {
+      margin-top: 0;
+      color: #002244;
+    }
+
+    .latest-news-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .latest-news-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafafa;
+    }
+
+    .latest-news-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .latest-news-content {
+      padding: 12px;
+    }
+
+    .latest-news-content h4 {
+      margin: 0 0 6px;
+      color: #002244;
+      font-size: 18px;
+    }
+
+    .latest-news-date {
+      margin: 0 0 6px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .latest-news-content p {
+      margin: 0;
+      color: #444;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .panel-link {
+      margin-top: 12px;
+      display: inline-block;
+      color: #002244;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .panel-link:hover {
+      text-decoration: underline;
+    }
+
+    .publication-alerts {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .publication-alerts li {
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 900px) {
+      .latest-news-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
 <body>
-
-  <!-- Navbar -->
   <div id="navbar-placeholder"></div>
 
-  <!-- Lab Title -->
   <div class="lab-title">
     <h1>Materials Informatics Strategies Laboratory</h1>
   </div>
 
-  <!-- Main Content Section -->
   <div class="home-section">
     <img class="lab-image" src="/images/labtayfa.jpg" alt="Lab Overview Image" />
 
     <div class="about-box">
       <h3>About Us</h3>
       <p>
-Materials Informatics Strategies Laboratory (MIStraLab) at Middle East Technical University is a multidisciplinary research group dedicated to advancing materials science through the power of data-driven methods and machine learning. At MIStraLab, we tackle complex challenges in materials discovery, design and optimization by integrating computational modeling, informatics and experimental data. Our mission is to accelerate scientific breakthroughs by developing cutting-edge tools and methodologies at the intersection of materials science and artificial intelligence.
-
-Driven by curiosity and collaboration, our team works on projects that span academic research and real-world industrial applications — with the goal of shaping the future of smart materials and sustainable technologies.
+        Materials Informatics Strategies Laboratory (MIStraLab) at Middle East Technical University is a multidisciplinary research group dedicated to advancing materials science through data-driven methods and machine learning. At MIStraLab, we tackle complex challenges in materials discovery, design, and optimization by integrating computational modeling, informatics, and experimental data. Our mission is to accelerate scientific breakthroughs by developing tools and methodologies at the intersection of materials science and artificial intelligence.
       </p>
+      <p>
+        Driven by curiosity and collaboration, our team works on projects spanning academic research and real-world industrial applications, with the goal of shaping the future of smart materials and sustainable technologies.
+      </p>
+    </div>
+
+    <div class="home-panel">
+      <h3>Latest News</h3>
+      <div id="latest-news-grid" class="latest-news-grid"></div>
+      <a class="panel-link" href="/news/">View all news</a>
+    </div>
+
+    <div class="home-panel">
+      <h3>Publication Alerts</h3>
+      <ul class="publication-alerts" id="publication-alerts">
+        <li><strong>New publication alert:</strong> Add your latest paper announcement here.</li>
+        <li><strong>Tip:</strong> Duplicate this line for each new publication update.</li>
+      </ul>
     </div>
   </div>
 
-  <!-- Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- Load Navbar and Footer -->
   <script>
     fetch("/partials/navbar.html")
       .then((response) => response.text())
@@ -116,5 +213,52 @@ Driven by curiosity and collaboration, our team works on projects that span acad
       });
   </script>
 
+  <script type="module">
+    import { createSnippet, formatNewsDate, loadNewsPosts } from "/news/js/news-data.js";
+
+    function escapeHtml(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;");
+    }
+
+    async function loadLatestNews() {
+      const container = document.getElementById("latest-news-grid");
+      if (!container) {
+        return;
+      }
+
+      try {
+        const posts = await loadNewsPosts();
+        const latest = posts.slice(0, 2);
+        if (!latest.length) {
+          container.innerHTML = "<p>No news available yet.</p>";
+          return;
+        }
+
+        container.innerHTML = latest
+          .map(
+            (post) => `
+              <a class="latest-news-card" href="/news/post.html?slug=${encodeURIComponent(post.slug)}">
+                <img src="${post.image}" alt="${escapeHtml(post.title)}">
+                <div class="latest-news-content">
+                  <h4>${escapeHtml(post.title)}</h4>
+                  <p class="latest-news-date">${formatNewsDate(post.date)}</p>
+                  <p>${escapeHtml(createSnippet(post.summary, post.body))}</p>
+                </div>
+              </a>
+            `,
+          )
+          .join("");
+      } catch (error) {
+        container.innerHTML = "<p>Latest news could not be loaded.</p>";
+        console.error(error);
+      }
+    }
+
+    loadLatestNews();
+  </script>
 </body>
 </html>
