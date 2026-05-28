@@ -69,10 +69,27 @@ function renderPetSection(member) {
 }
 
 function renderPublications(items) {
-  if (!items || !items.length) {
-    return "<li>-</li>";
-  }
   return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+}
+
+function renderTheses(member) {
+  const items = [];
+  if (member.mscThesis) {
+    items.push(`<li><strong>M.Sc. Thesis:</strong> ${escapeHtml(member.mscThesis)}</li>`);
+  }
+  if (member.phdThesis) {
+    items.push(`<li><strong>Ph.D. Thesis:</strong> ${escapeHtml(member.phdThesis)}</li>`);
+  }
+  if (!items.length) {
+    return "";
+  }
+
+  return `
+    <div class="detail-block">
+      <h3>Theses</h3>
+      <ul class="plain-list">${items.join("")}</ul>
+    </div>
+  `;
 }
 
 async function loadOrcidPublications(orcidUrl) {
@@ -139,7 +156,27 @@ function renderOrcidPublications(list) {
 
 function renderMember(member) {
   const root = document.getElementById("member-root");
+  const conferences = member.conferences.filter((item) => item && item !== "-");
   const publications = member.publications.filter((item) => item && item !== "-");
+  const conferencesBlock = conferences.length
+    ? `
+      <div class="detail-block">
+        <h3>Conferences</h3>
+        <ul class="plain-list">${renderList(conferences)}</ul>
+      </div>
+    `
+    : "";
+  const publicationsBlock = publications.length
+    ? `
+      <div class="detail-block">
+        <h3>Publications</h3>
+        <ul class="plain-list" id="publications-list">${renderPublications(publications)}</ul>
+      </div>
+    `
+      : (member.orcid
+      ? '<div class="detail-block"><h3>Publications</h3><ul class="plain-list" id="publications-list"></ul></div>'
+      : "");
+  const thesesBlock = renderTheses(member);
 
   root.innerHTML = `
     <div class="section">
@@ -170,15 +207,9 @@ function renderMember(member) {
         </div>
       </div>
 
-      <div class="detail-block">
-        <h3>Conferences</h3>
-        <ul class="plain-list">${renderList(member.conferences)}</ul>
-      </div>
-
-      <div class="detail-block">
-        <h3>Publications</h3>
-        <ul class="plain-list" id="publications-list">${renderPublications(publications)}</ul>
-      </div>
+      ${conferencesBlock}
+      ${thesesBlock}
+      ${publicationsBlock}
     </div>
     ${renderPetSection(member)}
   `;
@@ -190,6 +221,17 @@ function renderNotFound() {
     <div class="section">
       <h2>Member Not Found</h2>
       <p>The requested team member could not be found.</p>
+      <p><a href="/team/">Back to Team</a></p>
+    </div>
+  `;
+}
+
+function renderNoDetail(member) {
+  const root = document.getElementById("member-root");
+  root.innerHTML = `
+    <div class="section">
+      <h2>${escapeHtml(member.name)}</h2>
+      <p>An individual detail page is not available for this person yet.</p>
       <p><a href="/team/">Back to Team</a></p>
     </div>
   `;
@@ -232,6 +274,10 @@ async function initMemberDetail() {
     const member = members.find((item) => item.slug === slug);
     if (!member) {
       renderNotFound();
+      return;
+    }
+    if (!member.hasDetailPage) {
+      renderNoDetail(member);
       return;
     }
 

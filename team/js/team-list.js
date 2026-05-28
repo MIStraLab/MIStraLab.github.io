@@ -23,12 +23,22 @@ function mailLink(email) {
 }
 
 function memberCard(member) {
+  const imageHtml = member.hasDetailPage
+    ? `<a href="${member.detailPath}"><img src="${member.image}" alt="${escapeHtml(member.name)}"></a>`
+    : `<img src="${member.image}" alt="${escapeHtml(member.name)}">`;
+
+  const nameHtml = member.hasDetailPage
+    ? `<a href="${member.detailPath}">${escapeHtml(member.name)}</a>`
+    : escapeHtml(member.name);
+
   return `
     <div class="member-card">
-      <a href="/team/member.html?slug=${encodeURIComponent(member.slug)}"><img src="${member.image}" alt="${escapeHtml(member.name)}"></a>
-      <h4><a href="/team/member.html?slug=${encodeURIComponent(member.slug)}">${escapeHtml(member.name)}</a></h4>
+      ${imageHtml}
+      <h4>${nameHtml}</h4>
       <div class="card-icons">
         ${mailLink(member.email)}
+        ${iconLink(member.orcid, "ORCID", "fa-brands fa-orcid")}
+        ${iconLink(member.scholar, "Google Scholar", "fas fa-graduation-cap")}
         ${iconLink(member.linkedin, "LinkedIn", "fab fa-linkedin")}
         ${iconLink(member.github, "GitHub", "fab fa-github")}
         ${iconLink(member.website, "Website", "fas fa-globe")}
@@ -76,12 +86,18 @@ function renderError(message) {
   }
 }
 
+function sortMembersByName(members) {
+  return [...members].sort((a, b) =>
+    a.name.localeCompare(b.name, "tr", { sensitivity: "base" }),
+  );
+}
+
 async function initTeamList() {
   try {
     const { members, alumni } = await loadTeamData();
-    const pi = members.filter((member) => member.group === "pi");
-    const phd = members.filter((member) => member.group === "phd");
-    const master = members.filter((member) => member.group === "master");
+    const pi = sortMembersByName(members.filter((member) => member.primaryGroup === "pi"));
+    const phd = sortMembersByName(members.filter((member) => member.primaryGroup === "phd"));
+    const master = sortMembersByName(members.filter((member) => member.primaryGroup === "master"));
 
     renderMemberGroup("pi-grid", pi);
     renderMemberGroup("phd-grid", phd);

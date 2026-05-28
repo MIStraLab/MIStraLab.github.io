@@ -14,14 +14,41 @@ function parseMetadata(lines) {
       break;
     }
 
-    meta[match[1]] = match[2].trim();
+    const key = match[1];
+    const inlineValue = match[2].trim();
+
+    // Supports YAML-like list values:
+    // research:
+    // - item 1
+    // - item 2
+    if (!inlineValue) {
+      const items = [];
+      let j = i + 1;
+      while (j < lines.length) {
+        const itemMatch = lines[j].match(/^\s*-\s+(.+)$/);
+        if (!itemMatch) {
+          break;
+        }
+        items.push(itemMatch[1].trim());
+        j += 1;
+      }
+
+      if (items.length > 0) {
+        meta[key] = items.join(" | ");
+        i = j - 1;
+        bodyStartIndex = j;
+        continue;
+      }
+    }
+
+    meta[key] = inlineValue;
     bodyStartIndex = i + 1;
   }
 
   return { meta, bodyStartIndex };
 }
 
-function splitValue(value) {
+function splitPipeValue(value) {
   if (!value) {
     return [];
   }
@@ -31,8 +58,42 @@ function splitValue(value) {
     .filter(Boolean);
 }
 
+function parseBoolean(value, fallback = false) {
+  if (typeof value !== "string") {
+    return fallback;
+  }
+  const normalized = value.trim().toLowerCase();
+  if (normalized === "true" || normalized === "yes" || normalized === "1") {
+    return true;
+  }
+  if (normalized === "false" || normalized === "no" || normalized === "0") {
+    return false;
+  }
+  return fallback;
+}
+
+function splitGroupList(value) {
+  if (!value) {
+    return [];
+  }
+  return value
+    .split(/[|,]/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function splitCommaList(value) {
+  if (!value) {
+    return [];
+  }
+  return value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
 function parsePets(value) {
-  return splitValue(value).map((item) => {
+  return splitPipeValue(value).map((item) => {
     const [src, caption] = item.split("::");
     return {
       src: (src || "").trim(),
@@ -42,7 +103,7 @@ function parsePets(value) {
 }
 
 function parseEducation(value) {
-  return splitValue(value).map((item) => {
+  return splitPipeValue(value).map((item) => {
     const [degree, university] = item.split("@");
     return {
       degree: (degree || "").trim(),
@@ -51,11 +112,21 @@ function parseEducation(value) {
   }).filter((entry) => entry.degree);
 }
 
+function defaultTenureByGroup(group) {
+  const map = {
+    pi: "Principal Investigator",
+    phd: "PhD Student",
+    master: "MSc Student",
+    phd_alumni: "PhD Alumni",
+    msc_alumni: "MSc Alumni",
+  };
+  return map[group] || "";
+}
+
 function parseTeamData(markdownText) {
   const normalized = markdownText.replace(/\r/g, "");
   const sections = normalized.split(/\n##\s+/);
   const members = [];
-  const alumni = [];
 
   for (const [index, section] of sections.entries()) {
     if (index === 0) {
@@ -74,15 +145,23 @@ function parseTeamData(markdownText) {
 
     if (header.startsWith("member:")) {
       const slug = header.slice("member:".length).trim();
-      if (!slug || !meta.name || !meta.group || !meta.image) {
+      const groups = splitGroupList(meta.group || meta.groups || "");
+      if (!slug || !meta.name || !groups.length || !meta.image) {
         continue;
       }
+
+      const hasDetailPage = parseBoolean(meta.page || meta.has_detail_page, true);
+      const primaryGroup = groups[0];
+      const tenure = (meta.tenure || "").trim() || defaultTenureByGroup(primaryGroup);
       members.push({
         slug,
-        group: meta.group,
+        groups,
+        primaryGroup,
+        hasDetailPage,
+        detailPath: hasDetailPage ? `/team/member.html?slug=${encodeURIComponent(slug)}` : "",
         name: meta.name,
         image: meta.image,
-        tenure: meta.tenure || "",
+        tenure,
         email: meta.email || "",
         linkedin: meta.linkedin || "",
         github: meta.github || "",
@@ -90,31 +169,49 @@ function parseTeamData(markdownText) {
         orcid: meta.orcid || "",
         scholar: meta.scholar || "",
         bio: meta.bio || "",
-        research: splitValue(meta.research),
+        research: splitPipeValue(meta.research),
         education: parseEducation(meta.education),
-        conferences: splitValue(meta.conferences),
-        publications: splitValue(meta.publications),
+        conferences: splitPipeValue(meta.conferences),
+        publications: splitPipeValue(meta.publications),
         petTitle: meta.pet_title || "",
         pets: parsePets(meta.pets),
+        alumniYears: splitCommaList(meta.alumni_year),
+        mscThesis: (meta.msc_thesis || "").trim(),
+        phdThesis: (meta.phd_thesis || "").trim(),
       });
       continue;
     }
+  }
 
-    if (header.startsWith("alumni:")) {
-      const slug = header.slice("alumni:".length).trim();
-      if (!slug || !meta.name || !meta.degree || !meta.year || !meta.thesis) {
-        continue;
+  const alumni = [];
+  for (const member of members) {
+    const alumniGroups = member.groups.filter((group) => group.endsWith("_alumni"));
+    for (const [index, group] of alumniGroups.entries()) {
+      const year = member.alumniYears[index] || "";
+      if (group === "msc_alumni" && member.mscThesis) {
+        alumni.push({
+          slug: member.slug,
+          name: member.name,
+          profile: member.hasDetailPage ? member.detailPath : "",
+          degree: "M.Sc.",
+          year,
+          thesis: member.mscThesis,
+        });
       }
-      alumni.push({
-        slug,
-        name: meta.name,
-        profile: meta.profile || "",
-        degree: meta.degree,
-        year: meta.year,
-        thesis: meta.thesis,
-      });
+      if (group === "phd_alumni" && member.phdThesis) {
+        alumni.push({
+          slug: member.slug,
+          name: member.name,
+          profile: member.hasDetailPage ? member.detailPath : "",
+          degree: "Ph.D.",
+          year,
+          thesis: member.phdThesis,
+        });
+      }
     }
   }
+
+  alumni.sort((a, b) => Number.parseInt(b.year || "0", 10) - Number.parseInt(a.year || "0", 10));
 
   return { members, alumni };
 }
