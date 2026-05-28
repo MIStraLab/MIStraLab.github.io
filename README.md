@@ -206,3 +206,13 @@ Without these, post may be skipped.
 ## Contact for Website Maintenance
 
 For website issues, contact **Irem Topsakal**.
+
+
+Logo:
+
+800x200 px
+Prosto One
+140 px
+Photopea
+
+Note: You can contact Irem Topsakal about any issue :) s
