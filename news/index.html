@@ -114,6 +114,37 @@
       margin-top: 30px;
     }
 
+    .news-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .news-pagination a {
+      display: inline-block;
+      min-width: 34px;
+      padding: 8px 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      color: #002244;
+      background-color: white;
+      font-weight: 600;
+    }
+
+    .news-pagination a.active {
+      background-color: #002244;
+      color: white;
+      border-color: #002244;
+    }
+
+    .news-pagination a:hover {
+      background-color: #e6eef8;
+    }
+
     @media (max-width: 768px) {
       .news-card {
         width: 100%;
@@ -157,6 +188,7 @@
   <div class="section">
     <h2>News</h2>
     <div class="news-container" id="news-container"></div>
+    <div class="news-pagination" id="news-pagination"></div>
   </div>
 
   <div id="footer-placeholder"></div>

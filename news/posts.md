@@ -27,14 +27,14 @@ gallery: /images/news/tms2026sargin1.jpg | /images/news/tms2026sargin2.jpg | /im
 
 As the **MIStraLab** research group, we participated in the **TMS 2026 Annual Meeting & Exhibition**, held March 15-19, 2026, in San Diego, California, USA. We were honored to share our research at this prestigious international event, which brought together leading scientists and researchers from around the world.
 
-Our Principal Investigator, **[Dr. Irmak Sargin](/team/irmaksargin/)**, presented her work on "Reinforcement Learning Recommendations for Crystallization-Resistant Nuclear Waste Glass Formulation." Additionally, our MSc students represented the lab with the following oral and poster presentations:
+Our Principal Investigator, **[Dr. Irmak Sargin](/team/member.html?slug=irmaksargin)**, presented her work on "Reinforcement Learning Recommendations for Crystallization-Resistant Nuclear Waste Glass Formulation." Additionally, our MSc students represented the lab with the following oral and poster presentations:
 
-- **[Riza Ugur Akbulut](/team/ugurakbulut/)**: Prediction of Formation Energies of XYB14, Boron-Rich Borides by Machine Learning
-- **[Aleyna Daldal](/team/aleynadaldal/)**: Prediction of Metal-Insulator-Transition (MIT) Compounds from Density of States (DOS) Data Using Image-Based Deep Learning
-- **[Ulas Can Yazar](/team/ulascanyazar/)**: Data-Driven Discovery of Stable Lead-Free Perovskites Via Reinforcement Learning
-- **[Irem Topsakal](/team/iremtopsakal/)**: Kinetic Model Selection and Process Optimization for LIB Recycling Using Reinforcement Learning
-- **[Dilara Hasil](/team/dilarahasil/)** (presented by Dr. Irmak Sargin): Single Recipe for High-Efficiency Recovery of Rare Earth Elements via Rule Extraction From Iron-Depleted Red Mud
-- **[Ogulcan Unver Demirag](/team/ogulcandemirag/)**: Computational Thermodynamics-Based Optimization of Ti-6Al-4V via Al and V Substitution for Additive Manufacturing
+- **[Riza Ugur Akbulut](/team/member.html?slug=ugurakbulut)**: Prediction of Formation Energies of XYB14, Boron-Rich Borides by Machine Learning
+- **[Aleyna Daldal](/team/member.html?slug=aleynadaldal)**: Prediction of Metal-Insulator-Transition (MIT) Compounds from Density of States (DOS) Data Using Image-Based Deep Learning
+- **[Ulas Can Yazar](/team/member.html?slug=ulascanyazar)**: Data-Driven Discovery of Stable Lead-Free Perovskites Via Reinforcement Learning
+- **[Irem Topsakal](/team/member.html?slug=iremtopsakal)**: Kinetic Model Selection and Process Optimization for LIB Recycling Using Reinforcement Learning
+- **[Dilara Hasil](/team/member.html?slug=dilarahasil)** (presented by Dr. Irmak Sargin): Single Recipe for High-Efficiency Recovery of Rare Earth Elements via Rule Extraction From Iron-Depleted Red Mud
+- **[Ogulcan Unver Demirag](/team/member.html?slug=ogulcandemirag)**: Computational Thermodynamics-Based Optimization of Ti-6Al-4V via Al and V Substitution for Additive Manufacturing
 
 Congratulations to our team for their impactful contributions and for representing MIStraLab on the international stage. Here are some memorable moments from our experience at TMS 2026.
 
@@ -45,7 +45,7 @@ image: /images/news/emrsf2025_1.jpg
 summary: We were thrilled to be part of the E-MRS Fall 2025 Meeting, a key event for the European materials science community.
 gallery: /images/news/emrsf2025_1.jpg | /images/news/emrsf2025_2.jpg
 
-We were thrilled to be part of E-MRS Fall 2025 Meeting, a key event for European Materials Science Community. We are proud to announce that our team member, [Irem Topsakal](/team/iremtopsakal/), successfully represented our group with her oral presentation. It was a wonderful opportunity for us to share our latest research and connect with leading scientists from across the globe. We look forward to applying the insights we gained.
+We were thrilled to be part of E-MRS Fall 2025 Meeting, a key event for European Materials Science Community. We are proud to announce that our team member, [Irem Topsakal](/team/member.html?slug=iremtopsakal), successfully represented our group with her oral presentation. It was a wonderful opportunity for us to share our latest research and connect with leading scientists from across the globe. We look forward to applying the insights we gained.
 
 ## graduations2025
 title: Our 2024-2025 Academic Year Graduates
@@ -56,9 +56,9 @@ gallery: /images/news/gokhanmsc.jpg | /images/news/samilmsc.jpg | /images/news/u
 
 This year, four of our master's students from MIStraLab research group successfully completed their graduate studies. We sincerely thank them for their contributions to the group and wish them continued success in their academic and professional careers.
 
-- [Omer Gokhan Tarman](/team/gokhantarman/): A Materials Informatics Approach to Understand Processing-Structure-Property Relationships in Boron Carbide Ceramics
-- [Mehmet Samil Dincer](/team/samildincer/): Thermodynamics Behavior Prediction of Nickel Alloys at Elevated Temperatures with Artificial Intelligence
-- [Umut Can Gulletutan](/team/umutcangulletutan/): Melt Pool Width Prediction with Machine Learning in Selective Laser Melting
+- [Omer Gokhan Tarman](/team/member.html?slug=gokhantarman): A Materials Informatics Approach to Understand Processing-Structure-Property Relationships in Boron Carbide Ceramics
+- [Mehmet Samil Dincer](/team/member.html?slug=samildincer): Thermodynamics Behavior Prediction of Nickel Alloys at Elevated Temperatures with Artificial Intelligence
+- [Umut Can Gulletutan](/team/member.html?slug=umutcangulletutan): Melt Pool Width Prediction with Machine Learning in Selective Laser Melting
 - Nusret Cem Diyarbakir: Experimental Characterization and Multi-Scale Modeling of Two-Dimensional Woven Composites
 
 ## news3
@@ -77,7 +77,7 @@ image: /images/news/emrsspring2025_2.jpg
 summary: As MIStraLab research group, we participated in E-MRS 2025 Spring Meeting held between May 26-30, 2025, in Strasbourg, France.
 gallery: /images/news/emrsspring2025_1.jpg | /images/news/emrsspring2025_2.jpg | /images/news/emrsspring2025_dilara.jpg | /images/news/emrsspring2025_ogulcan.jpg
 
-As MIStraLab research group, we participated in E-MRS 2025 Spring Meeting (European Materials Research Society) held between May 26-30, 2025, at the Convention & Exhibition Centre of Strasbourg, Strasbourg, France. Our group members [Dilara Hasil](/team/dilarahasil/) and [Ogulcan Demirag](/team/ogulcandemirag/) represented us with their poster presentations.
+As MIStraLab research group, we participated in E-MRS 2025 Spring Meeting (European Materials Research Society) held between May 26-30, 2025, at the Convention & Exhibition Centre of Strasbourg, Strasbourg, France. Our group members [Dilara Hasil](/team/member.html?slug=dilarahasil) and [Ogulcan Demirag](/team/member.html?slug=ogulcandemirag) represented us with their poster presentations.
 
 Here are some memorable moments from our experience at the E-MRS 2025 Spring Meeting.
 
@@ -90,24 +90,9 @@ gallery: /images/news/tms1.jpg | /images/news/tms2.jpg
 
 As MIStraLab research group, we participated in TMS (The Minerals, Metals & Materials Society) 2025 Annual Meeting & Exhibition, held between March 23-27, 2025, at the MGM Grand Las Vegas Hotel & Casino, Las Vegas, Nevada, USA.
 
-Our group members [Gokhan Tarman](/team/gokhantarman/) and [Umut Can Gulletutan](/team/umutcangulletutan/) represented us with their oral presentations. We were honored to share our research at this prestigious international event, which brought together leading scientists and researchers from around the world.
+Our group members [Gokhan Tarman](/team/member.html?slug=gokhantarman) and [Umut Can Gulletutan](/team/member.html?slug=umutcangulletutan) represented us with their oral presentations. We were honored to share our research at this prestigious international event, which brought together leading scientists and researchers from around the world.
 
 Here are some memorable moments from our experience at TMS 2025.
-
-## news1
-title: We are online!
-date: 2025-01-14
-image: /images/news/news1.jpg
-summary: MIStraLab is finally online and still under construction.
-gallery:
-
-Hello world!
-
-MIStraLab is finally online - and still under construction.
-
-It will be completed before the Spring semester ends, hopefully.
-
-- Irem
 
 ## immc2024
 title: IMMC 2024 Presentations
@@ -120,5 +105,5 @@ Members of MIStraLab research group participated in the 22nd International Metal
 
 Our team actively contributed to the scientific program across multiple formats:
 
-- **Oral Presentations:** [Gokhan Tarman](/team/gokhantarman/) and [Umut Can Gulletutan](/team/umutcangulletutan/) delivered talks highlighting our latest research findings.
-- **Poster Sessions:** [Ugur Akbulut](/team/ugurakbulut/) and [Samil Dincer](/team/samildincer/) presented their work, engaging with attendees during the technical sessions.
+- **Oral Presentations:** [Gokhan Tarman](/team/member.html?slug=gokhantarman) and [Umut Can Gulletutan](/team/member.html?slug=umutcangulletutan) delivered talks highlighting our latest research findings.
+- **Poster Sessions:** [Ugur Akbulut](/team/member.html?slug=ugurakbulut) and [Samil Dincer](/team/member.html?slug=samildincer) presented their work, engaging with attendees during the technical sessions.

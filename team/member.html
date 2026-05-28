@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIStraLab - Team Member</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .section {
+      padding: 32px;
+      margin: 20px auto;
+      width: 95%;
+      max-width: 1100px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .profile {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 28px;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+
+    .profile img {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 10px;
+      object-fit: cover;
+      aspect-ratio: 3 / 4;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    .details h2 {
+      color: #002244;
+      margin: 0 0 6px;
+      line-height: 1.2;
+    }
+
+    .details .tenure {
+      color: #777;
+      font-size: 0.95rem;
+      margin: 0 0 12px;
+    }
+
+    .icons {
+      display: flex;
+      gap: 12px;
+      margin: 10px 0 18px;
+      flex-wrap: wrap;
+    }
+
+    .icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      text-decoration: none;
+      color: #002244;
+      font-size: 18px;
+      transition: transform 0.08s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .icons a:hover {
+      background: #f2f6fb;
+      border-color: #cdd9ea;
+      transform: translateY(-1px);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .info-block h3,
+    .detail-block h3,
+    .pet-section h3 {
+      color: #002244;
+      margin: 10px 0 12px;
+    }
+
+    .plain-list {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+
+    .pet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .pet-grid figure {
+      margin: 0;
+      background: #f8fafc;
+      border: 1px solid #eef2f7;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .pet-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pet-grid figcaption {
+      font-size: 0.92rem;
+      color: #555;
+      padding: 10px 12px;
+    }
+
+    @media (max-width: 900px) {
+      .section { padding: 26px; }
+      .profile { grid-template-columns: 220px 1fr; gap: 20px; }
+      .profile img { max-width: 220px; }
+    }
+
+    @media (max-width: 640px) {
+      .section { padding: 22px; }
+      .profile {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: left;
+        gap: 16px;
+      }
+      .profile img {
+        max-width: min(85vw, 360px);
+      }
+      .details { width: 100%; }
+      .details h2 { font-size: 1.6rem; }
+      .icons { gap: 10px; }
+      .icons a { width: 44px; height: 44px; font-size: 20px; }
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .pet-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+      }
+      .pet-grid img { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <div id="member-root"></div>
+  <div id="footer-placeholder"></div>
+
+  <script>
+    fetch("/partials/navbar.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+        const toggle = document.getElementById("hamburger-toggle");
+        const links = document.getElementById("nav-links");
+        if (toggle && links) {
+          let isOpen = false;
+          toggle.addEventListener("click", () => {
+            if (!isOpen) {
+              links.classList.add("active");
+              isOpen = true;
+            } else {
+              links.classList.add("closing");
+              links.classList.remove("active");
+              setTimeout(() => {
+                links.classList.remove("closing");
+                isOpen = false;
+              }, 400);
+            }
+          });
+        }
+      });
+
+    fetch("/partials/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  </script>
+  <script type="module" src="/team/js/team-detail.js"></script>
+</body>
+</html>

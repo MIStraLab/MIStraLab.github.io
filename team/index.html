@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="/css/style.css">
 
   <style>
-    /* Common Section Styling */
     .section {
       padding: 30px;
       margin: 20px auto;
@@ -26,16 +25,14 @@
       margin-bottom: 30px;
     }
 
-    /* Section headings */
     .section h3 {
-        margin-top: 40px;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-        color: #002244;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+      color: #002244;
     }
 
-    /* --- MEMBER CARDS (Grid Layout) --- */
     .member-grid {
       display: flex;
       flex-wrap: wrap;
@@ -45,17 +42,17 @@
 
     .member-card {
       text-align: center;
-      background-color: white; 
+      background-color: white;
       padding: 20px 15px;
       border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      width: 180px; 
+      width: 180px;
     }
 
     .member-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
     }
 
     .member-card img {
@@ -65,7 +62,7 @@
       object-fit: cover;
       margin-bottom: 15px;
       border: 3px solid white;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
 
     .member-card h4 {
@@ -78,7 +75,7 @@
       text-decoration: none;
       color: #002244;
     }
-    
+
     .member-card h4 a:hover {
       text-decoration: underline;
     }
@@ -95,9 +92,8 @@
       color: #0056b3;
     }
 
-    /* --- ALUMNI TABLE STYLES (Excel-like) --- */
     .table-responsive {
-      overflow-x: auto; /* Allows scrolling on mobile if table is too wide */
+      overflow-x: auto;
     }
 
     .alumni-table {
@@ -126,156 +122,42 @@
       vertical-align: top;
     }
 
-    /* Hover effect for rows */
     .alumni-table tbody tr:hover {
       background-color: #f9f9f9;
     }
 
-    /* Link styling within table */
     .alumni-table a {
       text-decoration: none;
       color: #002244;
       font-weight: 600;
     }
+
     .alumni-table a:hover {
       text-decoration: underline;
       color: #0056b3;
     }
 
-    /* Specific column widths (optional, helps layout) */
     .col-name { width: 20%; }
     .col-degree { width: 10%; }
     .col-year { width: 10%; }
     .col-thesis { width: 60%; }
-
   </style>
 </head>
 <body>
 
   <div id="navbar-placeholder"></div>
 
-  <div class="section">
+  <div class="section" id="team-section">
     <h2 class="page-title">Members</h2>
 
     <h3>Principal Investigator</h3>
-    <div class="member-grid">
-      <div class="member-card">
-        <a href="/team/irmaksargin/"><img src="/images/profiles/irmaksargin.jpg" alt="Irmak Sargın"></a>
-        <h4><a href="/team/irmaksargin/">Irmak Sargın</a></h4>
-        <div class="card-icons">
-          <a href="mailto:isargin@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-    </div>
+    <div class="member-grid" id="pi-grid"></div>
 
     <h3>PhD Students</h3>
-    <div class="member-grid">
-      <div class="member-card">
-        <a href="/team/samildincer/"><img src="/images/profiles/samildincer.jpg" alt="Mehmet Şamil Dinçer"></a>
-        <h4><a href="/team/samildincer/">Mehmet Şamil Dinçer</a></h4>
-        <div class="card-icons">
-          <a href="mailto:samildincer@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/mehmet-%C5%9Famil-din%C3%A7er/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-    
-      <div class="member-card">
-        <a href="/team/gokhantarman/"><img src="/images/profiles/noimage.jpg" alt="Ömer Gökhan Tarman"></a>
-        <h4><a href="/team/gokhantarman/">Ömer Gökhan Tarman</a></h4>
-        <div class="card-icons">
-          <a href="mailto:gokhan.tarman@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/g%C3%B6khan-tarman-44668b214/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-    </div>
+    <div class="member-grid" id="phd-grid"></div>
 
     <h3>Master Students</h3>
-    <div class="member-grid">
-      <div class="member-card">
-        <a href="/team/ugurakbulut/"><img src="/images/profiles/ugurakbulut.jpg" alt="Rıza Uğur Akbulut"></a>
-        <h4><a href="/team/ugurakbulut/">Rıza Uğur Akbulut</a></h4>
-        <div class="card-icons">
-          <a href="mailto:uakbulut@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/rugurakbulut/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <a href="/team/iremtopsakal/"><img src="/images/profiles/iremtopsakal.jpg" alt="İrem Topsakal"></a>
-        <h4><a href="/team/iremtopsakal/">İrem Topsakal</a></h4>
-        <div class="card-icons">
-          <a href="mailto:iremto@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/iremtopsakal" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/iremtopsakal" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <a href="/team/dilarahasil/"><img src="/images/profiles/dilarahasil.jpg" alt="Dilara Hasıl"></a>
-        <h4><a href="/team/dilarahasil/">Dilara Hasıl</a></h4>
-        <div class="card-icons">
-          <a href="mailto:dilara.hasil@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/dilara-has%C4%B1l/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <a href="/team/gulcehreyuksel/"><img src="/images/profiles/gulcehreyuksel.jpg" alt="Gülçehre Duygu Yüksel"></a>
-        <h4><a href="/team/gulcehreyuksel/">Gülçehre Duygu Yüksel</a></h4>
-        <div class="card-icons">
-          <a href="mailto:yukselg@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/gulcehreyuksel/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/gulcehre" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <a href="/team/ulascanyazar/"><img src="/images/profiles/ulascanyazar.png" alt="Ulaş Can Yazar"></a>
-        <h4><a href="/team/ulascanyazar/">Ulaş Can Yazar</a></h4>
-        <div class="card-icons">
-          <a href="mailto:can.yazarg@metu.edu.tr" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/ulascanyazar/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <a href="/team/ilkeyilmaz/"><img src="/images/profiles/noimage.jpg" alt="İlke Yılmaz"></a>
-        <h4><a href="/team/ilkeyilmaz/">İlke Yılmaz</a></h4>
-        <div class="card-icons">
-          <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/yilmaz-ilke/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <a href="/team/aleynadaldal/"><img src="/images/profiles/noimage.jpg" alt="Aleyna Daldal"></a>
-        <h4><a href="/team/aleynadaldal/">Aleyna Daldal</a></h4>
-        <div class="card-icons">
-          <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/aleynadaldal/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <a href="/team/ogulcandemirag/"><img src="/images/profiles/noimage.jpg" alt="Oğulcan Demirağ"></a>
-        <h4><a href="/team/ogulcandemirag/">Ünver Oğulcan Demirağ</a></h4>
-        <div class="card-icons">
-          <a href="mailto:" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/%C3%BCnver-o%C4%9Fulcan-demira%C4%9F-426434159/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-      </div>
-
-      <div class="member-card">
-        <a href="/team/student6/"><img src="/images/kedos.jpg" alt="Master Student"></a>
-        <h4><a href="/team/student6/">Name Surname</a></h4>
-        <div class="card-icons">
-          <a href="mailto:example@example" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://www.linkedin.com/in/example" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/example" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-    </div>
+    <div class="member-grid" id="master-grid"></div>
 
     <h3>Alumni</h3>
     <div class="table-responsive">
@@ -288,41 +170,9 @@
             <th class="col-thesis">Thesis Title</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td><a href="/team/samildincer/">Mehmet Şamil Dinçer</a></td>
-            <td>M.Sc.</td>
-            <td>2025</td>
-            <td>Thermodynamics Behavior Prediction Of Nickel Alloys At Elevated Temperatures With Artificial Intelligence</td>
-          </tr>
-          <tr>
-            <td><a href="/team/umutcangulletutan/">Umut Can Gülletutan</a></td>
-            <td>M.Sc.</td>
-            <td>2025</td>
-            <td>Melt Pool Width Prediction With Machine Learning In Selective Laser Melting</td>
-          </tr>
-          <tr>
-            <td><a href="/team/gokhantarman/">Ömer Gökhan Tarman</a></td>
-            <td>M.Sc.</td>
-            <td>2025</td>
-            <td>A Materials Informatics Approach To Understand Processing-Structure-Property Relationships In Boron Carbide Ceramics</td>
-          </tr>
-          <tr>
-            <td><a href="/team/cemdiyarbakir/">Nusret Cem Diyarbakır</a></td>
-            <td>M.Sc.</td>
-            <td>2024</td>
-            <td>Experimental Characterization And Multi-Scale Modeling Of Two-Dimensional Woven Composites</td>   
-          </tr>
-            <tr>
-            <td>Berkay Büyüklüoğlu</a></td>
-            <td>M.Sc.</td>
-            <td>2023</td>
-            <td>Production and Characterization of Boron Carbide Powder by Mechanochemical Method</td>  
-          </tr>
-        </tbody>
+        <tbody id="alumni-body"></tbody>
       </table>
     </div>
-
   </div>
 
   <div id="footer-placeholder"></div>
@@ -360,7 +210,7 @@
         document.getElementById("footer-placeholder").innerHTML = data;
       });
   </script>
+  <script type="module" src="/team/js/team-list.js"></script>
 
 </body>
 </html>
-
