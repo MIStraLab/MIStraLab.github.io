@@ -75,6 +75,25 @@
             padding: 12px 0; 
             margin-top: 30px; 
         }
+        @media (max-width: 768px) {
+            .section {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 32px;
+            }
+            .news-container {
+                flex-direction: column;
+                gap: 14px;
+            }
+            .news-image {
+                max-width: 100%;
+                width: 100%;
+            }
+            .news-content {
+                flex: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -88,7 +107,7 @@
 
         <div class="news-container">
             <div class="news-image">
-                <img src="/images/news/newlab.jpg" alt="News Image">
+                <img src="/images/news/newlab.jpeg" alt="News Image">
             </div>
             <div class="news-content">
                 <p>We are excited to announce the opening of our new laboratory space! You can now visit us and grab a coffee in D-110.</p>
