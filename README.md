@@ -144,7 +144,6 @@ Each post starts with:
 title: ...
 date: YYYY-MM-DD
 image: /images/news/...
-summary: ...
 gallery: /images/news/a.jpg | /images/news/b.jpg
 
 Body text in Markdown...
@@ -174,7 +173,7 @@ Without these, post may be skipped.
 1. Add image(s) to `images/news/`.
 2. Copy an existing post block in `news/posts.md`.
 3. Set a new unique slug.
-4. Fill metadata (`title`, `date`, `image`, `summary`, `gallery`).
+4. Fill metadata (`title`, `date`, `image`, `gallery`).
 5. Write body in Markdown.
 6. Reload:
    - `/news/`
@@ -192,7 +191,7 @@ Without these, post may be skipped.
 2. Date format is valid.
 3. Main image path exists.
 4. Gallery image paths exist.
-5. Summary is concise (used on card preview).
+5. The first part of body text is clean and readable (used for card preview with ellipsis).
 
 ---
 
@@ -206,13 +205,3 @@ Without these, post may be skipped.
 ## Contact for Website Maintenance
 
 For website issues, contact **Irem Topsakal**.
-
-
-Logo:
-
-800x200 px
-Prosto One
-140 px
-Photopea
-
-Note: You can contact Irem Topsakal about any issue :) s

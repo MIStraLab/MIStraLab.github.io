@@ -18,6 +18,6 @@ Electronic-structure-informed machine learning and density functional theory (DF
 ## Funded Projects
 MIStraLab is a partner in several funded national and international projects. Selected examples are listed below.
 
-| Start Year | Project Name | Program | Role | URL |
+| Start Year | Project Name | Program | Role |
 |---|---|---|---|---|
-| 2024 | EUROTITAN | Horizon Europe | Project Partner (Consortium Member) | [www.euro-titan.eu](https://www.euro-titan.eu/) |
+| 2024 | [EUROTITAN](https://www.euro-titan.eu/) | Horizon Europe | Project Partner |

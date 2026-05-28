@@ -1,4 +1,4 @@
-import { createSnippet, formatNewsDate, loadNewsPosts } from "/news/js/news-data.js";
+import { createSnippet, formatNewsDate, loadNewsPosts } from "/news/js/news-data.js?v=2";
 
 const PAGE_SIZE = 10;
 
@@ -48,7 +48,7 @@ function renderNewsCards(posts, page) {
         <div class="news-content">
           <h3>${escapeHtml(post.title)}</h3>
           <div class="date">${formatNewsDate(post.date)}</div>
-          <p>${escapeHtml(createSnippet(post.summary, post.body))}</p>
+          <p>${escapeHtml(createSnippet(post.body))}</p>
         </div>
       </a>
     `,

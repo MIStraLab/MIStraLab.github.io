@@ -1,4 +1,4 @@
-import { formatNewsDate, loadNewsPosts, renderMarkdown } from "/news/js/news-data.js";
+import { formatNewsDate, loadNewsPosts, renderMarkdown } from "/news/js/news-data.js?v=2";
 
 function escapeHtml(text) {
   return String(text)

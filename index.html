@@ -124,6 +124,11 @@
       color: #444;
       font-size: 14px;
       line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .news-carousel-controls {
@@ -297,7 +302,7 @@
   </script>
 
   <script type="module">
-    import { createSnippet, formatNewsDate, loadNewsPosts } from "/news/js/news-data.js";
+    import { createSnippet, formatNewsDate, loadNewsPosts } from "/news/js/news-data.js?v=2";
 
     function escapeHtml(text) {
       return String(text)
@@ -333,7 +338,7 @@
                 <div class="latest-news-content">
                   <h4>${escapeHtml(post.title)}</h4>
                   <p class="latest-news-date">${formatNewsDate(post.date)}</p>
-                  <p>${escapeHtml(createSnippet(post.summary, post.body))}</p>
+                  <p>${escapeHtml(createSnippet(post.body))}</p>
                 </div>
               </a>
             `,
@@ -378,6 +383,10 @@
               showSlide(target);
             });
           });
+
+          setInterval(() => {
+            showSlide(activeIndex + 1);
+          }, 5000);
         } else if (controls) {
           controls.innerHTML = "";
         }
