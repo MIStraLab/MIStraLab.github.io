@@ -50,6 +50,10 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
+    .about-box p {
+      text-align: justify;
+    }
+
     .home-panel {
       width: 100%;
       background-color: white;
@@ -203,14 +207,10 @@
       text-transform: uppercase;
     }
 
-    .publication-alerts {
+    .publication-alert-text {
       margin: 0;
-      padding-left: 20px;
-    }
-
-    .publication-alerts li {
-      margin-bottom: 8px;
-      line-height: 1.45;
+      line-height: 1.55;
+      color: #1f2937;
     }
 
     @media (max-width: 900px) {
@@ -254,10 +254,7 @@
           <span>Publication Alerts</span>
           <span class="alerts-pill">New</span>
         </h3>
-        <ul class="publication-alerts" id="publication-alerts">
-          <li><strong>New publication alert:</strong> Add your latest paper announcement here.</li>
-          <li><strong>Tip:</strong> Duplicate this line for each new publication update.</li>
-        </ul>
+        <p class="publication-alert-text" id="publication-alert-text">Loading publication...</p>
       </div>
     </div>
   </div>
@@ -393,7 +390,96 @@
       }
     }
 
+    function getPublicationDate(detail) {
+      const year = Number.parseInt(detail["publication-date"]?.year?.value || "0", 10);
+      const month = Number.parseInt(detail["publication-date"]?.month?.value || "1", 10);
+      const day = Number.parseInt(detail["publication-date"]?.day?.value || "1", 10);
+      return new Date(year || 0, (month || 1) - 1, day || 1);
+    }
+
+    function getDoiLink(detail) {
+      const externalIds = detail["external-ids"]?.["external-id"];
+      if (!externalIds) {
+        return "";
+      }
+      const doiObject = externalIds.find((id) => id["external-id-type"] === "doi");
+      if (!doiObject || !doiObject["external-id-value"]) {
+        return "";
+      }
+      return `https://doi.org/${doiObject["external-id-value"]}`;
+    }
+
+    function formatPublicationDate(detail) {
+      const year = detail["publication-date"]?.year?.value || "";
+      const month = detail["publication-date"]?.month?.value || "";
+      const day = detail["publication-date"]?.day?.value || "";
+      if (year && month && day) {
+        const date = new Date(Number(year), Number(month) - 1, Number(day));
+        return date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+      }
+      if (year && month) {
+        const date = new Date(Number(year), Number(month) - 1, 1);
+        return date.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+      }
+      return year || "N/A";
+    }
+
+    async function loadLatestPublicationAlert() {
+      const container = document.getElementById("publication-alert-text");
+      if (!container) {
+        return;
+      }
+
+      const orcidId = "0000-0001-5156-5448";
+
+      try {
+        const summaryUrl = `https://pub.orcid.org/v3.0/${orcidId}/works`;
+        const summaryResponse = await fetch(summaryUrl, { headers: { Accept: "application/json" } });
+        if (!summaryResponse.ok) {
+          throw new Error(`HTTP error ${summaryResponse.status}`);
+        }
+
+        const summaryData = await summaryResponse.json();
+        const workSummaries = (summaryData.group || []).map((work) => work["work-summary"]?.[0]).filter(Boolean);
+
+        const detailPromises = workSummaries.map((summary) => {
+          const putCode = summary["put-code"];
+          const detailUrl = `https://pub.orcid.org/v3.0/${orcidId}/work/${putCode}`;
+          return fetch(detailUrl, { headers: { Accept: "application/json" } }).then((res) => res.json());
+        });
+
+        const details = await Promise.all(detailPromises);
+        details.sort((a, b) => getPublicationDate(b) - getPublicationDate(a));
+        const latest = details[0];
+
+        if (!latest) {
+          container.textContent = "Publication information is not available right now.";
+          return;
+        }
+
+        const title = latest.title?.title?.value || "Untitled";
+        const journal = latest["journal-title"]?.value || "Unknown journal";
+        const publicationDate = formatPublicationDate(latest);
+        const doiLink = getDoiLink(latest);
+        const contributors = latest.contributors?.contributor || [];
+        const authors = contributors
+          .map((contributor) => contributor["credit-name"]?.value)
+          .filter(Boolean)
+          .join(", ") || "Authors unavailable";
+
+        const doiHtml = doiLink
+          ? `<a href="${doiLink}" target="_blank" rel="noopener noreferrer">${doiLink}</a>`
+          : "DOI not available";
+
+        container.innerHTML = `Check out the article:<br><strong>${escapeHtml(title)}</strong><br>${escapeHtml(authors)}. <em>${escapeHtml(journal)}</em>, ${escapeHtml(publicationDate)}. Link: ${doiHtml}.`;
+      } catch (error) {
+        container.textContent = "Publication information could not be loaded.";
+        console.error(error);
+      }
+    }
+
     loadLatestNews();
+    loadLatestPublicationAlert();
   </script>
 </body>
 </html>

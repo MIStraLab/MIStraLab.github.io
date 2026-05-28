@@ -3,69 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIStraLab - Research Areas</title>
+    <title>MIStraLab - Research</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/inner-pages.css?v=2">
     <style>
-        body { 
-            font-family: 'Arial', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            background-color: #f5f5f5;
-            padding-top: 60px; /* For fixed navbar */
-            overflow-y: scroll; /* Consistency */
+        .research-wrap {
+            color: #111827;
+            line-height: 1.6;
         }
-        nav { 
-            background-color: #002244; 
-            padding: 10px 0; 
-            text-align: center; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            right: 0; 
-            z-index: 1000; 
+        .research-intro {
+            margin: 0 0 24px 0;
+            color: #334155;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 16px;
+            text-align: justify;
         }
-        nav a { 
-            color: white; 
-            margin: 0 15px; 
-            text-decoration: none; 
-            font-weight: bold; 
+        .research-block {
+            padding: 12px 0 14px 0;
         }
-        .section { 
-            padding: 30px; 
-            margin: 20px auto; 
-            width: 95%; 
-            max-width: 1100px; 
-            background-color: white; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        .research-block h2 {
+            margin: 0 0 6px 0;
+            font-size: 1.25rem;
+            color: #0f172a;
         }
-        h2 {
-            font-size: 36px;
-            text-align: center;
+        .funded-projects-block {
+            border-top: 2px solid #d6dee8;
+            margin-top: 14px;
+            padding-top: 18px;
+        }
+        .funded-projects-block h2 {
+            font-size: 1.55rem;
             color: #002244;
-            margin-bottom: 30px;
         }
-        .research-item {
+        .research-block p {
+            margin: 0;
+            color: #1f2937;
+            text-align: justify;
+        }
+        .project-table-wrap {
+            margin-top: 10px;
+            overflow-x: auto;
+        }
+        .project-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .project-table thead {
+            background-color: #f8fafc;
+            border-bottom: 2px solid #eef2f7;
+        }
+        .project-table th,
+        .project-table td {
+            text-align: left;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        .project-table th {
+            color: #002244;
+            font-weight: bold;
+        }
+        .project-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        .project-table a {
+            text-decoration: none;
+            color: #002244;
+            font-weight: 600;
+        }
+        .project-table a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+        .positions-cta {
+            margin: 14px 0 24px 0;
+            padding: 16px 18px;
+            border: 2px solid #cfe0f6;
+            background: #f3f8ff;
+            border-radius: 10px;
             display: flex;
-            margin-bottom: 40px;
             align-items: center;
+            justify-content: space-between;
+            gap: 14px;
         }
-        .research-item img {
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            margin-right: 20px;
-            border-radius: 4px;
+        .positions-cta p {
+            margin: 0;
+            color: #0f172a;
+            font-size: 1.05rem;
+            line-height: 1.5;
         }
-        .research-description {
-            flex: 1;
+        .positions-cta a {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 6px;
+            background: #002244;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            white-space: nowrap;
         }
-        .footer { 
-            background-color: #003366; 
-            color: white; 
-            text-align: center; 
-            padding: 12px 0; 
-            margin-top: 30px; 
+        .positions-cta a:hover {
+            background: #0056b3;
+        }
+        @media (max-width: 700px) {
+            .positions-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -74,49 +121,10 @@
     <!-- Navbar -->
     <div id="navbar-placeholder"></div>
 
-    <div class="section">
-        <h2>Research Areas</h2>
-
-        <div class="research-item">
-            <img src="/images/research/image.png" alt="Research Area 1">
-            <div class="research-description">
-                <h3>Data-driven Materials Discovery</h3>
-                <p>Machine learning and informatics tools are used to identify promising material candidates from large design spaces. These approaches reduce trial-and-error experiments and support faster, data-supported material selection and development.</p>
-            </div>
-        </div>
-
-        <div class="research-item">
-            <div class="research-description">
-                <h3>Hydrometallurgical recycling process optimization</h3>
-                <p>Machine learning methods are applied to optimize complex chemical and recycling processes. Such approaches enable more efficient resource recovery and support sustainable, environmentally friendly technologies. They also provide deeper insights into hydrometallurgical mechanisms that have traditionally relied on empirical methods.</p>
-            </div>
-            <img src="/images/research/image.png" alt="Hydro">
-        </div>
-
-        <div class="research-item">
-            <img src="/images/research/image.png" alt="Research Area 3">
-            <div class="research-description">
-                <h3>Computational Thermodynamics and CALPHAD</h3>
-                <p>Computational thermodynamics models are integrated with data-driven methods to predict phase stability and process behavior. This combined framework supports alloy design, heat-treatment decisions, and more reliable processing windows.</p>
-            </div>
-        </div>
-
-        <div class="research-item">
-            <div class="research-description">
-                <h3>AI for Additive Manufacturing</h3>
-                <p>Data-driven models are developed to connect process parameters with melt-pool and microstructure outcomes in additive manufacturing. These methods help improve process control, reduce defects, and support efficient parameter optimization.</p>
-            </div>
-            <img src="/images/research/image.png" alt="Research Area 4">
-        </div>
-
-        <div class="research-item">
-            <img src="/images/research/image.png" alt="Research Area 5">
-            <div class="research-description">
-                <h3>Electronic Structure and Property Prediction</h3>
-                <p>Electronic-structure-informed machine learning is used to estimate key material properties and identify structure-property trends. This approach supports faster screening of functional materials and improved interpretation of complex datasets.</p>
-            </div>
-        </div>
-    </div>
+    <main class="inner-page research-wrap">
+        <h2 class="page-title">Research</h2>
+        <div id="research-content"></div>
+    </main>
         <!-- You can add more research areas here in the same format -->
 
     <!-- Footer -->
@@ -157,6 +165,6 @@
         document.getElementById("footer-placeholder").innerHTML = data;
       });
   </script>
+  <script type="module" src="/research/js/research-content.js"></script>
 </body>
 </html>
-

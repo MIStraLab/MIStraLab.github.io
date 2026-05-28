@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIStraLab - Open Positions</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/inner-pages.css?v=2" />
+  <style>
+    .positions-intro {
+      margin: 0 0 22px 0;
+      color: #1f2937;
+      text-align: justify;
+      line-height: 1.6;
+      border-bottom: 1px solid #dbe3ec;
+      padding-bottom: 14px;
+    }
+
+    .positions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .position-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 16px;
+      background: #fcfcfd;
+      min-height: 180px;
+    }
+
+    .position-card h3 {
+      margin: 0 0 8px 0;
+      color: #002244;
+      font-size: 1.1rem;
+    }
+
+    .position-meta {
+      margin: 0 0 10px 0;
+      color: #475569;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .position-empty {
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      min-height: 96px;
+      background: #ffffff;
+    }
+
+    .apply-box {
+      margin-top: 20px;
+      border-top: 2px solid #dbe3ec;
+      padding-top: 16px;
+    }
+
+    .apply-box h3 {
+      margin: 0 0 8px 0;
+      color: #002244;
+    }
+
+    .apply-box p {
+      margin: 0;
+      color: #1f2937;
+      line-height: 1.65;
+      text-align: justify;
+    }
+
+    .apply-box a {
+      color: #0056b3;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .apply-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <main class="inner-page">
+    <h2 class="page-title">Open Positions</h2>
+    <p class="positions-intro">
+      Open positions will be shared here. This page is kept as an editable template for upcoming announcements.
+    </p>
+
+    <div class="positions-grid">
+      <article class="position-card">
+        <h3>PhD Position</h3>
+        <div class="position-empty"></div>
+      </article>
+
+      <article class="position-card">
+        <h3>MSc Position</h3>
+        <div class="position-empty"></div>
+      </article>
+
+      <article class="position-card">
+        <h3>Undergraduate Position</h3>
+        <div class="position-empty"></div>
+      </article>
+    </div>
+
+    <section class="apply-box">
+      <h3>Application</h3>
+      <p>
+        For formal graduate applications, please follow the application process of METU Graduate School:
+        <a href="https://fbe.metu.edu.tr/en" target="_blank" rel="noopener noreferrer">https://fbe.metu.edu.tr/en</a>.
+        Also follow the announcements of the METU Metallurgical and Materials Engineering Department and check the METU academic calendar for official dates and deadlines.
+        Before official applications, please contact Assist. Prof. Dr. Irmak Sargin via email at <strong>isargin [at] metu.edu.tr</strong>.
+      </p>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    fetch("/partials/navbar.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("navbar-placeholder").innerHTML = data;
+
+        const toggle = document.getElementById("hamburger-toggle");
+        const links = document.getElementById("nav-links");
+
+        if (toggle && links) {
+          let isOpen = false;
+
+          toggle.addEventListener("click", () => {
+            if (!isOpen) {
+              links.classList.add("active");
+              isOpen = true;
+            } else {
+              links.classList.add("closing");
+              links.classList.remove("active");
+              setTimeout(() => {
+                links.classList.remove("closing");
+                isOpen = false;
+              }, 400);
+            }
+          });
+        }
+      });
+
+    fetch("/partials/footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      });
+  </script>
+</body>
+</html>

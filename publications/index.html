@@ -6,6 +6,7 @@
   <title>MIStraLab - Publications</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/inner-pages.css?v=2"/>
   <style>
     :root {
       --ink: #002244;
@@ -15,31 +16,19 @@
       --border-color: #dee2e6;
     }
 
-    .section {
-      padding: 30px;
-      margin: 20px auto;
-      width: 95%;
-      max-width: 1100px;
-      background-color: white;
-      border-radius: 8px;
-    }
-
-    h2 {
-      font-size: 36px;
-      text-align: center;
-      color: var(--ink);
-      margin-bottom: 30px;
-    }
-
-    /* --- Filter Controls --- */
     .filter-controls {
       display: flex;
-      justify-content: center; /* UPDATED: Aligns to the center */
-      align-items: center; /* Vertically aligns the label and dropdown */
+      justify-content: center;
+      align-items: center;
       gap: 10px;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--border-color);
+    }
+
+    .filter-controls label {
+      font-weight: 600;
+      color: #1f2937;
     }
 
     .filter-controls select {
@@ -47,46 +36,43 @@
       font-size: 16px;
       border: 1px solid var(--border-color);
       border-radius: 6px;
+      background-color: #fff;
     }
 
-    /* --- Publications List --- */
     ul.publications-list {
       list-style: none;
       padding: 0;
       margin: 0;
+      display: grid;
+      gap: 14px;
     }
 
     .publication-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.2em;
-      padding-bottom: 20px;
-      margin-bottom: 20px;
-      /* UPDATED: Removed the border-bottom line */
-    }
-    
-    .publication-item::before {
-      content: '📄';
-      font-size: 1.5em;
-      margin-top: -2px;
-      color: var(--ink-weak);
+      display: block;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fcfcfd;
+      padding: 16px 18px;
     }
 
     .publication-content {
-      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
     }
-    
+
     .publication-authors {
       color: var(--ink-weak);
       line-height: 1.5;
-      margin-bottom: 6px;
+      font-size: 0.95rem;
     }
-    
+
     .publication-title {
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       font-weight: 600;
       color: var(--accent);
       text-decoration: none;
+      line-height: 1.45;
     }
 
     .publication-title:hover {
@@ -96,30 +82,30 @@
     .publication-venue {
       font-style: italic;
       color: var(--ink);
-      margin-top: 6px;
+      line-height: 1.4;
     }
-    
+
     .action-buttons {
       display: flex;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 6px;
     }
 
     .action-buttons a {
       font-size: 0.8rem;
-      padding: 5px 12px;
-      color: var(--ink-weak);
-      background-color: transparent;
+      padding: 6px 12px;
+      color: #002244;
+      background-color: #fff;
       border: 1px solid var(--border-color);
       border-radius: 4px;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
 
     .action-buttons a:hover {
-      background-color: var(--bg-soft);
-      border-color: #aaa;
-      color: var(--ink);
+      background-color: #eef4ff;
+      border-color: #9db4d1;
+      color: #002244;
     }
 
     #loader {
@@ -129,7 +115,6 @@
       padding: 40px;
     }
 
-    /* Hide items that don't match the filter */
     .publication-item.hidden {
       display: none;
     }
@@ -140,7 +125,7 @@
       }
       .filter-controls {
         flex-direction: column;
-        align-items: stretch; /* Stretch selects to full width */
+        align-items: stretch;
       }
     }
   </style>
@@ -149,8 +134,8 @@
 
   <div id="navbar-placeholder"></div>
 
-  <div class="section">
-    <h2>Publications</h2>
+  <div class="inner-page">
+    <h2 class="page-title">Publications</h2>
 
     <div class="filter-controls">
       <label for="yearFilter">Year:</label>
@@ -160,9 +145,8 @@
     </div>
 
     <div id="publications-container">
-        <div id="loader">Loading publications... This may take a moment.</div>
-        <ul class="publications-list">
-            </ul>
+      <div id="loader">Loading publications... This may take a moment.</div>
+      <ul class="publications-list"></ul>
     </div>
 
   </div>
@@ -185,8 +169,8 @@
     }
 
     async function fetchAndDisplayPublications() {
-      const orcidId = "0000-0001-5156-5448"; // The ORCID ID for the PI
-      const piName = "Sargin, I."; // The name to highlight in author lists
+      const orcidId = "0000-0001-5156-5448";
+      const piName = "Sargin, I.";
       const publicationsList = document.querySelector('.publications-list');
       const yearFilter = document.getElementById('yearFilter');
       const loader = document.getElementById('loader');
@@ -195,7 +179,7 @@
         const summaryUrl = `https://pub.orcid.org/v3.0/${orcidId}/works`;
         const summaryResponse = await fetch(summaryUrl, { headers: { 'Accept': 'application/json' } });
         if (!summaryResponse.ok) throw new Error(`HTTP error! Status: ${summaryResponse.status}`);
-        
+
         const summaryData = await summaryResponse.json();
         const workSummaries = summaryData.group.map(work => work['work-summary'][0]);
 
@@ -207,11 +191,10 @@
 
         const fullDetails = await Promise.all(detailPromises);
 
-        // Sort publications by year, most recent first
         fullDetails.sort((a, b) => {
-            const yearA = a['publication-date']?.year?.value || 0;
-            const yearB = b['publication-date']?.year?.value || 0;
-            return yearB - yearA;
+          const yearA = a['publication-date']?.year?.value || 0;
+          const yearB = b['publication-date']?.year?.value || 0;
+          return yearB - yearA;
         });
 
         const uniqueYears = new Set();
@@ -230,7 +213,6 @@
           if (detail.contributors?.contributor) {
             const contributorNames = detail.contributors.contributor.map(c => c['credit-name']?.value).filter(Boolean);
             authors = contributorNames.join(', ');
-            // Highlight the Principal Investigator's name
             if (piName) {
               authors = authors.replace(piName, `<strong>${piName}</strong>`);
             }
@@ -253,8 +235,7 @@
                   <a href="${doiLink}" target="_blank" class="publication-title">${title} (${year})</a>
                   <div class="publication-venue">${journal}</div>
                   <div class="action-buttons">
-                    <a href="#" class="btn-cite" onclick="alert('Citation functionality coming soon!'); return false;">Cite</a>
-                    <a href="${doiLink}" target="_blank" class="btn-doi">DOI</a>
+                    <a href="${doiLink}" target="_blank" class="btn-doi">Open DOI</a>
                   </div>
                 </div>
               </li>`;
@@ -264,17 +245,16 @@
         loader.style.display = 'none';
         publicationsList.innerHTML = allPublicationsHTML;
 
-        // Populate year filter dropdown
         Array.from(uniqueYears).sort((a, b) => b - a).forEach(year => {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            yearFilter.appendChild(option);
+          const option = document.createElement('option');
+          option.value = year;
+          option.textContent = year;
+          yearFilter.appendChild(option);
         });
 
       } catch (error) {
         loader.textContent = 'Failed to load publications. Please try again later.';
-        console.error("Error fetching ORCID data:", error);
+        console.error('Error fetching ORCID data:', error);
       }
     }
 
@@ -282,24 +262,23 @@
   </script>
 
   <script>
-    // --- Standard Navbar and Footer Loading Script ---
-    fetch("/partials/navbar.html")
+    fetch('/partials/navbar.html')
       .then((response) => response.text())
       .then((data) => {
-        document.getElementById("navbar-placeholder").innerHTML = data;
-        const toggle = document.getElementById("hamburger-toggle");
-        const links = document.getElementById("nav-links");
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        const toggle = document.getElementById('hamburger-toggle');
+        const links = document.getElementById('nav-links');
         if (toggle && links) {
           let isOpen = false;
-          toggle.addEventListener("click", () => {
+          toggle.addEventListener('click', () => {
             if (!isOpen) {
-              links.classList.add("active");
+              links.classList.add('active');
               isOpen = true;
             } else {
-              links.classList.add("closing");
-              links.classList.remove("active");
+              links.classList.add('closing');
+              links.classList.remove('active');
               setTimeout(() => {
-                links.classList.remove("closing");
+                links.classList.remove('closing');
                 isOpen = false;
               }, 400);
             }
@@ -307,12 +286,12 @@
         }
       });
 
-    fetch("/partials/footer.html")
+    fetch('/partials/footer.html')
       .then((response) => response.text())
       .then((data) => {
-        document.getElementById("footer-placeholder").innerHTML = data;
+        document.getElementById('footer-placeholder').innerHTML = data;
       });
   </script>
 
 </body>
-</html>s
+</html>
