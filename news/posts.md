@@ -9,6 +9,19 @@ Format per post:
 - Separate posts with another `## slug` header.
 - `gallery` uses `|` as separator. Leave empty if no gallery.
 
+## graduations2026
+title: Our 2025-2026 Academic Year Graduates
+date: 2026-10-06
+image: /images/odtumini.jpg
+gallery: /images/news/gulcehremsc.jpg | /images/news/ilkemsc.jpg | /images/news/ogulcanmsc.jpg | /images/news/ufukmsc.jpg
+
+This year, four of our master's students from MIStraLab research group successfully completed their graduate studies. We sincerely thank them for their contributions to the group and wish them continued success in their academic and professional careers.
+
+- [Gülçehre Duygu Yüksel](/team/member.html?slug=gulcehreyuksel): Machine Learning-Driven Prediction and Optimization of Materials with Specific Refractive Indices in Micro-Opto-Mechanical Systems
+- [İlke Yılmaz](https://www.linkedin.com/in/yilmaz-ilke/): Determination of Transformation Temperatures of Metals Exhibiting Metal-Insulator Transitions for Use in NEMS/MEMS/MOEMS Systems via Machine Learning and Discovery of Novel Compositional Metals Demonstrating Metal-Insulator Transitions
+- [Ünver Oğulcan Demirağ](/team/member.html?slug=ogulcandemirag): Ti-6Al-4V Alloy Modifications for Better Suitability in Additive Manufacturing by Machine Learning
+- Ufuk Cevtekin: Determining Fatigue Performance of Steels by Machine Learning
+
 ## newlab
 title: New Laboratory
 date: 2026-05-25

@@ -156,11 +156,11 @@ pets:
 - /images/pets/nohut4.jpg::DAYIIIII!!
 
 ## member:gulcehreyuksel
-group: master
+group: phd, msc_alumni
 page: yes
+alumni_year: 2026
 name: Gülçehre Duygu Yüksel
 image: /images/profiles/gulcehreyuksel.jpg
-tenure: MSc. Student | 2023 - cont.
 email: yukselg@metu.edu.tr
 linkedin: https://www.linkedin.com/in/gulcehreyuksel/
 github: https://github.com/gulcehre
@@ -169,7 +169,12 @@ research:
 - Metal to insulator transition materials
 - Electronic properties of materials
 - Materials discovery
-education: B.Sc. Metallurgical and Materials Engineering, 2023 @ Middle East Technical University
+education:
+- M.Sc. Metallurgical and Materials Engineering, 2026 @ Middle East Technical University
+- B.Sc. Metallurgical and Materials Engineering, 2023 @ Middle East Technical University
+msc_thesis: Machine Learning-Driven Prediction and Optimization of Materials with Specific Refractive Indices in Micro-Opto-Mechanical Systems
+conferences:
+- Yüksel, G. D., and Sargın, I. (2026, Sept). Physics-Informed Feature Engineering for Unsupervised Discovery of Metal-Insulator Transition Materials. Presented at the E-MRS Fall 2026 Conference, Warsaw, Poland.
 
 ## member:ulascanyazar
 group: master
@@ -186,13 +191,15 @@ conferences:
 - Yazar, U. C., and Sargın, I. (2026, March). Data-Driven Discovery of Stable Lead-Free Perovskites Via Reinforcement Learning. Presented at the TMS 2026 Annual Meeting and Exhibition.
 
 ## member:ilkeyilmaz
-group: master
-page: yes
+group: msc_alumni
+page: no
+alumni_year: 2026
 name: İlke Yılmaz
 image: /images/profiles/noimage.jpg
-tenure: MSc. Student | Sept 2023 - cont.
+tenure: MSc. Graduate | Sept 2023 - 2026
 linkedin: https://www.linkedin.com/in/yilmaz-ilke/
 research:
+msc_thesis: Determination of Transformation Temperatures of Metals Exhibiting Metal-Insulator Transitions for Use in NEMS/MEMS/MOEMS Systems via Machine Learning and Discovery of Novel Compositional Metals Demonstrating Metal-Insulator Transitions
 
 ## member:aleynadaldal
 group: master
@@ -211,19 +218,28 @@ conferences:
 
 
 ## member:ogulcandemirag
-group: master
+group: phd, msc_alumni
 page: yes
+alumni_year: 2026
 name: Ünver Oğulcan Demirağ
 image: /images/profiles/noimage.jpg
-tenure: MSc. Student | Oct 2023 - cont.
 linkedin: https://www.linkedin.com/in/%C3%BCnver-o%C4%9Fulcan-demira%C4%9F-426434159/
 research:
 - Computational thermodynamics of Ti alloys
 - Alloy optimization for additive manufacturing
 - Composition-property design in Ti-6Al-4V
+msc_thesis: Ti-6Al-4V Alloy Modifications for Better Suitability in Additive Manufacturing by Machine Learning
 conferences:
 - Demirağ, U.O., and Sargın, I. (2025, May 26-30). Computational Thermodynamic Optimization of Ti-6Al-4V Alloy for Additive Manufacturing. Poster presented at E-MRS Spring 2025.
 - Demirağ, U.O., and Sargın, I. (2026, March). Computational Thermodynamics-Based Optimization of Ti-6Al-4V via Al and V Substitution for Additive Manufacturing. Presented at the TMS 2026 Annual Meeting and Exhibition.
+
+## member:ufukcevtekin
+group: msc_alumni
+page: no
+alumni_year: 2026
+name: Ufuk Cevtekin
+image: /images/profiles/noimage.jpg
+msc_thesis: Determining Fatigue Performance of Steels by Machine Learning
 
 ## member:umutcangulletutan
 group: msc_alumni
@@ -244,7 +260,7 @@ conferences:
 publications: Will be added
 
 ## member:cemdiyarbakir
-group: msc_alumni
+group: phd, msc_alumni
 page: no
 alumni_year: 2024
 name: Nusret Cem Diyarbakır

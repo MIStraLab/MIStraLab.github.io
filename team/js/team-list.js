@@ -63,8 +63,9 @@ function renderAlumniRows(alumni) {
 
   tbody.innerHTML = alumni
     .map((item) => {
+      const target = item.profile.startsWith("/") ? "" : ' target="_blank"';
       const nameCell = item.profile
-        ? `<a href="${item.profile}">${escapeHtml(item.name)}</a>`
+        ? `<a href="${item.profile}"${target}>${escapeHtml(item.name)}</a>`
         : escapeHtml(item.name);
 
       return `

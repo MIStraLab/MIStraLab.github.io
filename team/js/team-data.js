@@ -192,7 +192,7 @@ function parseTeamData(markdownText) {
         alumni.push({
           slug: member.slug,
           name: member.name,
-          profile: member.hasDetailPage ? member.detailPath : "",
+          profile: member.detailPath || member.linkedin,
           degree: "M.Sc.",
           year,
           thesis: member.mscThesis,
@@ -202,7 +202,7 @@ function parseTeamData(markdownText) {
         alumni.push({
           slug: member.slug,
           name: member.name,
-          profile: member.hasDetailPage ? member.detailPath : "",
+          profile: member.detailPath || member.linkedin,
           degree: "Ph.D.",
           year,
           thesis: member.phdThesis,

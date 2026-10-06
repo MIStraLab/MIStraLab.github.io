@@ -15,7 +15,7 @@ function renderGallery(gallery) {
 
   return `
     <div class="news-gallery" id="news-gallery">
-      ${gallery.map((src, index) => `<img src="${src}" alt="Photo ${index + 1}">`).join("")}
+      ${gallery.map((src, index) => `<img src="${src}" alt="Photo ${index + 1}" onerror="this.remove()">`).join("")}
     </div>
   `;
 }
