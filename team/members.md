@@ -123,9 +123,7 @@ conferences:
 - Topsakal, I., and Sargın, I. (2026, March). Kinetic Model Selection and Process Optimization for LIB Recycling Using Reinforcement Learning. Presented at the TMS 2026 Annual Meeting and Exhibition.
 pet_title: My pet: Kedoş
 pets:
-- /images/kedos.jpg::The famous cat of the website is Kedoş!
 - /images/pets/kedos3.jpg::Napping
-- /images/pets/kedos2.jpg::Posing
 
 ## member:dilarahasil
 group: master
