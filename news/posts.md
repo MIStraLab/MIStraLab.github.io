@@ -17,7 +17,7 @@ gallery: /images/news/gulcehremsc.jpg | /images/news/ilkemsc.jpg | /images/news/
 
 This year, four of our master's students from MIStraLab research group successfully completed their graduate studies. We sincerely thank them for their contributions to the group and wish them continued success in their academic and professional careers.
 
-- [Gülçehre Duygu Yüksel](/team/member.html?slug=gulcehreyuksel): Machine Learning-Driven Prediction and Optimization of Materials with Specific Refractive Indices in Micro-Opto-Mechanical Systems
+- [Gülçehre Duygu Yüksel](/team/member.html?slug=gulcehreyuksel): Data-Driven Discovery of Metal-Insulator Transition Compounds
 - [İlke Yılmaz](https://www.linkedin.com/in/yilmaz-ilke/): Determination of Transformation Temperatures of Metals Exhibiting Metal-Insulator Transitions for Use in NEMS/MEMS/MOEMS Systems via Machine Learning and Discovery of Novel Compositional Metals Demonstrating Metal-Insulator Transitions
 - [Ünver Oğulcan Demirağ](/team/member.html?slug=ogulcandemirag): Ti-6Al-4V Alloy Modifications for Better Suitability in Additive Manufacturing by Machine Learning
 - Ufuk Cevtekin: Determining Fatigue Performance of Steels by Machine Learning

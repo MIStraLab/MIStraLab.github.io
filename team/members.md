@@ -172,7 +172,7 @@ research:
 education:
 - M.Sc. Metallurgical and Materials Engineering, 2026 @ Middle East Technical University
 - B.Sc. Metallurgical and Materials Engineering, 2023 @ Middle East Technical University
-msc_thesis: Machine Learning-Driven Prediction and Optimization of Materials with Specific Refractive Indices in Micro-Opto-Mechanical Systems
+msc_thesis: Data-Driven Discovery of Metal-Insulator Transition Compounds
 conferences:
 - Yüksel, G. D., and Sargın, I. (2026, Sept). Physics-Informed Feature Engineering for Unsupervised Discovery of Metal-Insulator Transition Materials. Presented at the E-MRS Fall 2026 Conference, Warsaw, Poland.
 
